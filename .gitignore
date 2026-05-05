@@ -2,3 +2,4 @@
 node_modules/
 .discourse_theme/
 .discourse_theme_sync
+*.tsbuildinfo

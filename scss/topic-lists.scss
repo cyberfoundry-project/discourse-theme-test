@@ -1,0 +1,29 @@
+.topic-list,
+.category-list,
+.latest-topic-list,
+.top-topic-list {
+  background: var(--custom-theme-surface);
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--custom-theme-radius);
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.topic-list thead,
+.category-list thead {
+  background: var(--custom-theme-subtle);
+}
+
+.topic-list tbody tr,
+.category-list tbody tr {
+  transition: background-color 160ms ease;
+}
+
+.topic-list tbody tr:hover,
+.category-list tbody tr:hover {
+  background: var(--custom-theme-subtle);
+}
+
+.topic-list .topic-list-item-separator td {
+  border-bottom-color: var(--custom-theme-accent);
+}

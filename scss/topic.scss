@@ -1,0 +1,53 @@
+.topic-avatar,
+.topic-body {
+  border-top-color: var(--custom-theme-border);
+}
+
+.topic-post {
+  background: var(--custom-theme-surface);
+  border-radius: var(--custom-theme-radius);
+}
+
+.topic-body {
+  padding-right: 1rem;
+}
+
+.topic-meta-data .names span a,
+.topic-meta-data .names span {
+  font-family: var(--custom-theme-heading-font);
+  font-weight: 700;
+}
+
+.cooked {
+  font-family: var(--custom-theme-body-font);
+  line-height: 1.7;
+}
+
+.cooked h1,
+.cooked h2,
+.cooked h3,
+.cooked h4,
+.cooked h5,
+.cooked h6 {
+  font-family: var(--custom-theme-heading-font);
+}
+
+.cooked blockquote {
+  background: var(--custom-theme-subtle);
+  border-left: 4px solid var(--custom-theme-primary);
+  border-radius: 0 var(--custom-theme-radius) var(--custom-theme-radius) 0;
+}
+
+.cooked code,
+.d-editor-preview code {
+  border-radius: 0.35rem;
+}
+
+.d-editor-container,
+.composer-popup,
+.user-main .about,
+.user-main .user-content,
+.admin-main-nav,
+.admin-controls {
+  border-radius: var(--custom-theme-radius);
+}

@@ -1,0 +1,23 @@
+body {
+  background: var(--custom-theme-surface);
+  color: var(--custom-theme-text);
+  font-family: var(--custom-theme-body-font);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--custom-theme-heading-font);
+}
+
+p,
+li,
+input,
+button,
+textarea,
+select {
+  font-family: var(--custom-theme-body-font);
+}

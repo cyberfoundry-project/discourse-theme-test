@@ -1,0 +1,18 @@
+.navigation-container,
+.list-controls .category-breadcrumb,
+.list-controls .nav-pills {
+  gap: 0.5rem;
+}
+
+.nav-pills > li > a,
+.btn,
+.select-kit.combo-box .select-kit-header {
+  border-radius: 6px;
+}
+
+.nav-pills > li.active > a,
+.nav-pills > li > a.active {
+  background: var(--custom-theme-subtle);
+  color: var(--custom-theme-text);
+  font-weight: 600;
+}

@@ -1,0 +1,18 @@
+:root {
+  --custom-theme-primary: #{$accent_color};
+  --custom-theme-primary-dark: #{$accent_color_dark};
+  --custom-theme-text: var(--primary);
+  --custom-theme-muted: var(--primary-medium);
+  --custom-theme-subtle: var(--primary-very-low);
+  --custom-theme-surface: var(--secondary);
+  --custom-theme-accent: var(--tertiary);
+  --custom-theme-warning: #b45309;
+  --custom-theme-warning-surface: #fffbeb;
+  --custom-theme-warning-border: #fbbf24;
+  --custom-theme-border: var(--primary-low);
+  --custom-theme-radius: 8px;
+  --custom-theme-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  --custom-theme-content-width: 1110px;
+  --custom-theme-heading-font: "Geist", Arial, sans-serif;
+  --custom-theme-body-font: "Inter", Arial, sans-serif;
+}

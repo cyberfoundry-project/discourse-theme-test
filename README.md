@@ -12,13 +12,16 @@ copy.
 - `settings.yml` for editable copy, links, colors, and sidebar/footer content.
 - `common/head_tag.html` for loading Geist and Inter from Google Fonts.
 - Shared, desktop, and mobile light-mode SCSS in the Discourse theme file
-  layout.
+  layout, with shared styles split into Horizon-style `scss/*.scss` modules.
 - Plugin outlet connector templates for:
   - `before-main-outlet` homepage hero and quick links
   - `after-sidebar-sections` promotional card
 - A `common/footer.html` footer hook.
 - A lightweight API initializer that hides homepage-only content away from
   non-homepage routes.
+- Theme metadata for the bundled light color scheme, preview screenshot, and
+  Discourse search-field default.
+- TypeScript project metadata matching modern Discourse theme tooling.
 
 ## Install in Discourse
 

@@ -1,0 +1,32 @@
+{
+  "name": "CyberFoundry",
+  "about_url": "https://github.com/cyberfoundry-project/discourse-theme",
+  "license_url": "https://github.com/cyberfoundry-project/discourse-theme/blob/main/LICENSE",
+  "component": false,
+  "authors": "CyberFoundry",
+  "theme_version": "1.0.0",
+  "minimum_discourse_version": "3.2.0",
+  "color_schemes": {
+    "CyberFoundry Light": {
+      "primary": "111111",
+      "secondary": "ffffff",
+      "tertiary": "0070f3",
+      "tertiary-med-or-tertiary": "0070f3",
+      "quaternary": "666666",
+      "selected": "e5f2ff",
+      "header_background": "ffffff",
+      "header_primary": "111111",
+      "highlight": "fafafa",
+      "hover": "f7f7f8",
+      "danger": "e00",
+      "success": "0070f3",
+      "love": "e5484d"
+    }
+  },
+  "screenshots": [
+    "screenshots/light.png"
+  ],
+  "theme_site_settings": {
+    "search_experience": "search_field"
+  }
+}

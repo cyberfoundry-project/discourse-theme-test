@@ -1,0 +1,32 @@
+.custom-theme-footer {
+  border-top: 1px solid var(--custom-theme-border);
+  color: var(--custom-theme-muted);
+  margin-top: 3rem;
+  padding: 2rem 0;
+}
+
+// Discourse Easy Footer renders `.custom-footer`; hide this lightweight footer
+// when both are present so sites do not end up with stacked footers.
+body:has(.custom-footer) .custom-theme-footer {
+  display: none;
+}
+
+.custom-theme-footer__inner {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1110px;
+}
+
+.custom-theme-footer__brand {
+  font-family: var(--custom-theme-heading-font);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.custom-theme-footer__links {
+  display: flex;
+  gap: 1rem;
+}

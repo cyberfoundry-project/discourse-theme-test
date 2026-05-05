@@ -1,0 +1,19 @@
+@import "variables";
+@import "typography";
+@import "surfaces";
+@import "header";
+@import "home";
+@import "buttons";
+@import "sidebar";
+@import "navigation";
+@import "topic-lists";
+@import "topic";
+@import "composer";
+@import "user";
+@import "voting";
+@import "plugin-compat";
+@import "footer";
+
+:root {
+  --d-nav-pill-border-radius: 0;
+}

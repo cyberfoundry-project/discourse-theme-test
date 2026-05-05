@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CyberFoundry Theme Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    >
+    <style>
+      :root {
+        --accent: #0070f3;
+        --accent-soft: #e5f2ff;
+        --border: #e5e7eb;
+        --muted: #6b7280;
+        --text: #111827;
+        --text-strong: #020617;
+        --subtle: #f7f7f8;
+        --surface: #fff;
+        --success: #16a34a;
+        --danger: #dc2626;
+        --warning: #b45309;
+        --warning-border: #fbbf24;
+        --warning-surface: #fffbeb;
+        --heading: "Geist", Arial, sans-serif;
+        --body: "Inter", Arial, sans-serif;
+        --radius: 10px;
+        --shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--surface);
+        color: var(--text);
+        font-family: var(--body);
+        margin: 0;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: var(--heading);
+        letter-spacing: -0.02em;
+        margin: 0;
+      }
+
+      p {
+        color: var(--muted);
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .site-header {
+        align-items: center;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        gap: 24px;
+        justify-content: space-between;
+        min-height: 64px;
+        padding: 0 28px;
+      }
+
+      .site-brand {
+        align-items: center;
+        display: inline-flex;
+        font-family: var(--heading);
+        font-size: 18px;
+        font-weight: 800;
+        gap: 10px;
+        letter-spacing: -0.03em;
+      }
+
+      .site-brand-mark {
+        align-items: center;
+        background: var(--text);
+        border-radius: 8px;
+        color: var(--surface);
+        display: inline-flex;
+        font-size: 13px;
+        font-weight: 800;
+        height: 28px;
+        justify-content: center;
+        width: 28px;
+      }
+
+      .site-header-nav {
+        align-items: center;
+        color: #4b5563;
+        display: flex;
+        font-size: 14px;
+        gap: 18px;
+      }
+
+      .site-header-nav a:hover {
+        color: var(--text);
+      }
+
+      .preview-shell {
+        display: grid;
+        grid-template-columns: 252px minmax(0, 1fr);
+        min-height: calc(100vh - 64px);
+      }
+
+      .sidebar {
+        border-right: 1px solid var(--border);
+        padding: 16px;
+      }
+
+      .nav-group {
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 14px;
+        padding-bottom: 14px;
+      }
+
+      .nav-title {
+        color: var(--muted);
+        font-family: var(--heading);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        margin: 14px 0 8px;
+        text-transform: uppercase;
+      }
+
+      .nav-item {
+        align-items: center;
+        border-radius: 8px;
+        color: #4b5563;
+        display: flex;
+        font-size: 14px;
+        gap: 10px;
+        padding: 8px 10px;
+      }
+
+      .nav-item.active {
+        background: #e9e9ea;
+        color: var(--text);
+        font-weight: 700;
+      }
+
+      .nav-icon {
+        color: #6b7280;
+        width: 18px;
+      }
+
+      main {
+        padding: 42px 28px 72px;
+      }
+
+      .content {
+        max-width: 1110px;
+      }
+
+      .hub-grid {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: minmax(0, 1fr) 320px;
+      }
+
+      .announcement {
+        align-items: center;
+        background: var(--warning-surface);
+        border: 1px solid var(--warning-border);
+        border-radius: 8px;
+        color: var(--warning);
+        display: flex;
+        font-size: 13px;
+        font-weight: 700;
+        justify-content: center;
+        margin-bottom: 20px;
+        min-height: 42px;
+        padding: 10px 16px;
+        text-align: center;
+      }
+
+      .announcement::before {
+        background: currentColor;
+        border-radius: 50%;
+        content: "";
+        height: 8px;
+        margin-right: 8px;
+        width: 8px;
+      }
+
+      .intro-card {
+        align-items: flex-start;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        display: grid;
+        gap: 14px;
+        grid-template-columns: minmax(0, 1fr) auto;
+        margin-bottom: 20px;
+        padding: 16px;
+      }
+
+      .intro-kicker {
+        color: var(--accent);
+        font-family: var(--heading);
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .intro-card h1 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .intro-card p {
+        color: var(--text);
+        font-size: 14px;
+      }
+
+      .button-row {
+        display: flex;
+        gap: 8px;
+      }
+
+      .button {
+        align-items: center;
+        border-radius: 6px;
+        display: inline-flex;
+        font-size: 13px;
+        font-weight: 700;
+        min-height: 32px;
+        padding: 0 12px;
+        white-space: nowrap;
+      }
+
+      .button.primary {
+        background: #111827;
+        color: #fff;
+      }
+
+      .button.secondary {
+        border: 1px solid var(--border);
+      }
+
+      .breadcrumbs {
+        color: var(--muted);
+        display: flex;
+        font-size: 13px;
+        gap: 10px;
+        margin: 18px 0;
+      }
+
+      .tabs {
+        display: flex;
+        gap: 22px;
+        font-size: 14px;
+        margin-bottom: 34px;
+      }
+
+      .tabs .active {
+        color: var(--text);
+        font-weight: 700;
+      }
+
+      .section {
+        margin-bottom: 30px;
+      }
+
+      .section h2 {
+        align-items: center;
+        display: flex;
+        font-size: 22px;
+        font-weight: 700;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+
+      .section h2 span {
+        color: var(--muted);
+        font-size: 16px;
+      }
+
+      .card-grid {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .category-card {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+        min-height: 112px;
+        padding: 18px;
+      }
+
+      .category-card:hover {
+        background: var(--subtle);
+      }
+
+      .category-card h3 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .category-card p {
+        font-size: 14px;
+      }
+
+      .panel {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        margin-bottom: 20px;
+        padding: 18px;
+      }
+
+      .panel h2,
+      .panel h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .topic-preview {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: 56px minmax(0, 1fr);
+      }
+
+      .vote-box {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .vote-box button {
+        background: var(--surface);
+        border: 0;
+        color: var(--muted);
+        display: block;
+        font: inherit;
+        font-weight: 700;
+        min-height: 36px;
+        width: 100%;
+      }
+
+      .vote-box strong {
+        background: var(--subtle);
+        border-bottom: 1px solid var(--border);
+        border-top: 1px solid var(--border);
+        display: block;
+        font-family: var(--heading);
+        padding: 8px 0;
+      }
+
+      .vote-box .up {
+        color: var(--success);
+      }
+
+      .vote-box .down {
+        color: var(--danger);
+      }
+
+      .post-card {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 18px;
+      }
+
+      .post-meta {
+        align-items: center;
+        display: flex;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+
+      .avatar {
+        align-items: center;
+        background: var(--text);
+        border-radius: 999px;
+        color: var(--surface);
+        display: inline-flex;
+        font-family: var(--heading);
+        font-weight: 700;
+        height: 34px;
+        justify-content: center;
+        width: 34px;
+      }
+
+      .composer-card textarea {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        font: inherit;
+        min-height: 104px;
+        padding: 12px;
+        resize: vertical;
+        width: 100%;
+      }
+
+      .profile-card {
+        background: linear-gradient(180deg, var(--surface), #fafafa);
+      }
+
+      .profile-card .avatar {
+        height: 52px;
+        margin-bottom: 12px;
+        width: 52px;
+      }
+
+      .stat-grid {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 16px;
+      }
+
+      .stat {
+        background: var(--subtle);
+        border-radius: var(--radius);
+        padding: 12px;
+      }
+
+      .stat strong {
+        display: block;
+        font-family: var(--heading);
+      }
+
+      .site-footer {
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        padding: 28px;
+      }
+
+      .site-footer-inner {
+        align-items: center;
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+        margin: 0 auto;
+        max-width: 1110px;
+      }
+
+      .site-footer strong {
+        color: var(--text);
+        font-family: var(--heading);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+
+      .site-footer-links {
+        display: flex;
+        font-size: 14px;
+        gap: 18px;
+      }
+
+      @media (max-width: 900px) {
+        .site-header {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 12px;
+          padding: 16px;
+        }
+
+        .site-header-nav {
+          flex-wrap: wrap;
+        }
+
+        .preview-shell {
+          grid-template-columns: 1fr;
+          min-height: 0;
+        }
+
+        .hub-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          border-bottom: 1px solid var(--border);
+          border-right: 0;
+        }
+
+        .intro-card,
+        .topic-preview,
+        .card-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .site-footer-inner {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header" aria-label="Site header">
+      <a class="site-brand" href="#">
+        <span class="site-brand-mark">CF</span>
+        CyberFoundry
+      </a>
+      <nav class="site-header-nav" aria-label="Primary navigation">
+        <a href="#">Forum</a>
+        <a href="#">Docs</a>
+        <a href="#">Changelog</a>
+        <a href="#">Sign in</a>
+      </nav>
+    </header>
+
+    <div class="preview-shell">
+      <aside class="sidebar" aria-label="Forum navigation">
+        <div class="nav-group">
+          <a class="nav-item active" href="#"><span class="nav-icon">#</span> Categories</a>
+          <a class="nav-item" href="#"><span class="nav-icon">*</span> Leaderboard</a>
+          <a class="nav-item" href="#"><span class="nav-icon">[]</span> Code of Conduct</a>
+          <a class="nav-item" href="#"><span class="nav-icon">/</span> Handbook</a>
+          <a class="nav-item" href="#"><span class="nav-icon">...</span> More</a>
+        </div>
+
+        <p class="nav-title">Community Area</p>
+        <div class="nav-group">
+          <a class="nav-item" href="#"><span class="nav-icon">!</span> Announcements</a>
+          <a class="nav-item" href="#"><span class="nav-icon">[]</span> Events</a>
+          <a class="nav-item" href="#"><span class="nav-icon">*</span> Showcase</a>
+          <a class="nav-item" href="#"><span class="nav-icon">o</span> Discussions</a>
+          <a class="nav-item" href="#"><span class="nav-icon">?</span> Help</a>
+          <a class="nav-item" href="#"><span class="nav-icon">{ }</span> Open Source</a>
+        </div>
+
+        <p class="nav-title">Tags</p>
+        <a class="nav-item" href="#"><span class="nav-icon">#</span> v0</a>
+        <a class="nav-item" href="#"><span class="nav-icon">#</span> nextjs</a>
+        <a class="nav-item" href="#"><span class="nav-icon">#</span> domains</a>
+        <a class="nav-item" href="#"><span class="nav-icon">#</span> account</a>
+      </aside>
+
+      <main>
+        <div class="content">
+          <div class="announcement">
+            CyberFoundry is an open source community for IT and cybersecurity professionals.
+          </div>
+
+          <section class="intro-card" aria-labelledby="preview-title">
+            <div>
+              <div class="intro-kicker">Community-built practices and tools</div>
+              <h1 id="preview-title">Forge better IT and cybersecurity workflows together</h1>
+              <p>
+                Design, share, and improve the operational practices, playbooks,
+                and tooling security teams rely on every day.
+              </p>
+            </div>
+            <div class="button-row">
+              <a class="button primary" href="#">Start a discussion</a>
+              <a class="button secondary" href="#">Browse categories</a>
+            </div>
+          </section>
+
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <span>Categories</span>
+            <span>&gt;</span>
+            <span>Tags</span>
+            <span>&gt;</span>
+          </nav>
+
+          <div class="tabs" role="tablist">
+            <span class="active">Latest</span>
+            <span>Hot</span>
+          </div>
+
+          <section class="section" aria-labelledby="info-title">
+            <h2 id="info-title">Info <span>v</span></h2>
+            <div class="card-grid">
+              <a class="category-card" href="#">
+                <h3>Announcements</h3>
+                    <p>Follow project news, releases, and important community updates.</p>
+              </a>
+              <a class="category-card" href="#">
+                <h3>Events</h3>
+                    <p>Join working sessions, demos, and community calls for practitioners.</p>
+              </a>
+              <a class="category-card" href="#">
+                <h3>Knowledge Base</h3>
+                    <p>Read playbooks, implementation notes, and reusable technical guides.</p>
+              </a>
+            </div>
+          </section>
+
+          <div class="hub-grid">
+            <div>
+              <section class="section" aria-labelledby="community-title">
+                <h2 id="community-title">Community <span>v</span></h2>
+                <div class="card-grid">
+                  <a class="category-card" href="#">
+                    <h3>Discussions</h3>
+                    <p>Tackle technical challenges with peers across IT and cybersecurity.</p>
+                  </a>
+                  <a class="category-card" href="#">
+                    <h3>Showcase</h3>
+                    <p>Share practices, scripts, detections, dashboards, and tooling improvements.</p>
+                  </a>
+                  <a class="category-card" href="#">
+                    <h3>Open Source</h3>
+                    <p>Collaborate on the open resources the industry needs to operate well.</p>
+                  </a>
+                </div>
+              </section>
+
+              <section class="panel" aria-labelledby="topic-preview-title">
+                <h2 id="topic-preview-title">Featured discussion</h2>
+                <div class="topic-preview">
+                  <div class="vote-box" aria-label="Post voting preview">
+                    <button class="up" type="button">Up</button>
+                    <strong>24</strong>
+                    <button class="down" type="button">Down</button>
+                  </div>
+                  <article class="post-card">
+                    <div class="post-meta">
+                      <span class="avatar">AR</span>
+                      <div>
+                        <h3>How should we standardize incident response workspaces?</h3>
+                        <p>Alex Rivera / 12 replies / updated 18m ago</p>
+                      </div>
+                    </div>
+                    <p>
+                      We are collecting field-tested patterns for incident intake,
+                      escalation, evidence handling, and post-incident learning.
+                    </p>
+                    <div class="button-row" style="margin-top: 16px;">
+                      <a class="button secondary" href="#">Read thread</a>
+                      <a class="button secondary" href="#">Follow</a>
+                    </div>
+                  </article>
+                </div>
+              </section>
+
+              <section class="panel composer-card" aria-labelledby="composer-title">
+                <h2 id="composer-title">Start a new conversation</h2>
+                <p style="margin-bottom: 12px;">Ask a question, share a practice, or propose a tool the community can improve together.</p>
+                <textarea aria-label="Draft a new discussion">What technical challenge should CyberFoundry help solve?</textarea>
+                <div class="button-row" style="justify-content: flex-end; margin-top: 12px;">
+                  <a class="button secondary" href="#">Save draft</a>
+                  <a class="button primary" href="#">Create topic</a>
+                </div>
+              </section>
+            </div>
+
+            <aside aria-label="Community profile and status">
+              <section class="panel profile-card">
+                <span class="avatar">CF</span>
+                <h2>Community hub</h2>
+                <p>Track community work, vote on ideas, and help practitioners turn shared expertise into essential resources.</p>
+                <div class="stat-grid">
+                  <div class="stat">
+                    <strong>1.2k</strong>
+                    <span>Members</span>
+                  </div>
+                  <div class="stat">
+                    <strong>342</strong>
+                    <span>Topics</span>
+                  </div>
+                  <div class="stat">
+                    <strong>88</strong>
+                    <span>Practices reviewed</span>
+                  </div>
+                  <div class="stat">
+                    <strong>24</strong>
+                    <span>Open proposals</span>
+                  </div>
+                </div>
+              </section>
+
+              <section class="panel">
+                <h3>Plugin-ready surfaces</h3>
+                <p>Category banners, tag banners, DiscoTOC, easy footer, sidebar theme toggle, and custom header links keep their own layout space.</p>
+              </section>
+            </aside>
+          </div>
+        </div>
+      </main>
+    </div>
+    <footer class="site-footer" aria-label="Community footer">
+      <div class="site-footer-inner">
+        <div>
+          <strong>CyberFoundry</strong>
+          <p>Shared expertise for the tools and practices IT and cybersecurity teams rely on.</p>
+        </div>
+        <nav class="site-footer-links" aria-label="Footer links">
+          <a href="#">About</a>
+          <a href="#">Guidelines</a>
+          <a href="#">Terms</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

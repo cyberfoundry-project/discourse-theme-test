@@ -1,0 +1,48 @@
+.contents,
+.wrap,
+#main-outlet-wrapper {
+  box-sizing: border-box;
+}
+
+#main-outlet {
+  background: var(--custom-theme-surface);
+}
+
+.boxed.white,
+.user-main .about,
+.user-main .user-content,
+.group-box,
+.directory .directory-table-container,
+.admin-controls,
+.admin-main-nav,
+.d-editor-container,
+.composer-popup,
+.modal-inner-container,
+.select-kit .select-kit-collection {
+  background: var(--custom-theme-card);
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--custom-theme-radius-lg);
+  box-shadow: var(--custom-theme-shadow-sm);
+}
+
+.alert {
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--custom-theme-radius-md);
+  box-shadow: none;
+}
+
+.alert.alert-info {
+  background: var(--custom-theme-info-surface);
+  border-color: color-mix(in srgb, var(--custom-theme-primary) 24%, var(--custom-theme-border));
+  color: var(--custom-theme-primary-dark);
+}
+
+.alert.alert-error {
+  background: var(--custom-theme-danger-surface);
+  border-color: color-mix(in srgb, var(--danger) 26%, var(--custom-theme-border));
+}
+
+.badge-category,
+.discourse-tag {
+  border-radius: var(--custom-theme-radius-sm);
+}

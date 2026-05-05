@@ -1,0 +1,30 @@
+.custom-theme-banner {
+  min-height: 0;
+}
+
+.custom-theme-banner__content {
+  max-width: 70ch;
+}
+
+.custom-theme-quick-links {
+  padding-inline: 0;
+}
+
+.topic-list .main-link {
+  padding-block: 1.05rem;
+}
+
+.custom-theme-footer__links {
+  justify-content: flex-end;
+}
+
+.user-main .user-content,
+.user-main .about,
+.user-main .user-stream {
+  max-width: var(--custom-theme-wide-width);
+}
+
+.topic-area,
+.container.posts {
+  gap: var(--custom-theme-space-4);
+}

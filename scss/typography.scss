@@ -1,0 +1,50 @@
+body {
+  background: var(--custom-theme-surface);
+  color: var(--custom-theme-text);
+  font-family: var(--custom-theme-body-font);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizelegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--custom-theme-heading-font);
+}
+
+p,
+li,
+input,
+button,
+textarea,
+select {
+  font-family: var(--custom-theme-body-font);
+}
+
+a {
+  color: var(--custom-theme-primary);
+  text-decoration-color: transparent;
+  text-underline-offset: 0.18em;
+  transition:
+    color 160ms ease,
+    text-decoration-color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+a:hover,
+a:focus {
+  color: var(--custom-theme-primary-dark);
+  text-decoration-color: currentcolor;
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--custom-theme-mono-font);
+}

@@ -1,0 +1,90 @@
+brand_name:
+  default: "CyberFoundry"
+  description: "Brand name shown in custom theme areas."
+announcement_text:
+  default: "Welcome to the CyberFoundry community hub for IT and cybersecurity professionals"
+  description: "Short alert message shown above the homepage intro. Leave blank to hide the alert."
+hero_eyebrow:
+  default: "Community-driven IT and cybersecurity practice"
+  description: "Small blue headline displayed in the homepage intro card."
+hero_title:
+  default: "Forge the practices and tools security teams rely on"
+  description: "Accessible heading for the homepage intro card."
+hero_subtitle:
+  default: "CyberFoundry brings practitioners together to design, share, and improve the resources the industry needs to solve real technical challenges."
+  description: "Supporting copy displayed in the homepage intro card."
+hero_cta_text:
+  default: "Start a discussion"
+  description: "Primary call-to-action label shown in the hero."
+hero_cta_url:
+  default: "/new-topic"
+  description: "URL for the hero call-to-action button."
+hero_secondary_cta_text:
+  default: "Browse categories"
+  description: "Secondary call-to-action label shown in the hero."
+hero_secondary_cta_url:
+  default: "/categories"
+  description: "URL for the secondary hero call-to-action button."
+show_homepage_hero:
+  default: true
+  description: "Show the custom hero above topic-list and category pages."
+show_quick_links:
+  default: true
+  description: "Show the quick link cards below the hero."
+quick_link_1_label:
+  default: "Announcements"
+  description: "Label for the first quick link."
+quick_link_1_text:
+  default: "Follow platform updates, community decisions, and important project news."
+  description: "Description for the first quick link."
+quick_link_1_url:
+  default: "/c/announcements"
+  description: "URL for the first quick link."
+quick_link_2_label:
+  default: "Events"
+  description: "Label for the second quick link."
+quick_link_2_text:
+  default: "Join workshops, working sessions, and events for practitioners building together."
+  description: "Description for the second quick link."
+quick_link_2_url:
+  default: "/c/events"
+  description: "URL for the second quick link."
+quick_link_3_label:
+  default: "Practices and Tools"
+  description: "Label for the third quick link."
+quick_link_3_text:
+  default: "Explore guides, playbooks, workflows, and tools shaped by shared expertise."
+  description: "Description for the third quick link."
+quick_link_3_url:
+  default: "/c/knowledge-base"
+  description: "URL for the third quick link."
+accent_color:
+  default: "#0070f3"
+  description: "Primary accent color used by custom theme elements."
+accent_color_dark:
+  default: "#0059c9"
+  description: "Darker accent color used for hover and focus states."
+footer_tagline:
+  default: "A community hub for forging practical IT and cybersecurity resources."
+  description: "Short custom footer tagline."
+show_custom_footer:
+  default: true
+  description: "Show the built-in CyberFoundry footer. Disable this when using Discourse Easy Footer."
+show_sidebar_card:
+  default: true
+  description: "Show the promotional card in the Discourse sidebar."
+sidebar_card_icon:
+  default: "*"
+  description: "Decorative icon shown in the sidebar card."
+sidebar_card_title:
+  default: "Join the forge"
+  description: "Heading for the custom sidebar card."
+sidebar_card_text:
+  default: "Find discussions, working groups, shared tools, and resources for IT and cybersecurity practitioners."
+  description: "Body copy for the custom sidebar card."
+sidebar_card_cta:
+  default: "View categories"
+  description: "Call-to-action label for the custom sidebar card."
+sidebar_card_url:
+  default: "/categories"
+  description: "URL for the custom sidebar card call-to-action."

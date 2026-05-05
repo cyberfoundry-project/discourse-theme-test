@@ -1,0 +1,77 @@
+// Mobile-focused refinements for narrow forum layouts.
+
+.custom-theme-banner {
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0;
+  grid-template-columns: 1fr;
+  margin-inline: calc(-1 * var(--custom-theme-content-padding, 1rem));
+  padding: var(--custom-theme-space-4);
+
+  &__title {
+    font-size: var(--font-up-2);
+  }
+
+  &__description {
+    font-size: var(--font-down-1);
+  }
+
+  &__actions {
+    align-self: stretch;
+  }
+}
+
+.custom-theme-button {
+  width: 100%;
+}
+
+.custom-theme-quick-links,
+.custom-quick-links {
+  grid-template-columns: 1fr;
+  margin-inline: 0;
+}
+
+.custom-theme-footer__inner {
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.custom-sidebar-card {
+  margin-inline: 0.5rem;
+}
+
+.topic-list,
+.category-list,
+.latest-topic-list,
+.top-topic-list {
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0;
+  margin-right: calc(-1 * var(--custom-theme-content-padding, 1rem));
+  margin-left: calc(-1 * var(--custom-theme-content-padding, 1rem));
+}
+
+.topic-list {
+  .views,
+  .posts {
+    display: none;
+  }
+}
+
+.topic-body {
+  padding-inline: var(--custom-theme-space-3);
+}
+
+.user-main .about,
+.user-main .user-content,
+.user-main .summary,
+.user-main .user-stream {
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0;
+}
+
+.d-editor-container,
+.composer-popup {
+  border-radius: var(--custom-theme-radius-lg);
+}

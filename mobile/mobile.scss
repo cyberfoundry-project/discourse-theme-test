@@ -1,0 +1,49 @@
+// Mobile-focused refinements for narrow forum layouts.
+
+.custom-theme-banner {
+  border-radius: 0;
+  grid-template-columns: 1fr;
+  margin-inline: calc(-1 * var(--custom-theme-content-padding, 1rem));
+  margin-top: 0;
+  padding: 2.25rem 1rem;
+
+  &__title {
+    font-size: clamp(2rem, 12vw, 3rem);
+  }
+
+  &__description {
+    font-size: 1rem;
+  }
+
+  &__actions {
+    align-self: stretch;
+  }
+}
+
+.custom-theme-button {
+  width: 100%;
+}
+
+.custom-theme-quick-links,
+.custom-quick-links {
+  grid-template-columns: 1fr;
+  margin-inline: 0;
+}
+
+.topic-list,
+.category-list,
+.latest-topic-list,
+.top-topic-list {
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0;
+  margin-right: calc(-1 * var(--custom-theme-content-padding, 1rem));
+  margin-left: calc(-1 * var(--custom-theme-content-padding, 1rem));
+}
+
+.topic-list {
+  .views,
+  .posts {
+    display: none;
+  }
+}

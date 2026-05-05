@@ -1,0 +1,21 @@
+// Desktop-focused refinements for larger forum layouts.
+
+.custom-theme-banner {
+  min-height: 19rem;
+}
+
+.custom-theme-banner__content {
+  max-width: 760px;
+}
+
+.custom-theme-quick-links {
+  padding-inline: 1rem;
+}
+
+.topic-list .main-link {
+  padding-block: 1.05rem;
+}
+
+.custom-theme-footer__links {
+  justify-content: flex-end;
+}

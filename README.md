@@ -50,6 +50,13 @@ For deeper visual changes, edit:
 - `desktop/desktop.scss` for larger-screen refinements
 - `mobile/mobile.scss` for narrow-screen refinements
 
+## Preview
+
+A static approximation of the current theme direction is available at
+`preview/index.html`. Open it in a browser to review the light layout,
+typography, sidebar, announcement bar, intro card, and category cards without a
+running Discourse instance.
+
 ## Develop locally
 
 For the fastest feedback loop, use Discourse's theme CLI with a running Discourse

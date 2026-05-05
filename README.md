@@ -3,12 +3,14 @@
 CyberFoundry is a custom Discourse forum theme that starts from a clean,
 light-mode community layout inspired by community.vercel.com. It favors white
 surfaces, subtle borders, compact alert-style intro content, tidy quick-link
-cards, and restrained navigation/topic-list styling.
+cards, restrained navigation/topic-list styling, Geist headings, and Inter body
+copy.
 
 ## What is included
 
 - `about.json` theme metadata for remote Git installation.
 - `settings.yml` for editable copy, links, colors, and sidebar/footer content.
+- `common/head_tag.html` for loading Geist and Inter from Google Fonts.
 - Shared, desktop, and mobile light-mode SCSS in the Discourse theme file
   layout.
 - Plugin outlet connector templates for:

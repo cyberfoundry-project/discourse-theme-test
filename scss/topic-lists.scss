@@ -27,3 +27,43 @@
 .topic-list .topic-list-item-separator td {
   border-bottom-color: var(--custom-theme-accent);
 }
+
+.topic-list {
+  .main-link a.title {
+    color: var(--custom-theme-text);
+    font-family: var(--custom-theme-heading-font);
+    font-weight: 650;
+    letter-spacing: -0.01em;
+  }
+
+  .topic-excerpt {
+    color: var(--custom-theme-muted);
+    font-family: var(--custom-theme-body-font);
+    line-height: 1.55;
+  }
+
+  .badge-wrapper,
+  .discourse-tag {
+    border-radius: var(--custom-theme-radius-sm);
+  }
+
+  .num,
+  .age,
+  .posts-map,
+  .views {
+    color: var(--custom-theme-muted);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.category-list {
+  .category-name {
+    font-family: var(--custom-theme-heading-font);
+    font-weight: 650;
+  }
+
+  .category-description {
+    color: var(--custom-theme-muted);
+    line-height: 1.55;
+  }
+}

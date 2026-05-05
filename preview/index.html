@@ -13,16 +13,22 @@
     <style>
       :root {
         --accent: #0070f3;
+        --accent-soft: #e5f2ff;
         --border: #e5e7eb;
         --muted: #6b7280;
         --text: #111827;
+        --text-strong: #020617;
         --subtle: #f7f7f8;
         --surface: #fff;
+        --success: #16a34a;
+        --danger: #dc2626;
         --warning: #b45309;
         --warning-border: #fbbf24;
         --warning-surface: #fffbeb;
         --heading: "Geist", Arial, sans-serif;
         --body: "Inter", Arial, sans-serif;
+        --radius: 10px;
+        --shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.08);
       }
 
       * {
@@ -156,6 +162,12 @@
         max-width: 1110px;
       }
 
+      .hub-grid {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: minmax(0, 1fr) 320px;
+      }
+
       .announcement {
         align-items: center;
         background: var(--warning-surface);
@@ -184,7 +196,8 @@
       .intro-card {
         align-items: flex-start;
         border: 1px solid var(--border);
-        border-radius: 8px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
         display: grid;
         gap: 14px;
         grid-template-columns: minmax(0, 1fr) auto;
@@ -282,7 +295,8 @@
 
       .category-card {
         border: 1px solid var(--border);
-        border-radius: 8px;
+        border-radius: var(--radius);
+        box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
         min-height: 112px;
         padding: 18px;
       }
@@ -299,6 +313,125 @@
 
       .category-card p {
         font-size: 14px;
+      }
+
+      .panel {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        margin-bottom: 20px;
+        padding: 18px;
+      }
+
+      .panel h2,
+      .panel h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .topic-preview {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: 56px minmax(0, 1fr);
+      }
+
+      .vote-box {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .vote-box button {
+        background: var(--surface);
+        border: 0;
+        color: var(--muted);
+        display: block;
+        font: inherit;
+        font-weight: 700;
+        min-height: 36px;
+        width: 100%;
+      }
+
+      .vote-box strong {
+        background: var(--subtle);
+        border-bottom: 1px solid var(--border);
+        border-top: 1px solid var(--border);
+        display: block;
+        font-family: var(--heading);
+        padding: 8px 0;
+      }
+
+      .vote-box .up {
+        color: var(--success);
+      }
+
+      .vote-box .down {
+        color: var(--danger);
+      }
+
+      .post-card {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 18px;
+      }
+
+      .post-meta {
+        align-items: center;
+        display: flex;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+
+      .avatar {
+        align-items: center;
+        background: var(--text);
+        border-radius: 999px;
+        color: var(--surface);
+        display: inline-flex;
+        font-family: var(--heading);
+        font-weight: 700;
+        height: 34px;
+        justify-content: center;
+        width: 34px;
+      }
+
+      .composer-card textarea {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        font: inherit;
+        min-height: 104px;
+        padding: 12px;
+        resize: vertical;
+        width: 100%;
+      }
+
+      .profile-card {
+        background: linear-gradient(180deg, var(--surface), #fafafa);
+      }
+
+      .profile-card .avatar {
+        height: 52px;
+        margin-bottom: 12px;
+        width: 52px;
+      }
+
+      .stat-grid {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 16px;
+      }
+
+      .stat {
+        background: var(--subtle);
+        border-radius: var(--radius);
+        padding: 12px;
+      }
+
+      .stat strong {
+        display: block;
+        font-family: var(--heading);
       }
 
       .site-footer {
@@ -346,12 +479,17 @@
           min-height: 0;
         }
 
+        .hub-grid {
+          grid-template-columns: 1fr;
+        }
+
         .sidebar {
           border-bottom: 1px solid var(--border);
           border-right: 0;
         }
 
         .intro-card,
+        .topic-preview,
         .card-grid {
           grid-template-columns: 1fr;
         }
@@ -455,23 +593,96 @@
             </div>
           </section>
 
-          <section class="section" aria-labelledby="community-title">
-            <h2 id="community-title">Community <span>v</span></h2>
-            <div class="card-grid">
-              <a class="category-card" href="#">
-                <h3>Discussions</h3>
-                <p>Join in conversations, share opinions, and brainstorm with other community members.</p>
-              </a>
-              <a class="category-card" href="#">
-                <h3>Showcase</h3>
-                <p>Share what you shipped, get feedback, and inspire creativity with new ideas.</p>
-              </a>
-              <a class="category-card" href="#">
-                <h3>Open Source</h3>
-                <p>Collaborate on open source projects, talk about best practices, and find resources.</p>
-              </a>
+          <div class="hub-grid">
+            <div>
+              <section class="section" aria-labelledby="community-title">
+                <h2 id="community-title">Community <span>v</span></h2>
+                <div class="card-grid">
+                  <a class="category-card" href="#">
+                    <h3>Discussions</h3>
+                    <p>Join in conversations, share opinions, and brainstorm with other community members.</p>
+                  </a>
+                  <a class="category-card" href="#">
+                    <h3>Showcase</h3>
+                    <p>Share what you shipped, get feedback, and inspire creativity with new ideas.</p>
+                  </a>
+                  <a class="category-card" href="#">
+                    <h3>Open Source</h3>
+                    <p>Collaborate on open source projects, talk about best practices, and find resources.</p>
+                  </a>
+                </div>
+              </section>
+
+              <section class="panel" aria-labelledby="topic-preview-title">
+                <h2 id="topic-preview-title">Featured discussion</h2>
+                <div class="topic-preview">
+                  <div class="vote-box" aria-label="Post voting preview">
+                    <button class="up" type="button">Up</button>
+                    <strong>24</strong>
+                    <button class="down" type="button">Down</button>
+                  </div>
+                  <article class="post-card">
+                    <div class="post-meta">
+                      <span class="avatar">AR</span>
+                      <div>
+                        <h3>How should we structure project workspaces?</h3>
+                        <p>Alex Rivera / 12 replies / updated 18m ago</p>
+                      </div>
+                    </div>
+                    <p>
+                      We are collecting patterns for project onboarding, voting on
+                      proposals, and documenting implementation decisions in public.
+                    </p>
+                    <div class="button-row" style="margin-top: 16px;">
+                      <a class="button secondary" href="#">Read thread</a>
+                      <a class="button secondary" href="#">Follow</a>
+                    </div>
+                  </article>
+                </div>
+              </section>
+
+              <section class="panel composer-card" aria-labelledby="composer-title">
+                <h2 id="composer-title">Start a new conversation</h2>
+                <p style="margin-bottom: 12px;">Ask a question, share progress, or propose a community improvement.</p>
+                <textarea aria-label="Draft a new discussion">What are you building with CyberFoundry?</textarea>
+                <div class="button-row" style="justify-content: flex-end; margin-top: 12px;">
+                  <a class="button secondary" href="#">Save draft</a>
+                  <a class="button primary" href="#">Create topic</a>
+                </div>
+              </section>
             </div>
-          </section>
+
+            <aside aria-label="Community profile and status">
+              <section class="panel profile-card">
+                <span class="avatar">CF</span>
+                <h2>Community hub</h2>
+                <p>Track project updates, vote on ideas, and help contributors find their next step.</p>
+                <div class="stat-grid">
+                  <div class="stat">
+                    <strong>1.2k</strong>
+                    <span>Members</span>
+                  </div>
+                  <div class="stat">
+                    <strong>342</strong>
+                    <span>Topics</span>
+                  </div>
+                  <div class="stat">
+                    <strong>88</strong>
+                    <span>Ideas voted</span>
+                  </div>
+                  <div class="stat">
+                    <strong>24</strong>
+                    <span>Open tasks</span>
+                  </div>
+                </div>
+              </section>
+
+              <section class="panel">
+                <h3>Plugin-ready surfaces</h3>
+                <p>Category banners, tag banners, DiscoTOC, easy footer, sidebar theme toggle, and custom header links keep their own layout space.</p>
+              </section>
+            </aside>
+          </div>
         </div>
       </main>
     </div>

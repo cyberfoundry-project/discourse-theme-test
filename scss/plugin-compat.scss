@@ -1,0 +1,61 @@
+// Compatibility polish for commonly installed Discourse theme components.
+
+.category-title-header,
+.tag-title-header,
+.tag-banner-container {
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--custom-theme-radius-lg);
+  box-shadow: var(--custom-theme-shadow-sm);
+  margin: 0 auto var(--space-4);
+  max-width: var(--custom-theme-content-width);
+  overflow: hidden;
+}
+
+.category-title-contents,
+.tag-title-contents {
+  font-family: var(--custom-theme-body-font);
+}
+
+.category-title-contents .category-title,
+.tag-title-contents h1 {
+  font-family: var(--custom-theme-heading-font);
+  letter-spacing: -0.03em;
+}
+
+.d-toc-main {
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--custom-theme-radius-lg);
+  box-shadow: var(--custom-theme-shadow-sm);
+  padding: var(--space-2);
+}
+
+.d-toc-main #d-toc {
+  border-left-color: var(--custom-theme-border);
+}
+
+.d-toc-main a {
+  border-radius: var(--custom-theme-radius-sm);
+}
+
+.d-toc-main a:hover,
+.d-toc-main li.direct-active > a {
+  background: var(--custom-theme-muted-surface);
+}
+
+.custom-header-links .headerLink a {
+  border-radius: var(--custom-theme-radius-sm);
+  font-family: var(--custom-theme-body-font);
+  font-size: var(--font-0);
+}
+
+.custom-header-links .headerLink a:hover {
+  background: var(--custom-theme-muted-surface);
+}
+
+.sidebar-theme-toggle-dropdown.select-kit.combo-box .select-kit-header {
+  border-radius: var(--custom-theme-radius-md);
+}
+
+#header-list-area {
+  max-width: var(--custom-theme-content-width);
+}

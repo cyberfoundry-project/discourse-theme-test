@@ -6,10 +6,10 @@
   border-radius: 0;
   grid-template-columns: 1fr;
   margin-inline: calc(-1 * var(--custom-theme-content-padding, 1rem));
-  padding: 1rem;
+  padding: var(--custom-theme-space-4);
 
   &__title {
-    font-size: var(--font-up-1);
+    font-size: var(--font-up-2);
   }
 
   &__description {
@@ -36,6 +36,10 @@
   flex-direction: column;
 }
 
+.custom-sidebar-card {
+  margin-inline: 0.5rem;
+}
+
 .topic-list,
 .category-list,
 .latest-topic-list,
@@ -52,4 +56,22 @@
   .posts {
     display: none;
   }
+}
+
+.topic-body {
+  padding-inline: var(--custom-theme-space-3);
+}
+
+.user-main .about,
+.user-main .user-content,
+.user-main .summary,
+.user-main .user-stream {
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0;
+}
+
+.d-editor-container,
+.composer-popup {
+  border-radius: var(--custom-theme-radius-lg);
 }

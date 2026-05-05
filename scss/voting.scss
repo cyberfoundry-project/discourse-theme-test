@@ -1,0 +1,127 @@
+.voting-wrapper,
+.post-voting-post {
+  --vote-control-radius: var(--custom-theme-radius-md);
+}
+
+.voting-wrapper {
+  background: var(--custom-theme-card);
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--vote-control-radius);
+  box-shadow: var(--custom-theme-shadow-sm);
+  overflow: hidden;
+
+  .btn[disabled]:not(.is-loading) {
+    background: var(--custom-theme-muted-surface);
+    border: 0;
+  }
+}
+
+.voting-wrapper__count-text,
+.voting-voters__empty,
+.voting-voters__loading,
+.voting-voters__overflow {
+  color: var(--custom-theme-muted-foreground);
+}
+
+.voting-wrapper__button,
+.voting-wrapper__count {
+  background: var(--custom-theme-card);
+  border-color: var(--custom-theme-border);
+}
+
+.voting-wrapper__button {
+  border-radius: var(--vote-control-radius) var(--vote-control-radius) 0 0;
+
+  &:focus-visible,
+  .discourse-no-touch &:hover {
+    background: var(--custom-theme-muted-surface);
+  }
+
+  &.btn-success .d-icon {
+    color: var(--custom-theme-success);
+  }
+}
+
+.voting-wrapper__count {
+  border-radius: 0 0 var(--vote-control-radius) var(--vote-control-radius);
+  color: var(--custom-theme-foreground);
+  font-family: var(--custom-theme-heading-font);
+  font-weight: 700;
+}
+
+.post-voting-answers-header {
+  background: var(--custom-theme-card);
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--custom-theme-radius-lg);
+  box-shadow: var(--custom-theme-shadow-sm);
+  margin-bottom: var(--space-3);
+  padding: var(--space-3);
+}
+
+.post-voting-answers-header__count {
+  font-family: var(--custom-theme-heading-font);
+  font-weight: 700;
+}
+
+.post-voting-post {
+  background: var(--custom-theme-card);
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--vote-control-radius);
+  box-shadow: var(--custom-theme-shadow-sm);
+  overflow: hidden;
+
+  .post-voting-button {
+    color: var(--custom-theme-muted-foreground);
+    padding: var(--space-1) var(--space-2);
+
+    &:focus-visible,
+    .discourse-no-touch &:hover {
+      background: var(--custom-theme-muted-surface);
+      color: var(--custom-theme-foreground);
+    }
+
+    &.--voted .d-icon {
+      color: var(--custom-theme-success);
+    }
+
+    &.--voted.--downvote .d-icon {
+      color: var(--custom-theme-destructive);
+    }
+  }
+}
+
+.post-voting-post__toggle-voters {
+  border-top: 1px solid var(--custom-theme-border);
+  color: var(--custom-theme-foreground);
+  font-family: var(--custom-theme-heading-font);
+  font-weight: 700;
+}
+
+.post-voting-comments {
+  background: var(--custom-theme-card);
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--custom-theme-radius-lg);
+  box-shadow: var(--custom-theme-shadow-sm);
+  margin-top: var(--space-3);
+  padding: 0 var(--space-3);
+}
+
+.post-voting-comments__comment {
+  border-top-color: var(--custom-theme-border);
+}
+
+.post-voting-comments__composer-textarea,
+.post-voting-comments__comment-editor textarea {
+  background: var(--custom-theme-background);
+  border-color: var(--custom-theme-input);
+  border-radius: var(--custom-theme-radius-md);
+}
+
+.post-voting-popup-content .fk-d-menu__inner-content,
+.topic-voting-menu,
+.voting-voters__list {
+  background: var(--custom-theme-popover);
+  border-color: var(--custom-theme-border);
+  border-radius: var(--custom-theme-radius-lg);
+  box-shadow: var(--custom-theme-shadow-lg);
+}

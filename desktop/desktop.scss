@@ -1,5 +1,3 @@
-// Desktop-focused refinements for larger forum layouts.
-
 .custom-theme-banner {
   min-height: 0;
 }
@@ -18,4 +16,15 @@
 
 .custom-theme-footer__links {
   justify-content: flex-end;
+}
+
+.user-main .user-content,
+.user-main .about,
+.user-main .user-stream {
+  max-width: var(--custom-theme-wide-width);
+}
+
+.topic-area,
+.container.posts {
+  gap: var(--custom-theme-space-4);
 }

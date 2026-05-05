@@ -1,0 +1,64 @@
+.d-editor-container,
+.d-editor-textarea-wrapper,
+.d-editor-preview-wrapper,
+.composer-popup {
+  border-color: var(--custom-theme-border);
+  border-radius: var(--custom-theme-radius-lg);
+}
+
+.d-editor-textarea-wrapper {
+  background: var(--custom-theme-surface);
+  box-shadow: var(--custom-theme-shadow-sm);
+}
+
+.d-editor-input,
+.d-editor-preview,
+.d-editor-preview .cooked {
+  font-family: var(--custom-theme-body-font);
+  line-height: 1.65;
+}
+
+.d-editor-button-bar {
+  background: var(--custom-theme-muted-surface);
+  border-radius: var(--custom-theme-radius-lg) var(--custom-theme-radius-lg) 0 0;
+  padding: 0.35rem;
+}
+
+.d-editor-button-bar .btn {
+  border-radius: var(--custom-theme-radius-sm);
+}
+
+.composer-popup {
+  background: var(--custom-theme-surface);
+  border: 1px solid var(--custom-theme-border);
+  box-shadow: var(--custom-theme-shadow-md);
+}
+
+.composer-popup h3,
+.composer-popup .title {
+  font-family: var(--custom-theme-heading-font);
+}
+
+.select-kit.combo-box .select-kit-header,
+.select-kit.multi-select .multi-select-header,
+.d-editor-input,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  border-color: var(--custom-theme-input);
+  border-radius: var(--custom-theme-radius-md);
+}
+
+.select-kit.combo-box .select-kit-header:focus,
+.select-kit.combo-box .select-kit-header:focus-visible,
+.select-kit.multi-select .multi-select-header:focus,
+.select-kit.multi-select .multi-select-header:focus-visible,
+input:focus,
+input:focus-visible,
+textarea:focus,
+textarea:focus-visible {
+  border-color: var(--custom-theme-ring);
+  box-shadow: var(--custom-theme-focus-ring);
+  outline: 0;
+}

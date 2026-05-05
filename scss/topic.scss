@@ -3,13 +3,30 @@
   border-top-color: var(--custom-theme-border);
 }
 
+.topic-avatar {
+  padding-top: 1rem;
+}
+
 .topic-post {
   background: var(--custom-theme-surface);
   border-radius: var(--custom-theme-radius);
+  margin-bottom: 0.75rem;
 }
 
 .topic-body {
+  background: var(--custom-theme-card);
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--custom-theme-radius-xl);
+  box-shadow: var(--custom-theme-shadow-sm);
+  padding: 1rem;
   padding-right: 1rem;
+}
+
+.topic-meta-data {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .topic-meta-data .names span a,
@@ -18,9 +35,40 @@
   font-weight: 700;
 }
 
+.topic-map,
+.post-menu-area,
+.small-action {
+  border-color: var(--custom-theme-border);
+}
+
+.post-controls {
+  .actions {
+    gap: 0.35rem;
+  }
+
+  button {
+    border-radius: var(--custom-theme-radius-sm);
+  }
+}
+
 .cooked {
   font-family: var(--custom-theme-body-font);
   line-height: 1.7;
+
+  p {
+    margin: 0 0 1rem;
+  }
+
+  a {
+    color: var(--custom-theme-primary);
+    text-underline-offset: 0.2em;
+
+    &:hover,
+    &:focus {
+      color: var(--custom-theme-primary-dark);
+      text-decoration: underline;
+    }
+  }
 }
 
 .cooked h1,
@@ -36,11 +84,16 @@
   background: var(--custom-theme-subtle);
   border-left: 4px solid var(--custom-theme-primary);
   border-radius: 0 var(--custom-theme-radius) var(--custom-theme-radius) 0;
+  color: var(--custom-theme-muted);
+  padding: 0.75rem 1rem;
 }
 
 .cooked code,
 .d-editor-preview code {
+  background: var(--custom-theme-muted-surface);
   border-radius: 0.35rem;
+  color: var(--custom-theme-text);
+  padding: 0.1rem 0.3rem;
 }
 
 .d-editor-container,

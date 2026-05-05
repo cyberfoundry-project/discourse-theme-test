@@ -1,10 +1,9 @@
 # CyberFoundry Discourse Theme
 
-CyberFoundry is a custom Discourse forum theme that starts from a clean,
-light-mode community layout inspired by community.vercel.com. It favors white
-surfaces, subtle borders, compact alert-style intro content, tidy quick-link
-cards, restrained navigation/topic-list styling, Geist headings, and Inter body
-copy.
+CyberFoundry is a custom Discourse forum theme for a project community hub. It
+uses a clean, modern interface language inspired by Next.js, shadcn/ui, and
+community.vercel.com: white card surfaces, quiet borders, consistent radius
+tokens, accessible focus rings, Geist headings, and Inter body copy.
 
 ## What is included
 
@@ -13,6 +12,8 @@ copy.
 - `common/head_tag.html` for loading Geist and Inter from Google Fonts.
 - Shared, desktop, and mobile light-mode SCSS in the Discourse theme file
   layout, with shared styles split into Horizon-style `scss/*.scss` modules.
+- Shadcn-inspired design tokens for surfaces, buttons, inputs, cards, focus
+  rings, topic lists, posts, composer, user profiles, and voting interfaces.
 - Plugin outlet connector templates for:
   - `before-main-outlet` homepage hero and quick links
   - `after-sidebar-sections` promotional card
@@ -57,8 +58,9 @@ For deeper visual changes, edit:
 
 A static approximation of the current theme direction is available at
 `preview/index.html`. Open it in a browser to review the light layout,
-typography, sidebar, announcement bar, intro card, and category cards without a
-running Discourse instance.
+typography, sidebar, announcement bar, intro card, category cards, topic/post
+surfaces, voting controls, composer, and profile cards without a running
+Discourse instance.
 
 ## Component compatibility
 
@@ -83,9 +85,8 @@ Compatibility behavior:
 - The sidebar card is controlled by `show_sidebar_card` and is inserted after
   sidebar sections, leaving the sidebar footer area available for
   discourse-sidebar-theme-toggle.
-- Header styling is limited to core header surfaces and does not target
-  `.custom-header-links`, so discourse-custom-header-links can render its links
-  independently.
+- Header styling is limited to core header surfaces, with only light spacing and
+  hover polish for `.custom-header-links` links.
 
 ## Develop locally
 

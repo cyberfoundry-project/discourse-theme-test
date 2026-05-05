@@ -1,19 +1,39 @@
 .navigation-container,
 .list-controls .category-breadcrumb,
 .list-controls .nav-pills {
-  gap: 0.5rem;
+  gap: var(--custom-theme-space-2);
 }
 
-.nav-pills > li > a,
+.nav-pills {
+  > li > a {
+    border-radius: var(--custom-theme-radius-md);
+    color: var(--custom-theme-muted);
+    font-weight: 500;
+    padding: 0.45rem 0.75rem;
+  }
+
+  > li > a:hover,
+  > li > a:focus {
+    background: var(--custom-theme-muted-surface);
+    color: var(--custom-theme-text);
+  }
+
+  > li.active > a,
+  > li > a.active {
+    background: var(--custom-theme-text);
+    color: var(--custom-theme-surface);
+    font-weight: 650;
+  }
+}
+
 .list-controls .btn,
 .custom-theme-button,
 .select-kit.combo-box .select-kit-header {
-  border-radius: 6px;
+  border-radius: var(--custom-theme-radius-md);
 }
 
-.nav-pills > li.active > a,
-.nav-pills > li > a.active {
-  background: var(--custom-theme-subtle);
-  color: var(--custom-theme-text);
-  font-weight: 600;
+.category-breadcrumb .select-kit-header,
+.select-kit.combo-box .select-kit-header {
+  border-color: var(--custom-theme-border);
+  box-shadow: var(--custom-theme-shadow-xs);
 }

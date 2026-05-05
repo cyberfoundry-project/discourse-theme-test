@@ -1,0 +1,46 @@
+.user-main {
+  .about,
+  .user-content,
+  .user-preferences,
+  .user-primary-navigation {
+    background: var(--custom-theme-card);
+    border: 1px solid var(--custom-theme-border);
+    border-radius: var(--custom-theme-radius-lg);
+    box-shadow: var(--custom-theme-shadow-sm);
+  }
+
+  .about {
+    padding: var(--custom-theme-space-5);
+  }
+
+  .user-profile-avatar,
+  .user-image {
+    border-radius: var(--custom-theme-radius);
+  }
+
+  .user-profile-names {
+    font-family: var(--custom-theme-heading-font);
+  }
+
+  .user-stat,
+  .stats-section li {
+    border-radius: var(--custom-theme-radius);
+  }
+}
+
+.user-card,
+.group-card {
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--custom-theme-radius-lg);
+  box-shadow: var(--custom-theme-shadow-md);
+  overflow: hidden;
+
+  .card-content {
+    background: var(--custom-theme-card);
+  }
+}
+
+.badge-card,
+.user-badge {
+  border-radius: var(--custom-theme-radius);
+}

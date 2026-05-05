@@ -15,6 +15,11 @@
   max-width: var(--custom-theme-content-width);
 }
 
+body.category-header .custom-theme-home,
+body.tag-banner .custom-theme-home {
+  margin-bottom: 1rem;
+}
+
 .custom-theme-announcement {
   align-items: center;
   background: var(--custom-theme-warning-surface);

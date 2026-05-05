@@ -5,6 +5,12 @@
   padding: 2rem 0;
 }
 
+// Discourse Easy Footer renders `.custom-footer`; hide this lightweight footer
+// when both are present so sites do not end up with stacked footers.
+body:has(.custom-footer) .custom-theme-footer {
+  display: none;
+}
+
 .custom-theme-footer__inner {
   align-items: center;
   display: flex;

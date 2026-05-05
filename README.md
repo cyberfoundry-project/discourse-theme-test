@@ -60,6 +60,33 @@ A static approximation of the current theme direction is available at
 typography, sidebar, announcement bar, intro card, and category cards without a
 running Discourse instance.
 
+## Component compatibility
+
+The theme keeps custom selectors namespaced with `custom-theme-*` and avoids
+styling component-owned classes directly. It has been reviewed for compatibility
+with these Discourse components:
+
+- DiscoTOC
+- discourse-category-banners
+- Discourse-easy-footer
+- discourse-sidebar-theme-toggle
+- discourse-tag-banners
+- discourse-custom-header-links
+
+Compatibility behavior:
+
+- Homepage announcement, intro card, and quick links are hidden on category,
+  tag, and topic routes so category/tag banners and DiscoTOC can own those
+  layouts.
+- The custom footer is controlled by `show_custom_footer`. Turn it off when
+  using Discourse-easy-footer as the site footer.
+- The sidebar card is controlled by `show_sidebar_card` and is inserted after
+  sidebar sections, leaving the sidebar footer area available for
+  discourse-sidebar-theme-toggle.
+- Header styling is limited to core header surfaces and does not target
+  `.custom-header-links`, so discourse-custom-header-links can render its links
+  independently.
+
 ## Develop locally
 
 For the fastest feedback loop, use Discourse's theme CLI with a running Discourse

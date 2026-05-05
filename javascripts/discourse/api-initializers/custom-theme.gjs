@@ -10,5 +10,11 @@ export default apiInitializer("1.8.0", (api) => {
         !["/", "/latest", "/categories"].includes(window.location.pathname)
       );
     }
+
+    const footer = document.querySelector(".custom-theme-footer");
+
+    if (footer) {
+      footer.toggleAttribute("hidden", Boolean(document.querySelector(".custom-footer")));
+    }
   });
 });

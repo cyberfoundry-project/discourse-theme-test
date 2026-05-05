@@ -5,5 +5,19 @@
   "component": false,
   "authors": "Cyber Foundry",
   "theme_version": "1.0.0",
-  "minimum_discourse_version": "3.2.0"
+  "minimum_discourse_version": "3.2.0",
+  "color_schemes": {
+    "CyberFoundry Light": {
+      "primary": "111111",
+      "secondary": "ffffff",
+      "tertiary": "0070f3",
+      "quaternary": "666666",
+      "header_background": "ffffff",
+      "header_primary": "111111",
+      "highlight": "fafafa",
+      "danger": "e00",
+      "success": "0070f3",
+      "love": "e5484d"
+    }
+  }
 }

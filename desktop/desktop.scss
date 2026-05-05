@@ -1,15 +1,15 @@
 // Desktop-focused refinements for larger forum layouts.
 
 .custom-theme-banner {
-  min-height: 19rem;
+  min-height: 0;
 }
 
 .custom-theme-banner__content {
-  max-width: 760px;
+  max-width: 70ch;
 }
 
 .custom-theme-quick-links {
-  padding-inline: 1rem;
+  padding-inline: 0;
 }
 
 .topic-list .main-link {

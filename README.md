@@ -1,14 +1,16 @@
-# Community Forge Discourse Theme
+# CyberFoundry Discourse Theme
 
-Community Forge is a custom Discourse forum theme with a polished homepage hero,
-quick-link cards, rounded content surfaces, responsive topic-list styling, and a
-small footer/sidebar enhancement layer.
+CyberFoundry is a custom Discourse forum theme that starts from a clean,
+light-mode community layout inspired by community.vercel.com. It favors white
+surfaces, subtle borders, compact alert-style intro content, tidy quick-link
+cards, and restrained navigation/topic-list styling.
 
 ## What is included
 
 - `about.json` theme metadata for remote Git installation.
 - `settings.yml` for editable copy, links, colors, and sidebar/footer content.
-- Shared, desktop, and mobile SCSS in the Discourse theme file layout.
+- Shared, desktop, and mobile light-mode SCSS in the Discourse theme file
+  layout.
 - Plugin outlet connector templates for:
   - `before-main-outlet` homepage hero and quick links
   - `after-sidebar-sections` promotional card
@@ -30,12 +32,13 @@ theme admin page's **Check for Updates** action after pushing changes.
 ## Customize
 
 Most visible copy and URLs are controlled from **Admin > Customize > Themes >
-Community Forge > Settings**:
+CyberFoundry > Settings**:
 
 - Brand name
 - Hero eyebrow, title, subtitle, and call-to-action links
 - Three quick-link cards
 - Accent colors
+- Optional top notice
 - Sidebar card copy and URL
 - Footer tagline
 

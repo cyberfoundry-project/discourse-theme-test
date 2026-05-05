@@ -1,4 +1,10 @@
 <div class="custom-theme-home" data-custom-theme-home>
+  {{#if (theme-setting "announcement_text")}}
+    <div class="custom-theme-announcement" role="status">
+      {{theme-setting "announcement_text"}}
+    </div>
+  {{/if}}
+
   {{#if (theme-setting "show_homepage_hero")}}
     <section class="custom-theme-banner" aria-labelledby="custom-theme-banner-title">
       <div class="custom-theme-banner__content">

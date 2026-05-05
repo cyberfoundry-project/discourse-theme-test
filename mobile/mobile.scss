@@ -1,18 +1,19 @@
 // Mobile-focused refinements for narrow forum layouts.
 
 .custom-theme-banner {
+  border-right: 0;
+  border-left: 0;
   border-radius: 0;
   grid-template-columns: 1fr;
   margin-inline: calc(-1 * var(--custom-theme-content-padding, 1rem));
-  margin-top: 0;
-  padding: 2.25rem 1rem;
+  padding: 1rem;
 
   &__title {
-    font-size: clamp(2rem, 12vw, 3rem);
+    font-size: var(--font-up-1);
   }
 
   &__description {
-    font-size: 1rem;
+    font-size: var(--font-down-1);
   }
 
   &__actions {
@@ -28,6 +29,11 @@
 .custom-quick-links {
   grid-template-columns: 1fr;
   margin-inline: 0;
+}
+
+.custom-theme-footer__inner {
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 .topic-list,

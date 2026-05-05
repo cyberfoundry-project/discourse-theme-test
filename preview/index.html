@@ -55,10 +55,55 @@
         text-decoration: none;
       }
 
+      .site-header {
+        align-items: center;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        gap: 24px;
+        justify-content: space-between;
+        min-height: 64px;
+        padding: 0 28px;
+      }
+
+      .site-brand {
+        align-items: center;
+        display: inline-flex;
+        font-family: var(--heading);
+        font-size: 18px;
+        font-weight: 800;
+        gap: 10px;
+        letter-spacing: -0.03em;
+      }
+
+      .site-brand-mark {
+        align-items: center;
+        background: var(--text);
+        border-radius: 8px;
+        color: var(--surface);
+        display: inline-flex;
+        font-size: 13px;
+        font-weight: 800;
+        height: 28px;
+        justify-content: center;
+        width: 28px;
+      }
+
+      .site-header-nav {
+        align-items: center;
+        color: #4b5563;
+        display: flex;
+        font-size: 14px;
+        gap: 18px;
+      }
+
+      .site-header-nav a:hover {
+        color: var(--text);
+      }
+
       .preview-shell {
         display: grid;
         grid-template-columns: 252px minmax(0, 1fr);
-        min-height: 100vh;
+        min-height: calc(100vh - 64px);
       }
 
       .sidebar {
@@ -256,9 +301,49 @@
         font-size: 14px;
       }
 
+      .site-footer {
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        padding: 28px;
+      }
+
+      .site-footer-inner {
+        align-items: center;
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+        margin: 0 auto;
+        max-width: 1110px;
+      }
+
+      .site-footer strong {
+        color: var(--text);
+        font-family: var(--heading);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+
+      .site-footer-links {
+        display: flex;
+        font-size: 14px;
+        gap: 18px;
+      }
+
       @media (max-width: 900px) {
+        .site-header {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 12px;
+          padding: 16px;
+        }
+
+        .site-header-nav {
+          flex-wrap: wrap;
+        }
+
         .preview-shell {
           grid-template-columns: 1fr;
+          min-height: 0;
         }
 
         .sidebar {
@@ -270,10 +355,28 @@
         .card-grid {
           grid-template-columns: 1fr;
         }
+
+        .site-footer-inner {
+          align-items: flex-start;
+          flex-direction: column;
+        }
       }
     </style>
   </head>
   <body>
+    <header class="site-header" aria-label="Site header">
+      <a class="site-brand" href="#">
+        <span class="site-brand-mark">CF</span>
+        CyberFoundry
+      </a>
+      <nav class="site-header-nav" aria-label="Primary navigation">
+        <a href="#">Forum</a>
+        <a href="#">Docs</a>
+        <a href="#">Changelog</a>
+        <a href="#">Sign in</a>
+      </nav>
+    </header>
+
     <div class="preview-shell">
       <aside class="sidebar" aria-label="Forum navigation">
         <div class="nav-group">
@@ -372,5 +475,18 @@
         </div>
       </main>
     </div>
+    <footer class="site-footer" aria-label="Community footer">
+      <div class="site-footer-inner">
+        <div>
+          <strong>CyberFoundry</strong>
+          <p>A clean place for thoughtful community conversation.</p>
+        </div>
+        <nav class="site-footer-links" aria-label="Footer links">
+          <a href="#">About</a>
+          <a href="#">Guidelines</a>
+          <a href="#">Terms</a>
+        </nav>
+      </div>
+    </footer>
   </body>
 </html>

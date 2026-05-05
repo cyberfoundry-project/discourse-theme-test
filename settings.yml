@@ -58,9 +58,6 @@ quick_link_3_url:
 accent_color:
   default: "#0f766e"
   description: "Primary accent color used by custom theme elements."
-accent_color_rgb:
-  default: "15, 118, 110"
-  description: "RGB channels for the primary accent color, used in transparent backgrounds."
 accent_color_dark:
   default: "#115e59"
   description: "Darker accent color used for hover and focus states."
@@ -71,7 +68,7 @@ show_sidebar_card:
   default: true
   description: "Show the promotional card in the Discourse sidebar."
 sidebar_card_icon:
-  default: "✦"
+  default: "*"
   description: "Decorative icon shown in the sidebar card."
 sidebar_card_title:
   default: "New here?"
@@ -85,6 +82,3 @@ sidebar_card_cta:
 sidebar_card_url:
   default: "/guidelines"
   description: "URL for the custom sidebar card call-to-action."
-logo_badge_text:
-  default: "Community"
-  description: "Short badge displayed next to the site logo."

@@ -10,11 +10,11 @@ small footer/sidebar enhancement layer.
 - `settings.yml` for editable copy, links, colors, and sidebar/footer content.
 - Shared, desktop, and mobile SCSS in the Discourse theme file layout.
 - Plugin outlet connector templates for:
-  - `below-site-header` homepage hero and quick links
-  - `sidebar-section` promotional card
-  - `above-footer` custom footer
-- A lightweight API initializer that hides homepage-only content away from the
-  main topic-list routes and adds a logo badge.
+  - `before-main-outlet` homepage hero and quick links
+  - `after-sidebar-sections` promotional card
+- A `common/footer.html` footer hook.
+- A lightweight API initializer that hides homepage-only content away from
+  non-homepage routes.
 
 ## Install in Discourse
 

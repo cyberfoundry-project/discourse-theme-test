@@ -1,6 +1,5 @@
 :root {
   --custom-theme-primary: #{$accent_color};
-  --custom-theme-primary-rgb: #{$accent_color_rgb};
   --custom-theme-primary-dark: #{$accent_color_dark};
   --custom-theme-secondary: #0f172a;
   --custom-theme-accent: #f59e0b;
@@ -14,7 +13,7 @@ body {
   background:
     radial-gradient(
       circle at top left,
-      rgba(var(--custom-theme-primary-rgb), 0.12),
+      color-mix(in srgb, var(--custom-theme-primary) 12%, transparent),
       transparent 34rem
     ),
     linear-gradient(180deg, var(--custom-theme-surface), var(--secondary));

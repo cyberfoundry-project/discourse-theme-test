@@ -1,9 +1,13 @@
 # CyberFoundry Discourse Theme
 
-CyberFoundry is a custom Discourse forum theme for a project community hub. It
-uses a clean, modern interface language inspired by Next.js, shadcn/ui, and
-community.vercel.com: white card surfaces, quiet borders, consistent radius
-tokens, accessible focus rings, Geist headings, and Inter body copy.
+CyberFoundry is a custom Discourse forum theme for an open source community hub
+where Information Technology and Cybersecurity professionals design, share, and
+improve the practices and tools they rely on every day. Founded on shared
+expertise, the community collaboratively tackles technical challenges and forges
+the essential resources the industry requires. The theme uses a clean, modern
+interface language inspired by Next.js, shadcn/ui, and community.vercel.com:
+white card surfaces, quiet borders, consistent radius tokens, accessible focus
+rings, Geist headings, and Inter body copy.
 
 ## What is included
 

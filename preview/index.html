@@ -10,25 +10,45 @@
       href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     >
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    >
     <style>
       :root {
         --accent: #0070f3;
+        --accent-dark: #0059c9;
         --accent-soft: #e5f2ff;
+        --accent-tint-2: rgba(0, 112, 243, 0.04);
+        --accent-tint-6: rgba(0, 112, 243, 0.06);
+        --accent-tint-10: rgba(0, 112, 243, 0.10);
+        --accent-tint-22: rgba(0, 112, 243, 0.22);
         --border: #e5e7eb;
+        --border-strong: #d1d5db;
         --muted: #6b7280;
+        --muted-foreground: #4b5563;
         --text: #111827;
         --text-strong: #020617;
         --subtle: #f7f7f8;
         --surface: #fff;
         --success: #16a34a;
         --danger: #dc2626;
-        --warning: #b45309;
-        --warning-border: #fbbf24;
-        --warning-surface: #fffbeb;
         --heading: "Geist", Arial, sans-serif;
         --body: "Inter", Arial, sans-serif;
-        --radius: 10px;
+        --radius-sm: 7px;
+        --radius-md: 8px;
+        --radius-lg: 10px;
+        --radius-xl: 14px;
+        --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04);
         --shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.08);
+        --shadow-md: 0 10px 24px rgba(16, 24, 40, 0.08);
+        --gradient-card:
+          linear-gradient(180deg, var(--accent-tint-2) 0%, var(--surface) 65%);
+        --gradient-hero:
+          radial-gradient(120% 140% at 0% 0%, var(--accent-tint-10) 0%, var(--surface) 55%);
       }
 
       * {
@@ -42,9 +62,7 @@
         margin: 0;
       }
 
-      h1,
-      h2,
-      h3 {
+      h1, h2, h3 {
         font-family: var(--heading);
         letter-spacing: -0.02em;
         margin: 0;
@@ -52,7 +70,7 @@
 
       p {
         color: var(--muted);
-        line-height: 1.5;
+        line-height: 1.55;
         margin: 0;
       }
 
@@ -61,14 +79,21 @@
         text-decoration: none;
       }
 
+      /* ------------------------------------------------------------------- */
+      /* Header                                                               */
+      /* ------------------------------------------------------------------- */
       .site-header {
         align-items: center;
+        background: var(--surface);
         border-bottom: 1px solid var(--border);
         display: flex;
         gap: 24px;
         justify-content: space-between;
         min-height: 64px;
         padding: 0 28px;
+        position: sticky;
+        top: 0;
+        z-index: 5;
       }
 
       .site-brand {
@@ -94,27 +119,47 @@
         width: 28px;
       }
 
+      .header-search {
+        background: var(--subtle);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        flex: 0 1 360px;
+        font-family: var(--body);
+        font-size: 14px;
+        padding: 8px 12px;
+        transition: background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+      }
+      .header-search:focus {
+        background: var(--surface);
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent);
+        outline: none;
+      }
+
       .site-header-nav {
         align-items: center;
-        color: #4b5563;
+        color: var(--muted-foreground);
         display: flex;
         font-size: 14px;
         gap: 18px;
       }
+      .site-header-nav a:hover { color: var(--text); }
 
-      .site-header-nav a:hover {
-        color: var(--text);
-      }
-
+      /* ------------------------------------------------------------------- */
+      /* Layout shell                                                         */
+      /* ------------------------------------------------------------------- */
       .preview-shell {
         display: grid;
         grid-template-columns: 252px minmax(0, 1fr);
         min-height: calc(100vh - 64px);
       }
 
+      /* ------------------------------------------------------------------- */
+      /* Sidebar                                                              */
+      /* ------------------------------------------------------------------- */
       .sidebar {
         border-right: 1px solid var(--border);
-        padding: 16px;
+        padding: 16px 12px;
       }
 
       .nav-group {
@@ -125,264 +170,454 @@
 
       .nav-title {
         color: var(--muted);
-        font-family: var(--heading);
+        font-family: var(--body);
         font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        margin: 14px 0 8px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        margin: 14px 4px 8px;
         text-transform: uppercase;
       }
 
       .nav-item {
         align-items: center;
-        border-radius: 8px;
-        color: #4b5563;
-        display: flex;
-        font-size: 14px;
-        gap: 10px;
-        padding: 8px 10px;
-      }
-
-      .nav-item.active {
-        background: #e9e9ea;
+        border-radius: var(--radius-sm);
         color: var(--text);
-        font-weight: 700;
-      }
-
-      .nav-icon {
-        color: #6b7280;
-        width: 18px;
-      }
-
-      main {
-        padding: 42px 28px 72px;
-      }
-
-      .content {
-        max-width: 1110px;
-      }
-
-      .hub-grid {
-        display: grid;
-        gap: 24px;
-        grid-template-columns: minmax(0, 1fr) 320px;
-      }
-
-      .announcement {
-        align-items: center;
-        background: var(--warning-surface);
-        border: 1px solid var(--warning-border);
-        border-radius: 8px;
-        color: var(--warning);
-        display: flex;
-        font-size: 13px;
-        font-weight: 700;
-        justify-content: center;
-        margin-bottom: 20px;
-        min-height: 42px;
-        padding: 10px 16px;
-        text-align: center;
-      }
-
-      .announcement::before {
-        background: currentColor;
-        border-radius: 50%;
-        content: "";
-        height: 8px;
-        margin-right: 8px;
-        width: 8px;
-      }
-
-      .intro-card {
-        align-items: flex-start;
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        display: grid;
-        gap: 14px;
-        grid-template-columns: minmax(0, 1fr) auto;
-        margin-bottom: 20px;
-        padding: 16px;
-      }
-
-      .intro-kicker {
-        color: var(--accent);
-        font-family: var(--heading);
-        font-size: 14px;
-        font-weight: 700;
-        margin-bottom: 8px;
-      }
-
-      .intro-card h1 {
-        font-size: 18px;
-        font-weight: 700;
-        margin-bottom: 8px;
-      }
-
-      .intro-card p {
-        color: var(--text);
-        font-size: 14px;
-      }
-
-      .button-row {
-        display: flex;
-        gap: 8px;
-      }
-
-      .button {
-        align-items: center;
-        border-radius: 6px;
-        display: inline-flex;
-        font-size: 13px;
-        font-weight: 700;
-        min-height: 32px;
-        padding: 0 12px;
-        white-space: nowrap;
-      }
-
-      .button.primary {
-        background: #111827;
-        color: #fff;
-      }
-
-      .button.secondary {
-        border: 1px solid var(--border);
-      }
-
-      .breadcrumbs {
-        color: var(--muted);
         display: flex;
         font-size: 13px;
         gap: 10px;
-        margin: 18px 0;
+        padding: 7px 10px;
+        transition: background-color 160ms ease, color 160ms ease;
       }
 
-      .tabs {
-        display: flex;
-        gap: 22px;
-        font-size: 14px;
-        margin-bottom: 34px;
-      }
-
-      .tabs .active {
-        color: var(--text);
-        font-weight: 700;
-      }
-
-      .section {
-        margin-bottom: 30px;
-      }
-
-      .section h2 {
-        align-items: center;
-        display: flex;
-        font-size: 22px;
-        font-weight: 700;
-        gap: 8px;
-        margin-bottom: 12px;
-      }
-
-      .section h2 span {
-        color: var(--muted);
-        font-size: 16px;
-      }
-
-      .card-grid {
-        display: grid;
-        gap: 20px;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .category-card {
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
-        min-height: 112px;
-        padding: 18px;
-      }
-
-      .category-card:hover {
+      .nav-item:hover {
         background: var(--subtle);
       }
 
-      .category-card h3 {
-        font-size: 18px;
+      .nav-item.active {
+        background: var(--accent-tint-10);
+        color: var(--accent);
         font-weight: 600;
-        margin-bottom: 10px;
+      }
+      .nav-item.active .nav-icon { color: var(--accent); }
+
+      .nav-icon {
+        align-items: center;
+        color: var(--muted);
+        display: inline-flex;
+        font-size: 13px;
+        height: 1.25rem;
+        justify-content: center;
+        width: 1.25rem;
       }
 
-      .category-card p {
+      /* Promo card */
+      .sidebar-promo {
+        background: linear-gradient(180deg, var(--accent-tint-6) 0%, var(--surface) 70%);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        display: grid;
+        gap: 14px;
+        margin-top: 16px;
+        overflow: hidden;
+        padding: 18px;
+        position: relative;
+      }
+      .sidebar-promo::before {
+        background: radial-gradient(80% 100% at 100% 0%, rgba(0, 112, 243, 0.14) 0%, transparent 65%);
+        content: "";
+        inset: 0;
+        pointer-events: none;
+        position: absolute;
+      }
+      .sidebar-promo > * { position: relative; z-index: 1; }
+
+      .sidebar-promo__icon {
+        align-items: center;
+        background: var(--surface);
+        border: 1px solid var(--accent-tint-22);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-sm);
+        color: var(--accent);
+        display: inline-flex;
+        font-size: 17px;
+        height: 36px;
+        justify-content: center;
+        width: 36px;
+      }
+
+      .sidebar-promo h2 {
+        color: var(--text);
+        font-size: 14px;
+        font-weight: 700;
+        margin: 0 0 4px;
+      }
+      .sidebar-promo p {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      /* ------------------------------------------------------------------- */
+      /* Main                                                                 */
+      /* ------------------------------------------------------------------- */
+      main { padding: 28px; }
+
+      .content {
+        margin: 0 auto;
+        max-width: 1110px;
+      }
+
+      /* New-user welcome bar */
+      .welcome-bar {
+        align-items: center;
+        background: linear-gradient(135deg, var(--accent-tint-10) 0%, var(--accent-tint-2) 100%);
+        border: 1px solid var(--accent-tint-22);
+        border-radius: var(--radius-lg);
+        color: var(--text);
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 13px;
+        font-weight: 500;
+        gap: 10px;
+        justify-content: center;
+        line-height: 1.5;
+        margin-bottom: 20px;
+        padding: 10px 16px;
+      }
+      .welcome-bar__dot {
+        background: var(--accent);
+        border-radius: 50%;
+        flex: 0 0 auto;
+        height: 7px;
+        width: 7px;
+      }
+      .welcome-bar__cta {
+        align-items: center;
+        color: var(--accent);
+        display: inline-flex;
+        font-weight: 600;
+        gap: 4px;
+        transition: gap 160ms ease;
+      }
+      .welcome-bar__cta:hover { color: var(--accent-dark); gap: 6px; }
+
+      /* Hero card */
+      .hero {
+        align-items: center;
+        background: var(--gradient-hero);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        display: grid;
+        gap: 20px 32px;
+        grid-template-columns: minmax(0, 1fr) auto;
+        margin-bottom: 20px;
+        overflow: hidden;
+        padding: 30px 32px;
+        position: relative;
+      }
+      .hero::after {
+        background: radial-gradient(60% 80% at 100% 100%, rgba(0, 112, 243, 0.12) 0%, transparent 70%);
+        content: "";
+        inset: 0;
+        pointer-events: none;
+        position: absolute;
+      }
+      .hero > * { position: relative; z-index: 1; }
+
+      .hero__eyebrow {
+        color: var(--accent);
+        font-family: var(--heading);
+        font-size: 13px;
+        font-weight: 600;
+        margin: 0 0 8px;
+      }
+      .hero__title {
+        color: var(--text);
+        font-family: var(--heading);
+        font-size: clamp(22px, 2vw + 8px, 30px);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+        margin: 0 0 10px;
+        max-width: 38ch;
+      }
+      .hero__description {
+        color: var(--muted-foreground);
+        font-size: 15px;
+        line-height: 1.6;
+        margin: 0;
+        max-width: 60ch;
+      }
+      .hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      /* Buttons */
+      .button {
+        align-items: center;
+        border-radius: var(--radius-md);
+        display: inline-flex;
+        font-family: var(--body);
+        font-size: 13px;
+        font-weight: 600;
+        gap: 6px;
+        justify-content: center;
+        line-height: 1;
+        min-height: 36px;
+        padding: 0 14px;
+        transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+        white-space: nowrap;
+      }
+      .button.primary {
+        background: var(--accent);
+        color: #fff;
+      }
+      .button.primary:hover { background: var(--accent-dark); }
+      .button.secondary {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--text);
+      }
+      .button.secondary:hover {
+        background: var(--subtle);
+        border-color: var(--border-strong);
+      }
+      .button.dark {
+        background: var(--text);
+        color: #fff;
+      }
+
+      /* Quick links */
+      .quick-links {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-bottom: 24px;
+      }
+      .quick-link {
+        background: var(--gradient-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        color: var(--text);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 18px 20px;
+        transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+      }
+      .quick-link:hover {
+        border-color: var(--accent-tint-22);
+        box-shadow: var(--shadow);
+        transform: translateY(-1px);
+      }
+      .quick-link__label {
+        align-items: center;
+        color: var(--text);
+        display: flex;
+        font-family: var(--heading);
+        font-size: 15px;
+        font-weight: 650;
+      }
+      .quick-link__label::after {
+        color: var(--muted);
+        content: "→";
+        margin-left: auto;
+        transition: transform 160ms ease, color 160ms ease;
+      }
+      .quick-link:hover .quick-link__label::after {
+        color: var(--accent);
+        transform: translateX(2px);
+      }
+      .quick-link__text {
+        color: var(--muted-foreground);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      /* Nav pills (segmented control) */
+      .nav-pills {
+        background: var(--subtle);
+        border-radius: var(--radius-md);
+        display: inline-flex;
+        gap: 2px;
+        margin-bottom: 18px;
+        padding: 4px;
+      }
+      .nav-pills > a {
+        border-radius: var(--radius-sm);
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 500;
+        padding: 6px 12px;
+        transition: background-color 160ms ease, color 160ms ease;
+      }
+      .nav-pills > a:hover {
+        background: var(--surface);
+        color: var(--text);
+      }
+      .nav-pills > a.active {
+        background: var(--surface);
+        box-shadow: var(--shadow-sm);
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      /* Section heading */
+      .section { margin-bottom: 32px; }
+      .section-heading {
+        align-items: center;
+        display: flex;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+      .section-heading h2 {
+        font-size: 20px;
+        font-weight: 700;
+      }
+      .section-heading .chev {
+        color: var(--muted);
         font-size: 14px;
       }
 
-      .panel {
+      /* Categories — full-width rows with stat badges */
+      .category-rows {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .category-row {
+        align-items: center;
+        background: var(--gradient-card);
         border: 1px solid var(--border);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        margin-bottom: 20px;
-        padding: 18px;
-      }
-
-      .panel h2,
-      .panel h3 {
-        font-size: 18px;
-        margin-bottom: 10px;
-      }
-
-      .topic-preview {
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
         display: grid;
         gap: 16px;
+        grid-template-columns: 44px minmax(0, 1fr) auto;
+        padding: 16px 20px;
+        transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+      }
+      .category-row:hover {
+        border-color: var(--accent-tint-22);
+        box-shadow: var(--shadow);
+        transform: translateY(-1px);
+      }
+      .category-row__icon {
+        align-items: center;
+        background: var(--accent-tint-10);
+        border-radius: var(--radius-md);
+        color: var(--accent);
+        display: inline-flex;
+        font-size: 18px;
+        height: 40px;
+        justify-content: center;
+        width: 40px;
+      }
+      .category-row__name {
+        color: var(--text);
+        font-family: var(--heading);
+        font-size: 16px;
+        font-weight: 650;
+        letter-spacing: -0.01em;
+        margin: 0 0 4px;
+      }
+      .category-row__desc {
+        color: var(--muted-foreground);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      .category-row__stats {
+        align-items: flex-end;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .stat-pill {
+        align-items: center;
+        background: var(--subtle);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        color: var(--muted-foreground);
+        display: inline-flex;
+        font-size: 12px;
+        font-variant-numeric: tabular-nums;
+        font-weight: 500;
+        gap: 6px;
+        padding: 3px 10px;
+        white-space: nowrap;
+      }
+      .stat-pill strong {
+        color: var(--text);
+        font-weight: 650;
+      }
+
+      /* Topic / featured discussion card */
+      .featured {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        display: grid;
+        gap: 20px;
         grid-template-columns: 56px minmax(0, 1fr);
+        margin-bottom: 28px;
+        padding: 22px;
       }
 
       .vote-box {
+        background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: var(--radius);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-sm);
+        display: flex;
+        flex-direction: column;
         overflow: hidden;
         text-align: center;
       }
-
       .vote-box button {
         background: var(--surface);
         border: 0;
         color: var(--muted);
-        display: block;
+        cursor: pointer;
         font: inherit;
-        font-weight: 700;
-        min-height: 36px;
-        width: 100%;
+        line-height: 1;
+        padding: 10px;
+        transition: background 160ms ease, color 160ms ease;
       }
-
-      .vote-box strong {
+      .vote-box button:hover {
         background: var(--subtle);
-        border-bottom: 1px solid var(--border);
-        border-top: 1px solid var(--border);
+        color: var(--text);
+      }
+      .vote-box .up.voted { color: var(--success); }
+      .vote-box .down.voted { color: var(--danger); }
+      .vote-box .count {
+        background: var(--surface);
+        border-block: 1px solid var(--border);
+        color: var(--text);
         display: block;
         font-family: var(--heading);
-        padding: 8px 0;
+        font-size: 17px;
+        font-variant-numeric: tabular-nums;
+        font-weight: 700;
+        padding: 6px 8px;
       }
 
-      .vote-box .up {
-        color: var(--success);
-      }
-
-      .vote-box .down {
-        color: var(--danger);
-      }
-
-      .post-card {
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 18px;
-      }
-
-      .post-meta {
-        align-items: center;
+      .post {
         display: flex;
+        flex-direction: column;
         gap: 10px;
-        margin-bottom: 12px;
       }
-
+      .post__header {
+        align-items: flex-start;
+        display: flex;
+        gap: 14px;
+      }
       .avatar {
         align-items: center;
         background: var(--text);
@@ -390,56 +625,141 @@
         color: var(--surface);
         display: inline-flex;
         font-family: var(--heading);
+        font-size: 13px;
         font-weight: 700;
-        height: 34px;
+        height: 38px;
         justify-content: center;
-        width: 34px;
+        width: 38px;
+      }
+      .post__title {
+        color: var(--text);
+        font-family: var(--heading);
+        font-size: 17px;
+        font-weight: 650;
+        letter-spacing: -0.01em;
+        line-height: 1.35;
+        margin: 0;
+      }
+      .post__body {
+        color: var(--muted-foreground);
+        font-size: 14px;
+        line-height: 1.55;
+        margin: 4px 0 0;
       }
 
-      .composer-card textarea {
+      /* Topic meta as pill badges */
+      .topic-meta {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin: 6px 0 2px;
+      }
+      .topic-meta > * {
+        align-items: center;
+        background: var(--subtle);
         border: 1px solid var(--border);
-        border-radius: var(--radius);
+        border-radius: 999px;
+        color: var(--muted-foreground);
+        display: inline-flex;
+        font-size: 12px;
+        font-weight: 500;
+        gap: 5px;
+        padding: 3px 9px;
+        white-space: nowrap;
+      }
+      .topic-meta > .author {
+        background: var(--accent-tint-6);
+        border-color: var(--accent-tint-22);
+        color: var(--text);
+        font-weight: 600;
+      }
+      .topic-meta i { color: var(--muted); font-size: 11px; }
+
+      /* Topic-list table */
+      .topic-list {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-collapse: separate;
+        border-radius: var(--radius-lg);
+        border-spacing: 0;
+        box-shadow: var(--shadow-sm);
+        overflow: hidden;
+        width: 100%;
+      }
+      .topic-list thead th {
+        background: var(--subtle);
+        color: var(--muted);
+        font-family: var(--body);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        padding: 12px 16px;
+        text-align: left;
+        text-transform: uppercase;
+      }
+      .topic-list tbody tr { border-bottom: 1px solid var(--border); }
+      .topic-list tbody tr:last-child { border-bottom: 0; }
+      .topic-list tbody tr:hover { background: var(--subtle); }
+      .topic-list tbody td {
+        font-size: 14px;
+        padding: 14px 16px;
+        vertical-align: middle;
+      }
+      .topic-list .title {
+        color: var(--text);
+        font-family: var(--heading);
+        font-size: 15px;
+        font-weight: 650;
+        letter-spacing: -0.01em;
+      }
+      .topic-list .title:hover { color: var(--accent); }
+      .topic-list .num {
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      /* Composer */
+      .composer {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        margin-bottom: 28px;
+        padding: 22px;
+      }
+      .composer h2 {
+        font-size: 17px;
+        font-weight: 650;
+        margin: 0 0 6px;
+      }
+      .composer p { font-size: 14px; margin-bottom: 12px; }
+      .composer textarea {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
         font: inherit;
-        min-height: 104px;
+        font-size: 14px;
+        min-height: 100px;
         padding: 12px;
         resize: vertical;
         width: 100%;
       }
-
-      .profile-card {
-        background: linear-gradient(180deg, var(--surface), #fafafa);
+      .composer textarea:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent);
+        outline: none;
       }
 
-      .profile-card .avatar {
-        height: 52px;
-        margin-bottom: 12px;
-        width: 52px;
-      }
-
-      .stat-grid {
-        display: grid;
-        gap: 10px;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        margin-top: 16px;
-      }
-
-      .stat {
-        background: var(--subtle);
-        border-radius: var(--radius);
-        padding: 12px;
-      }
-
-      .stat strong {
-        display: block;
-        font-family: var(--heading);
-      }
-
+      /* Footer */
       .site-footer {
         border-top: 1px solid var(--border);
         color: var(--muted);
-        padding: 28px;
+        margin-top: 48px;
+        padding: 28px 28px 36px;
       }
-
       .site-footer-inner {
         align-items: center;
         display: flex;
@@ -448,56 +768,37 @@
         margin: 0 auto;
         max-width: 1110px;
       }
-
       .site-footer strong {
         color: var(--text);
         font-family: var(--heading);
         font-weight: 800;
         letter-spacing: -0.02em;
       }
+      .site-footer-links { display: flex; font-size: 14px; gap: 18px; }
+      .site-footer-links a:hover { color: var(--text); }
 
-      .site-footer-links {
-        display: flex;
-        font-size: 14px;
-        gap: 18px;
-      }
-
+      /* Responsive */
       @media (max-width: 900px) {
         .site-header {
-          align-items: flex-start;
+          align-items: stretch;
           flex-direction: column;
           gap: 12px;
           padding: 16px;
         }
-
-        .site-header-nav {
-          flex-wrap: wrap;
-        }
-
-        .preview-shell {
-          grid-template-columns: 1fr;
-          min-height: 0;
-        }
-
-        .hub-grid {
+        .header-search { flex: 1; }
+        .preview-shell { grid-template-columns: 1fr; min-height: 0; }
+        .sidebar { border-bottom: 1px solid var(--border); border-right: 0; }
+        main { padding: 18px; }
+        .hero, .quick-links, .featured {
           grid-template-columns: 1fr;
         }
-
-        .sidebar {
-          border-bottom: 1px solid var(--border);
-          border-right: 0;
+        .category-row {
+          gap: 12px;
+          grid-template-columns: 36px 1fr;
         }
-
-        .intro-card,
-        .topic-preview,
-        .card-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .site-footer-inner {
-          align-items: flex-start;
-          flex-direction: column;
-        }
+        .category-row__stats { grid-column: 1 / -1; flex-direction: row; }
+        .topic-list .views, .topic-list .posts { display: none; }
+        .site-footer-inner { align-items: flex-start; flex-direction: column; }
       }
     </style>
   </head>
@@ -507,190 +808,261 @@
         <span class="site-brand-mark">CF</span>
         CyberFoundry
       </a>
+      <input class="header-search" type="search" placeholder="Search topics, tags, members…" aria-label="Search">
       <nav class="site-header-nav" aria-label="Primary navigation">
-        <a href="#">Forum</a>
-        <a href="#">Docs</a>
-        <a href="#">Changelog</a>
-        <a href="#">Sign in</a>
+        <a href="#"><i class="fa-regular fa-bell"></i></a>
+        <a href="#"><i class="fa-regular fa-message"></i></a>
+        <span class="avatar" style="background: var(--accent); height: 30px; width: 30px; font-size: 12px;">JL</span>
       </nav>
     </header>
 
     <div class="preview-shell">
       <aside class="sidebar" aria-label="Forum navigation">
         <div class="nav-group">
-          <a class="nav-item active" href="#"><span class="nav-icon">#</span> Categories</a>
-          <a class="nav-item" href="#"><span class="nav-icon">*</span> Leaderboard</a>
-          <a class="nav-item" href="#"><span class="nav-icon">[]</span> Code of Conduct</a>
-          <a class="nav-item" href="#"><span class="nav-icon">/</span> Handbook</a>
-          <a class="nav-item" href="#"><span class="nav-icon">...</span> More</a>
+          <a class="nav-item active" href="#"><span class="nav-icon"><i class="fa-solid fa-list"></i></span> Categories</a>
+          <a class="nav-item" href="#"><span class="nav-icon"><i class="fa-solid fa-trophy"></i></span> Leaderboard</a>
+          <a class="nav-item" href="#"><span class="nav-icon"><i class="fa-solid fa-shield-halved"></i></span> Code of Conduct</a>
+          <a class="nav-item" href="#"><span class="nav-icon"><i class="fa-solid fa-book"></i></span> Handbook</a>
+          <a class="nav-item" href="#"><span class="nav-icon"><i class="fa-solid fa-ellipsis"></i></span> More</a>
         </div>
 
         <p class="nav-title">Community Area</p>
         <div class="nav-group">
-          <a class="nav-item" href="#"><span class="nav-icon">!</span> Announcements</a>
-          <a class="nav-item" href="#"><span class="nav-icon">[]</span> Events</a>
-          <a class="nav-item" href="#"><span class="nav-icon">*</span> Showcase</a>
-          <a class="nav-item" href="#"><span class="nav-icon">o</span> Discussions</a>
-          <a class="nav-item" href="#"><span class="nav-icon">?</span> Help</a>
-          <a class="nav-item" href="#"><span class="nav-icon">{ }</span> Open Source</a>
+          <a class="nav-item" href="#"><span class="nav-icon"><i class="fa-solid fa-bullhorn"></i></span> Announcements</a>
+          <a class="nav-item" href="#"><span class="nav-icon"><i class="fa-solid fa-calendar-days"></i></span> Events</a>
+          <a class="nav-item" href="#"><span class="nav-icon"><i class="fa-solid fa-star"></i></span> Showcase</a>
+          <a class="nav-item" href="#"><span class="nav-icon"><i class="fa-solid fa-comments"></i></span> Discussions</a>
+          <a class="nav-item" href="#"><span class="nav-icon"><i class="fa-solid fa-circle-question"></i></span> Help</a>
+          <a class="nav-item" href="#"><span class="nav-icon"><i class="fa-solid fa-code-branch"></i></span> Open Source</a>
         </div>
 
         <p class="nav-title">Tags</p>
-        <a class="nav-item" href="#"><span class="nav-icon">#</span> v0</a>
-        <a class="nav-item" href="#"><span class="nav-icon">#</span> nextjs</a>
-        <a class="nav-item" href="#"><span class="nav-icon">#</span> domains</a>
-        <a class="nav-item" href="#"><span class="nav-icon">#</span> account</a>
+        <a class="nav-item" href="#"><span class="nav-icon"><i class="fa-solid fa-hashtag"></i></span> v0</a>
+        <a class="nav-item" href="#"><span class="nav-icon"><i class="fa-solid fa-hashtag"></i></span> nextjs</a>
+        <a class="nav-item" href="#"><span class="nav-icon"><i class="fa-solid fa-hashtag"></i></span> domains</a>
+        <a class="nav-item" href="#"><span class="nav-icon"><i class="fa-solid fa-hashtag"></i></span> account</a>
+
+        <section class="sidebar-promo" aria-labelledby="sidebar-promo-title">
+          <div class="sidebar-promo__icon" aria-hidden="true">
+            <i class="fa-solid fa-fire"></i>
+          </div>
+          <div>
+            <h2 id="sidebar-promo-title">Join the forge</h2>
+            <p>Find discussions, working groups, shared tools, and resources for IT and cybersecurity practitioners.</p>
+          </div>
+          <a class="button primary" href="#" style="width: 100%;">View categories</a>
+        </section>
       </aside>
 
       <main>
         <div class="content">
-          <div class="announcement">
-            CyberFoundry is an open source community for IT and cybersecurity professionals.
+
+          <!-- New-user welcome bar (anon + TL0 only on the live site) -->
+          <div class="welcome-bar" role="status">
+            <span class="welcome-bar__dot" aria-hidden="true"></span>
+            <span>👋 New to CyberFoundry? Read the Code of Conduct and introduce yourself in <strong>#welcome</strong>.</span>
+            <a class="welcome-bar__cta" href="#">Get started <span aria-hidden="true">→</span></a>
           </div>
 
-          <section class="intro-card" aria-labelledby="preview-title">
+          <!-- Hero -->
+          <section class="hero" aria-labelledby="hero-title">
             <div>
-              <div class="intro-kicker">Community-built practices and tools</div>
-              <h1 id="preview-title">Forge better IT and cybersecurity workflows together</h1>
-              <p>
-                Design, share, and improve the operational practices, playbooks,
-                and tooling security teams rely on every day.
+              <p class="hero__eyebrow">Community-driven IT and cybersecurity practice</p>
+              <h1 class="hero__title" id="hero-title">Forge the practices and tools security teams rely on</h1>
+              <p class="hero__description">
+                CyberFoundry brings practitioners together to design, share, and improve
+                the resources the industry needs to solve real technical challenges.
               </p>
             </div>
-            <div class="button-row">
+            <div class="hero__actions">
               <a class="button primary" href="#">Start a discussion</a>
               <a class="button secondary" href="#">Browse categories</a>
             </div>
           </section>
 
-          <nav class="breadcrumbs" aria-label="Breadcrumb">
-            <span>Categories</span>
-            <span>&gt;</span>
-            <span>Tags</span>
-            <span>&gt;</span>
+          <!-- Quick links -->
+          <nav class="quick-links" aria-label="Featured forum links">
+            <a class="quick-link" href="#">
+              <span class="quick-link__label">Announcements</span>
+              <span class="quick-link__text">Follow platform updates, community decisions, and important project news.</span>
+            </a>
+            <a class="quick-link" href="#">
+              <span class="quick-link__label">Events</span>
+              <span class="quick-link__text">Join workshops, working sessions, and events for practitioners building together.</span>
+            </a>
+            <a class="quick-link" href="#">
+              <span class="quick-link__label">Practices and Tools</span>
+              <span class="quick-link__text">Explore guides, playbooks, workflows, and tools shaped by shared expertise.</span>
+            </a>
           </nav>
 
-          <div class="tabs" role="tablist">
-            <span class="active">Latest</span>
-            <span>Hot</span>
-          </div>
+          <!-- Tabs -->
+          <nav class="nav-pills" role="tablist" aria-label="Topic filter">
+            <a href="#" class="active" role="tab" aria-selected="true">Latest</a>
+            <a href="#" role="tab">New</a>
+            <a href="#" role="tab">Hot</a>
+            <a href="#" role="tab">Categories</a>
+          </nav>
 
+          <!-- Categories: full-width rows with stat badges -->
           <section class="section" aria-labelledby="info-title">
-            <h2 id="info-title">Info <span>v</span></h2>
-            <div class="card-grid">
-              <a class="category-card" href="#">
-                <h3>Announcements</h3>
-                    <p>Follow project news, releases, and important community updates.</p>
+            <div class="section-heading">
+              <h2 id="info-title">Info</h2>
+              <span class="chev"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="category-rows">
+              <a class="category-row" href="#">
+                <span class="category-row__icon"><i class="fa-solid fa-bullhorn"></i></span>
+                <div>
+                  <h3 class="category-row__name">Announcements</h3>
+                  <p class="category-row__desc">Follow project news, releases, and important community updates.</p>
+                </div>
+                <div class="category-row__stats">
+                  <span class="stat-pill"><strong>128</strong> topics</span>
+                  <span class="stat-pill"><strong>1.4k</strong> posts</span>
+                </div>
               </a>
-              <a class="category-card" href="#">
-                <h3>Events</h3>
-                    <p>Join working sessions, demos, and community calls for practitioners.</p>
+              <a class="category-row" href="#">
+                <span class="category-row__icon"><i class="fa-solid fa-calendar-days"></i></span>
+                <div>
+                  <h3 class="category-row__name">Events</h3>
+                  <p class="category-row__desc">Join working sessions, demos, and community calls for practitioners.</p>
+                </div>
+                <div class="category-row__stats">
+                  <span class="stat-pill"><strong>42</strong> topics</span>
+                  <span class="stat-pill"><strong>318</strong> posts</span>
+                </div>
               </a>
-              <a class="category-card" href="#">
-                <h3>Knowledge Base</h3>
-                    <p>Read playbooks, implementation notes, and reusable technical guides.</p>
+              <a class="category-row" href="#">
+                <span class="category-row__icon"><i class="fa-solid fa-book"></i></span>
+                <div>
+                  <h3 class="category-row__name">Knowledge Base</h3>
+                  <p class="category-row__desc">Read playbooks, implementation notes, and reusable technical guides.</p>
+                </div>
+                <div class="category-row__stats">
+                  <span class="stat-pill"><strong>76</strong> topics</span>
+                  <span class="stat-pill"><strong>902</strong> posts</span>
+                </div>
               </a>
             </div>
           </section>
 
-          <div class="hub-grid">
-            <div>
-              <section class="section" aria-labelledby="community-title">
-                <h2 id="community-title">Community <span>v</span></h2>
-                <div class="card-grid">
-                  <a class="category-card" href="#">
-                    <h3>Discussions</h3>
-                    <p>Tackle technical challenges with peers across IT and cybersecurity.</p>
-                  </a>
-                  <a class="category-card" href="#">
-                    <h3>Showcase</h3>
-                    <p>Share practices, scripts, detections, dashboards, and tooling improvements.</p>
-                  </a>
-                  <a class="category-card" href="#">
-                    <h3>Open Source</h3>
-                    <p>Collaborate on the open resources the industry needs to operate well.</p>
-                  </a>
-                </div>
-              </section>
-
-              <section class="panel" aria-labelledby="topic-preview-title">
-                <h2 id="topic-preview-title">Featured discussion</h2>
-                <div class="topic-preview">
-                  <div class="vote-box" aria-label="Post voting preview">
-                    <button class="up" type="button">Up</button>
-                    <strong>24</strong>
-                    <button class="down" type="button">Down</button>
-                  </div>
-                  <article class="post-card">
-                    <div class="post-meta">
-                      <span class="avatar">AR</span>
-                      <div>
-                        <h3>How should we standardize incident response workspaces?</h3>
-                        <p>Alex Rivera / 12 replies / updated 18m ago</p>
-                      </div>
+          <!-- Featured discussion: voting + post with badge meta -->
+          <section class="section" aria-labelledby="featured-title">
+            <div class="section-heading">
+              <h2 id="featured-title">Featured discussion</h2>
+            </div>
+            <div class="featured">
+              <div class="vote-box" aria-label="Post voting">
+                <button class="up voted" type="button" aria-label="Upvote">
+                  <i class="fa-solid fa-chevron-up"></i>
+                </button>
+                <span class="count">24</span>
+                <button class="down" type="button" aria-label="Downvote">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+              </div>
+              <article class="post">
+                <header class="post__header">
+                  <span class="avatar">AR</span>
+                  <div style="flex: 1;">
+                    <h3 class="post__title">How should we standardize incident response workspaces?</h3>
+                    <div class="topic-meta">
+                      <a class="author" href="#"><i class="fa-solid fa-user"></i> Alex Rivera</a>
+                      <span><i class="fa-regular fa-comment"></i> 12 replies</span>
+                      <span><i class="fa-regular fa-clock"></i> 18m ago</span>
+                      <span><i class="fa-solid fa-eye"></i> 247 views</span>
                     </div>
-                    <p>
+                    <p class="post__body">
                       We are collecting field-tested patterns for incident intake,
                       escalation, evidence handling, and post-incident learning.
                     </p>
-                    <div class="button-row" style="margin-top: 16px;">
-                      <a class="button secondary" href="#">Read thread</a>
-                      <a class="button secondary" href="#">Follow</a>
-                    </div>
-                  </article>
+                  </div>
+                </header>
+                <div class="hero__actions" style="margin-top: 6px;">
+                  <a class="button primary" href="#">Read thread</a>
+                  <a class="button secondary" href="#">Follow</a>
                 </div>
-              </section>
-
-              <section class="panel composer-card" aria-labelledby="composer-title">
-                <h2 id="composer-title">Start a new conversation</h2>
-                <p style="margin-bottom: 12px;">Ask a question, share a practice, or propose a tool the community can improve together.</p>
-                <textarea aria-label="Draft a new discussion">What technical challenge should CyberFoundry help solve?</textarea>
-                <div class="button-row" style="justify-content: flex-end; margin-top: 12px;">
-                  <a class="button secondary" href="#">Save draft</a>
-                  <a class="button primary" href="#">Create topic</a>
-                </div>
-              </section>
+              </article>
             </div>
+          </section>
 
-            <aside aria-label="Community profile and status">
-              <section class="panel profile-card">
-                <span class="avatar">CF</span>
-                <h2>Community hub</h2>
-                <p>Track community work, vote on ideas, and help practitioners turn shared expertise into essential resources.</p>
-                <div class="stat-grid">
-                  <div class="stat">
-                    <strong>1.2k</strong>
-                    <span>Members</span>
-                  </div>
-                  <div class="stat">
-                    <strong>342</strong>
-                    <span>Topics</span>
-                  </div>
-                  <div class="stat">
-                    <strong>88</strong>
-                    <span>Practices reviewed</span>
-                  </div>
-                  <div class="stat">
-                    <strong>24</strong>
-                    <span>Open proposals</span>
-                  </div>
-                </div>
-              </section>
+          <!-- Topic list -->
+          <section class="section" aria-labelledby="latest-title">
+            <div class="section-heading">
+              <h2 id="latest-title">Latest topics</h2>
+            </div>
+            <table class="topic-list">
+              <thead>
+                <tr>
+                  <th>Topic</th>
+                  <th class="num">Replies</th>
+                  <th class="num">Views</th>
+                  <th class="num">Activity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <a class="title" href="#">Detection rule library — how do you version yours?</a>
+                    <div class="topic-meta" style="margin-top: 6px;">
+                      <a class="author" href="#"><i class="fa-solid fa-user"></i> @priya</a>
+                      <span><i class="fa-solid fa-tag"></i> detection-engineering</span>
+                    </div>
+                  </td>
+                  <td class="num">8</td>
+                  <td class="num">216</td>
+                  <td class="num">2h</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a class="title" href="#">Self-hosted vs SaaS SIEM in 2026</a>
+                    <div class="topic-meta" style="margin-top: 6px;">
+                      <a class="author" href="#"><i class="fa-solid fa-user"></i> @marco</a>
+                      <span><i class="fa-solid fa-tag"></i> siem</span>
+                      <span><i class="fa-solid fa-tag"></i> tooling</span>
+                    </div>
+                  </td>
+                  <td class="num">23</td>
+                  <td class="num">1.1k</td>
+                  <td class="num">5h</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a class="title" href="#">Sharing IR runbooks: scope, granularity, and review cadence</a>
+                    <div class="topic-meta" style="margin-top: 6px;">
+                      <a class="author" href="#"><i class="fa-solid fa-user"></i> @noor</a>
+                      <span><i class="fa-solid fa-tag"></i> incident-response</span>
+                    </div>
+                  </td>
+                  <td class="num">14</td>
+                  <td class="num">512</td>
+                  <td class="num">1d</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
 
-              <section class="panel">
-                <h3>Plugin-ready surfaces</h3>
-                <p>Category banners, tag banners, DiscoTOC, easy footer, sidebar theme toggle, and custom header links keep their own layout space.</p>
-              </section>
-            </aside>
-          </div>
+          <!-- Composer -->
+          <section class="composer" aria-labelledby="composer-title">
+            <h2 id="composer-title">Start a new conversation</h2>
+            <p>Ask a question, share a practice, or propose a tool the community can improve together.</p>
+            <textarea aria-label="Draft a new discussion">What technical challenge should CyberFoundry help solve?</textarea>
+            <div class="hero__actions" style="justify-content: flex-end; margin-top: 12px;">
+              <a class="button secondary" href="#">Save draft</a>
+              <a class="button primary" href="#">Create topic</a>
+            </div>
+          </section>
+
         </div>
       </main>
     </div>
+
     <footer class="site-footer" aria-label="Community footer">
       <div class="site-footer-inner">
         <div>
           <strong>CyberFoundry</strong>
-          <p>Shared expertise for the tools and practices IT and cybersecurity teams rely on.</p>
+          <p>A community hub for forging practical IT and cybersecurity resources.</p>
         </div>
         <nav class="site-footer-links" aria-label="Footer links">
           <a href="#">About</a>

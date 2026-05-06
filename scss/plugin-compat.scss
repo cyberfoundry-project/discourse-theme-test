@@ -82,3 +82,66 @@
   border: 0 !important;
   margin-top: var(--custom-theme-space-6);
 }
+
+// ---------------------------------------------------------------------------
+// discourse-category-banners — the big colored banner on category pages.
+// Default Discourse paints a solid block in the category color; tone it down
+// to the brand surface system so it doesn't fight the page chrome.
+// ---------------------------------------------------------------------------
+.category-banner,
+.discourse-category-banner {
+  background: var(--custom-theme-gradient-card) !important;
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--custom-theme-radius-lg);
+  box-shadow: var(--custom-theme-shadow-sm);
+  color: var(--custom-theme-text) !important;
+  margin: var(--custom-theme-space-4) auto 0;
+  max-width: var(--custom-theme-content-width);
+  padding: var(--custom-theme-space-5) var(--custom-theme-space-6);
+  position: relative;
+  width: calc(100% - 2 * var(--custom-theme-page-padding));
+}
+
+// Brand-tinted left rail in the category color
+.category-banner::before,
+.discourse-category-banner::before {
+  background: var(--category-color, var(--custom-theme-primary));
+  border-radius: var(--custom-theme-radius-lg) 0 0 var(--custom-theme-radius-lg);
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 4px;
+}
+
+.category-banner h1,
+.discourse-category-banner h1,
+.category-banner .category-name,
+.discourse-category-banner .category-name {
+  color: var(--custom-theme-text) !important;
+  font-family: var(--custom-theme-heading-font);
+  font-size: var(--font-up-2);
+  font-weight: 700;
+  letter-spacing: -0.018em;
+  margin: 0 0 var(--custom-theme-space-2);
+  text-align: left;
+}
+
+.category-banner p,
+.discourse-category-banner p,
+.category-banner .category-title-description {
+  color: var(--custom-theme-muted-foreground) !important;
+  font-family: var(--custom-theme-body-font);
+  font-size: var(--font-0);
+  line-height: 1.55;
+  margin: 0;
+  text-align: left;
+}
+
+// Hide hero on EVERY user / admin / preferences route via class fallback
+// — `:has(.user-content)` may not catch all router shapes.
+body[class*=" user-"][class*="-page"] .custom-theme-home,
+body[class^="user-"][class*="-page"] .custom-theme-home {
+  display: none !important;
+}

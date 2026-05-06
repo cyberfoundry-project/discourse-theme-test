@@ -10,11 +10,29 @@
       var(--custom-theme-surface) 55%);
 }
 
+// Discourse renders `before-main-outlet` connector content as a child of
+// #main-outlet-wrapper, which is a CSS grid with named areas:
+//
+//   grid-template-areas: "sidebar content" "sidebar below-content";
+//
+// Our connector doesn't claim an area, so it gets auto-placed into a phantom
+// cell with width 0 / wrong column. Add a new full-width row at the top of
+// the grid and pin our connector to it.
+#main-outlet-wrapper {
+  grid-template-areas:
+    "custom-home custom-home"
+    "sidebar content"
+    "sidebar below-content";
+  grid-template-rows: auto 1fr auto;
+}
+
 .custom-theme-home {
   display: block;
+  grid-area: custom-home;
   margin: var(--custom-theme-space-6) auto var(--custom-theme-space-8);
   max-width: var(--custom-theme-content-width);
   padding: 0 var(--custom-theme-page-padding);
+  width: 100%;
 }
 
 // Routes that own their own banner real estate hide the homepage hero.

@@ -1,172 +1,207 @@
 // ---------------------------------------------------------------------------
-// Table-style topic list
+// Topic list — Digg / Vercel community feed style
+//
+// Goal: each topic reads as a feed post:
+//   [avatar]  Title (large)
+//             excerpt or category — light text
+//             ◯ replies   ◯ views   ◯ activity
+//
+// No card chrome around individual rows — just thin dividers, generous
+// vertical padding, strong title weight.
 // ---------------------------------------------------------------------------
+
 .topic-list,
 .latest-topic-list,
 .top-topic-list {
-  background: var(--custom-theme-surface);
-  border: 1px solid var(--custom-theme-border);
-  border-bottom: 1px solid var(--custom-theme-border) !important; // beat default
-  border-radius: var(--custom-theme-radius-lg);
-  box-shadow: var(--custom-theme-shadow);
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
   margin-bottom: 0;
-  overflow: hidden;
+  overflow: visible;
 }
 
-.topic-list tbody tr.topic-list-item:hover {
-  background: var(--custom-theme-surface-raised);
+// Hide the column headers (REPLIES / VIEWS / ACTIVITY) — feed has no header.
+.topic-list thead,
+.latest-topic-list thead,
+.top-topic-list thead {
+  display: none;
 }
 
-// Kill any external bottom-border applied by Discourse defaults to the table.
-table.topic-list { border-collapse: separate; border-spacing: 0; }
-.topic-list tbody tr.topic-list-item:last-of-type { border-bottom: 0; }
-.topic-list tbody tr.topic-list-item:last-of-type td { border-bottom: 0; }
-
-.topic-list thead {
-  background: var(--custom-theme-subtle);
-
-  th {
-    color: var(--custom-theme-muted);
-    font-family: var(--custom-theme-body-font);
-    font-size: var(--font-down-2);
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    padding: 0.625rem 0.875rem;
-    text-transform: uppercase;
-  }
+// Each row → flex-y feed item via display: block + table-cell tricks.
+.topic-list tbody tr.topic-list-item,
+.topic-list-item.with-card {
+  background: transparent !important;
+  border-bottom: 1px solid var(--custom-theme-border) !important;
+  transition: background-color 120ms ease;
 }
 
-.topic-list tbody tr {
-  border-bottom: 1px solid var(--custom-theme-border);
-  transition: background-color 160ms ease;
-
-  &:last-child {
-    border-bottom: 0;
-  }
+.topic-list tbody tr.topic-list-item:hover,
+.topic-list-item.with-card:hover {
+  background: var(--custom-theme-surface) !important;
 }
 
-.topic-list tbody td {
-  padding: var(--custom-theme-space-4) var(--custom-theme-space-4);
+// Cell padding — much more generous, all aligned
+.topic-list tbody tr.topic-list-item > td {
+  border: 0;
+  padding: 1.125rem 0.75rem;
   vertical-align: middle;
 }
 
-// First column — give title room to breathe; small category badge below.
-.topic-list .main-link {
-  padding-left: var(--custom-theme-space-5);
+// Posters column (avatar) — moved to the left (first), square 5px
+.topic-list .posters {
+  order: -1;
+  padding-left: 0.5rem !important;
+  padding-right: 0 !important;
+  width: 56px;
 }
 
-// Category badge under the topic title — bigger, branded chip.
-.topic-list .badge-category-bg,
-.topic-list .badge-category {
+.topic-list .posters > a {
+  display: inline-block;
+}
+
+.topic-list .posters img.avatar {
+  border-radius: var(--custom-theme-avatar-radius) !important;
+  height: 38px;
+  width: 38px;
+}
+
+// Main link cell — title + category
+.topic-list .main-link {
+  padding-left: 0.5rem !important;
+}
+
+.topic-list .main-link a.title,
+.topic-list .raw-topic-link {
+  color: var(--custom-theme-text);
+  font-family: var(--custom-theme-heading-font);
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+.topic-list .main-link a.title:hover,
+.topic-list .raw-topic-link:hover {
+  color: var(--custom-theme-primary);
+}
+
+// Category + tags row beneath the title — inline pill chips
+.topic-list .link-bottom-line,
+.topic-list .topic-list-data .badge-wrapper.bullet {
   align-items: center;
-  border-radius: var(--custom-theme-radius-sm);
   display: inline-flex;
-  font-family: var(--custom-theme-body-font);
-  font-size: var(--font-down-2);
-  font-weight: 600;
-  gap: 0.3rem;
-  padding: 0.15rem 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
 }
 
 .topic-list .badge-wrapper.bullet {
   align-items: center;
+  background: var(--custom-theme-surface);
+  border: 1px solid var(--custom-theme-border);
+  border-radius: 999px;
+  color: var(--custom-theme-muted-foreground);
   display: inline-flex;
-  gap: 0.4rem;
-  margin-top: 0.35rem;
+  font-family: var(--custom-theme-body-font);
+  font-size: var(--font-down-2);
+  font-weight: 500;
+  gap: 0.35rem;
+  padding: 0.2rem 0.6rem;
+}
+
+.topic-list .badge-wrapper.bullet:hover {
+  border-color: color-mix(in srgb, var(--custom-theme-primary) 30%, var(--custom-theme-border));
+  color: var(--custom-theme-text);
 }
 
 .topic-list .badge-wrapper.bullet .badge-category-parent-bg,
 .topic-list .badge-wrapper.bullet .badge-category-bg {
   border-radius: 2px;
-  height: 0.65rem;
-  width: 0.65rem;
+  height: 0.6rem;
+  width: 0.6rem;
 }
 
-.topic-list tbody tr:hover {
-  background: var(--custom-theme-subtle);
+.topic-list .badge-wrapper.bullet .badge-category-name,
+.topic-list .badge-wrapper.bullet .badge-category__name {
+  color: var(--custom-theme-muted-foreground);
 }
 
-// "Last visit" separator row — softer pill divider instead of a hard red line.
+// Replies / Views / Activity cells — feed-style inline meta with icons
+.topic-list .num.posts-map.posts a.badge-posts,
+.topic-list .num.views .number,
+.topic-list .activity a.post-activity {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: var(--custom-theme-muted);
+  display: inline-flex;
+  font-size: var(--font-down-1);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  gap: 0.4rem;
+  padding: 0.25rem 0.4rem;
+  text-decoration: none;
+  transition: color 120ms ease;
+}
+
+.topic-list .num.posts-map.posts a.badge-posts:hover,
+.topic-list .activity a.post-activity:hover {
+  color: var(--custom-theme-text);
+}
+
+// Add icon glyphs in front of meta values
+.topic-list .num.posts-map.posts a.badge-posts::before,
+.topic-list .num.views .number::before,
+.topic-list .activity a.post-activity::before {
+  color: var(--custom-theme-muted);
+  display: inline-block;
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", sans-serif;
+  font-size: 0.85em;
+  font-weight: 900;
+}
+
+.topic-list .num.posts-map.posts a.badge-posts::before { content: "\\f0e6"; } // comments
+.topic-list .num.views .number::before { content: "\\f06e"; } // eye
+.topic-list .activity a.post-activity::before { content: "\\f017"; } // clock
+
+// Center the numeric columns and tighten widths
+.topic-list .num {
+  text-align: right;
+  width: 1%; // shrink to content
+  white-space: nowrap;
+}
+
+// Hide views in narrow tables so meta doesn't crowd
+@media (max-width: 980px) {
+  .topic-list .num.views { display: none; }
+}
+
+// "Last visit" separator row
 .topic-list .topic-list-item-separator {
   background: transparent !important;
 }
 
 .topic-list .topic-list-item-separator td {
   background: transparent;
-  border-bottom: 0;
+  border: 0;
   border-top: 1px solid var(--custom-theme-border) !important;
-  border-bottom-color: var(--custom-theme-border) !important;
-  color: var(--custom-theme-muted) !important;
+  color: var(--custom-theme-muted);
   font-size: var(--font-down-2);
   font-weight: 500;
-  letter-spacing: 0.04em;
-  padding: 0.5rem 0.875rem;
+  letter-spacing: 0.06em;
+  padding: 1rem 0.875rem 0.5rem;
+  text-align: center;
   text-transform: uppercase;
-}
-
-.topic-list {
-  .main-link a.title {
-    color: var(--custom-theme-text);
-    font-family: var(--custom-theme-heading-font);
-    font-size: var(--font-0);
-    font-weight: 650;
-    letter-spacing: -0.01em;
-    line-height: 1.4;
-  }
-
-  .main-link a.title:hover {
-    color: var(--custom-theme-primary);
-  }
-
-  .topic-excerpt {
-    color: var(--custom-theme-muted);
-    font-family: var(--custom-theme-body-font);
-    line-height: 1.55;
-    margin-top: 0.25rem;
-  }
-
-  .badge-wrapper,
-  .discourse-tag {
-    border-radius: var(--custom-theme-radius-sm);
-  }
-
-  // Replies / Views / Activity cells render as quiet pill badges inside their
-  // td so the row reads as structured data instead of bare numbers.
-  td.posts a.badge-posts,
-  td.views .number,
-  td.activity a.post-activity {
-    align-items: center;
-    background: var(--custom-theme-subtle);
-    border: 1px solid var(--custom-theme-border);
-    border-radius: 999px;
-    color: var(--custom-theme-muted-foreground);
-    display: inline-flex;
-    font-size: var(--font-down-2);
-    font-variant-numeric: tabular-nums;
-    font-weight: 500;
-    height: 1.5rem;
-    justify-content: center;
-    min-width: 2.5rem;
-    padding: 0 0.6rem;
-    text-decoration: none;
-  }
-
-  td.posts a.badge-posts:hover,
-  td.activity a.post-activity:hover {
-    border-color: color-mix(in srgb, var(--custom-theme-primary) 30%, var(--custom-theme-border));
-    color: var(--custom-theme-primary);
-  }
 }
 
 // ---------------------------------------------------------------------------
 // Card-style topic items (mobile + topic-list-previews + custom topic cards)
-// Layout: slim vote column (44px) | content column.
-// Content stack: title → meta badges → excerpt → right-aligned actions.
+// Keep the lifted card treatment for these — they're standalone callouts.
 // ---------------------------------------------------------------------------
 .latest-topic-list-item,
-.topic-list-item.with-card,
 .custom-theme-topic-card {
-  background: var(--custom-theme-gradient-card);
+  background: var(--custom-theme-surface);
   border: 1px solid var(--custom-theme-border);
   border-radius: var(--custom-theme-radius-lg);
   box-shadow: var(--custom-theme-shadow-sm);
@@ -246,11 +281,7 @@ table.topic-list { border-collapse: separate; border-spacing: 0; }
   margin-top: 0.15rem;
 }
 
-// ---------------------------------------------------------------------------
-// Pill-badge meta row — used by both featured cards and table rows.
-// ---------------------------------------------------------------------------
-.latest-topic-list-item .topic-meta,
-.topic-list-item .topic-item-meta,
+// Pill-badge meta row
 .custom-theme-topic-card__meta,
 .custom-theme-topic-card .topic-meta {
   align-items: center;
@@ -263,8 +294,6 @@ table.topic-list { border-collapse: separate; border-spacing: 0; }
   margin: 0;
 }
 
-.latest-topic-list-item .topic-meta > *,
-.topic-list-item .topic-item-meta > *,
 .custom-theme-topic-card__meta > *,
 .custom-theme-topic-card .topic-meta > * {
   align-items: center;
@@ -281,27 +310,12 @@ table.topic-list { border-collapse: separate; border-spacing: 0; }
   white-space: nowrap;
 }
 
-.latest-topic-list-item .topic-meta > a,
-.topic-list-item .topic-item-meta > a,
 .custom-theme-topic-card__meta > a,
 .custom-theme-topic-card .topic-meta > a {
   color: var(--custom-theme-text);
   font-weight: 600;
 }
 
-.latest-topic-list-item .topic-meta > a:hover,
-.latest-topic-list-item .topic-meta > a:focus-visible,
-.topic-list-item .topic-item-meta > a:hover,
-.topic-list-item .topic-item-meta > a:focus-visible,
-.custom-theme-topic-card__meta > a:hover,
-.custom-theme-topic-card .topic-meta > a:hover {
-  border-color: color-mix(in srgb, var(--custom-theme-primary) 30%, var(--custom-theme-border));
-  color: var(--custom-theme-primary);
-}
-
-// Author pill — gentle brand tint.
-.latest-topic-list-item .topic-meta > .author,
-.topic-list-item .topic-item-meta > .author,
 .custom-theme-topic-card__meta > .author,
 .custom-theme-topic-card .topic-meta > .author {
   background: color-mix(in srgb, var(--custom-theme-primary) 6%, var(--custom-theme-surface));
@@ -309,44 +323,29 @@ table.topic-list { border-collapse: separate; border-spacing: 0; }
   color: var(--custom-theme-text);
 }
 
-// Drop the literal " / " separators since the badges provide the structure.
-.latest-topic-list-item .topic-meta::before,
-.topic-list-item .topic-item-meta::before,
-.custom-theme-topic-card .topic-meta::before {
-  content: none;
-}
-
-.latest-topic-list-item .topic-meta .topic-meta-sep,
-.topic-list-item .topic-item-meta .topic-meta-sep,
-.custom-theme-topic-card .topic-meta .topic-meta-sep {
-  display: none;
-}
-
 // ---------------------------------------------------------------------------
 // Responsive
 // ---------------------------------------------------------------------------
 @media (max-width: 640px) {
+  .topic-list tbody tr.topic-list-item > td {
+    padding: 0.875rem 0.5rem;
+  }
+
+  .topic-list .posters {
+    width: 44px;
+  }
+
+  .topic-list .posters img.avatar {
+    height: 32px;
+    width: 32px;
+  }
+
+  .topic-list .main-link a.title {
+    font-size: 1rem;
+  }
+
   .custom-theme-topic-card,
   .latest-topic-list-item {
     padding: var(--custom-theme-space-4);
-  }
-
-  .custom-theme-topic-card.--has-vote,
-  .latest-topic-list-item.--has-vote {
-    grid-template-columns: 38px minmax(0, 1fr);
-    gap: var(--custom-theme-space-3);
-  }
-
-  .custom-theme-topic-card__title {
-    font-size: var(--font-0);
-  }
-
-  .custom-theme-topic-card__actions {
-    justify-content: stretch;
-  }
-
-  .custom-theme-topic-card__actions > .custom-theme-button,
-  .custom-theme-topic-card__actions > .btn {
-    flex: 1;
   }
 }

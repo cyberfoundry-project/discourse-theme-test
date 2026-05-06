@@ -1,0 +1,74 @@
+// ---------------------------------------------------------------------------
+// Avatar treatment — square with 5px radius, sharper rendering.
+//
+// Discourse renders avatars in many places: post stream, topic list, user
+// menu, sidebar, user profile, user card popover, mentions, notifications.
+// We override every one of them so the brand square shape is consistent.
+// ---------------------------------------------------------------------------
+
+img.avatar,
+.avatar,
+.user-image,
+.user-image img.avatar,
+.user-card-avatar,
+.user-card-avatar img,
+.user-profile-avatar,
+.user-profile-avatar img,
+.topic-avatar img.avatar,
+.topic-list .posters a img.avatar,
+.posters img.avatar,
+.first-post img.avatar,
+.small-action img.avatar,
+.notifications img.avatar,
+.user-menu img.avatar,
+.fk-d-menu img.avatar,
+.sidebar img.avatar,
+.d-header img.avatar,
+.d-header-icons img.avatar,
+.header-dropdown-toggle img.avatar,
+.header-dropdown-toggle.current-user img.avatar,
+.cyberfoundry-tab-icon img,
+.user-stream img.avatar,
+.activity img.avatar,
+.poster-icon img.avatar,
+.mention img.avatar,
+.featured-topic img.avatar,
+.latest-topic-list-item img.avatar,
+.timeline-container img.avatar {
+  border-radius: var(--custom-theme-avatar-radius) !important;
+  // Sharper rendering — avoid the blurry edges some browsers paint when
+  // scaling avatar PNGs.
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+// Letter avatars (the colored circle with initial) — ensure square too.
+.letter-avatar,
+.avatar.letter-avatar,
+.letter-avatar-inner {
+  border-radius: var(--custom-theme-avatar-radius) !important;
+}
+
+// Group avatars / category logos that share the avatar pipeline
+.group-avatar,
+.group-avatar img,
+.category-logo,
+.category-logo img {
+  border-radius: var(--custom-theme-avatar-radius) !important;
+}
+
+// Subtle border around avatars so they ground against the surface.
+.topic-avatar img.avatar,
+.user-card .user-card-avatar,
+.user-card .user-card-avatar img,
+.user-profile-avatar,
+.user-profile-avatar img {
+  border: 1px solid var(--custom-theme-border);
+}
+
+// User profile main avatar — bigger, with a slightly more pronounced ring.
+.user-main .about .user-profile-avatar,
+.user-main .about .user-profile-avatar img {
+  height: 80px;
+  width: 80px;
+}

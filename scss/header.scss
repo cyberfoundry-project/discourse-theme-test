@@ -23,18 +23,22 @@
 }
 
 .custom-theme-search__input {
-  background: var(--custom-theme-subtle);
+  background: var(--custom-theme-surface);
   border: 1px solid var(--custom-theme-border);
   border-radius: var(--custom-theme-radius-md);
   color: var(--custom-theme-text);
   font-family: var(--custom-theme-body-font);
   font-size: var(--font-down-1);
-  padding: 0.45rem 0.85rem;
+  padding: 0.5rem 0.85rem;
   transition:
     background-color 120ms ease,
     border-color 120ms ease,
     box-shadow 120ms ease;
   width: 100%;
+}
+
+.custom-theme-search__input::placeholder {
+  color: var(--custom-theme-muted);
 }
 
 .custom-theme-search__input::placeholder {
@@ -233,7 +237,7 @@
 }
 
 .d-header-icons > li.current-user img.avatar {
-  border-radius: 999px;
+  border-radius: var(--custom-theme-avatar-radius);
   height: 1.6rem;
   width: 1.6rem;
 }

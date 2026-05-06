@@ -46,8 +46,40 @@ table.topic-list { border-collapse: separate; border-spacing: 0; }
 }
 
 .topic-list tbody td {
-  padding: var(--custom-theme-space-3);
+  padding: var(--custom-theme-space-4) var(--custom-theme-space-4);
   vertical-align: middle;
+}
+
+// First column — give title room to breathe; small category badge below.
+.topic-list .main-link {
+  padding-left: var(--custom-theme-space-5);
+}
+
+// Category badge under the topic title — bigger, branded chip.
+.topic-list .badge-category-bg,
+.topic-list .badge-category {
+  align-items: center;
+  border-radius: var(--custom-theme-radius-sm);
+  display: inline-flex;
+  font-family: var(--custom-theme-body-font);
+  font-size: var(--font-down-2);
+  font-weight: 600;
+  gap: 0.3rem;
+  padding: 0.15rem 0.5rem;
+}
+
+.topic-list .badge-wrapper.bullet {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+}
+
+.topic-list .badge-wrapper.bullet .badge-category-parent-bg,
+.topic-list .badge-wrapper.bullet .badge-category-bg {
+  border-radius: 2px;
+  height: 0.65rem;
+  width: 0.65rem;
 }
 
 .topic-list tbody tr:hover {

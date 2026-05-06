@@ -71,9 +71,25 @@
 .below-footer,
 .suggested-topics-message,
 .empty-state__container > .empty-state__title,
-.discovery-list-container-bottom-outlet {
+.discovery-list-container-bottom-outlet,
+.contents > .row,
+.contents > hr,
+#main-outlet > hr,
+#main-outlet > .topic-list-bottom,
+#main-outlet > .below-content,
+.show-more,
+.show-more .alert {
+  border: 0 !important;
   border-bottom: 0 !important;
   border-top: 0 !important;
+}
+
+// "show more" / "load more" alert that Discourse paints with a strange
+// underline rule — clean it up.
+.show-more.has-topics .alert {
+  background: transparent !important;
+  color: var(--custom-theme-muted) !important;
+  text-align: center;
 }
 
 // Discourse's "Powered by Discourse" link block — keep visible but no

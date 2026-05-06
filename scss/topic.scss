@@ -98,8 +98,10 @@
 }
 
 .topic-avatar img.avatar {
-  border: 2px solid var(--custom-theme-border);
-  border-radius: 999px;
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--custom-theme-avatar-radius);
+  height: 44px;
+  width: 44px;
 }
 
 // Post meta row (author + time + post number) — render the time as a pill so

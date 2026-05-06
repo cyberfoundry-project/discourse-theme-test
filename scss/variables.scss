@@ -108,6 +108,10 @@
   --custom-theme-shadow-lg: 0 20px 45px rgba(11, 15, 20, 0.12);
   --custom-theme-focus-ring: 0 0 0 2px var(--secondary), 0 0 0 4px var(--custom-theme-ring);
 
+  // ---- Avatar treatment ----------------------------------------------------
+  // All avatars across the site render as squares with 5px radius per brand.
+  --custom-theme-avatar-radius: 5px;
+
   // ---- Layout & spacing ----------------------------------------------------
   --custom-theme-content-width: 1110px;
   --custom-theme-space-1: 0.25rem;

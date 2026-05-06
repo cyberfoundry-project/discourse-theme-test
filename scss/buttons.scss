@@ -74,13 +74,23 @@
   color: #fff;
 }
 
+// Secondary / default buttons — keep tone everywhere readable. Lock the
+// color so Discourse's plugin-default rules can't paint the text dark on
+// our dark surface.
 .custom-theme-button--secondary,
 .topic-post .btn-default,
 .list-controls .btn-default,
-.composer-fields .btn-default {
+.composer-fields .btn-default,
+.btn.btn-default,
+.btn-default {
   background: var(--custom-theme-surface);
   border: 1px solid var(--custom-theme-border);
-  color: var(--custom-theme-text);
+  color: var(--custom-theme-text) !important;
+}
+
+.btn.btn-default .d-icon,
+.btn-default .d-icon {
+  color: var(--custom-theme-text) !important;
 }
 
 .custom-theme-button--secondary:hover,
@@ -90,10 +100,67 @@
 .list-controls .btn-default:hover,
 .list-controls .btn-default:focus,
 .composer-fields .btn-default:hover,
-.composer-fields .btn-default:focus {
-  background: var(--custom-theme-subtle);
-  border-color: color-mix(in srgb, var(--custom-theme-border) 70%, var(--custom-theme-text));
-  color: var(--custom-theme-text);
+.composer-fields .btn-default:focus,
+.btn.btn-default:hover,
+.btn.btn-default:focus,
+.btn-default:hover,
+.btn-default:focus {
+  background: var(--custom-theme-surface-raised);
+  border-color: color-mix(in srgb, var(--custom-theme-primary) 35%, var(--custom-theme-border));
+  color: var(--custom-theme-text) !important;
+}
+
+// Flat / link-style buttons (e.g. "More…", jump-top, jump-bottom) — make
+// sure the label text is the same off-white we use elsewhere.
+.btn.btn-flat,
+.btn-flat {
+  color: var(--custom-theme-muted-foreground) !important;
+}
+
+.btn.btn-flat:hover,
+.btn-flat:hover {
+  color: var(--custom-theme-text) !important;
+}
+
+// Primary brand button — used by Discourse for "New Topic", "Reply", etc.
+// Force white text so the orange surface always reads.
+.btn-primary,
+.topic-post .btn-primary,
+.composer-fields .btn-primary,
+.create-topic .btn-primary,
+.timeline-controls .btn-primary,
+.btn.btn-primary {
+  background: var(--custom-theme-primary) !important;
+  border: 1px solid var(--custom-theme-primary);
+  color: #fff !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn.btn-primary:hover {
+  background: var(--custom-theme-primary-dark) !important;
+  border-color: var(--custom-theme-primary-dark);
+  color: #fff !important;
+}
+
+.btn-primary .d-icon,
+.btn.btn-primary .d-icon {
+  color: #fff !important;
+}
+
+// Danger / "warn" buttons (delete, flag) — use Rust + white text.
+.btn-danger,
+.btn.btn-danger {
+  background: var(--custom-theme-rust) !important;
+  border-color: var(--custom-theme-rust);
+  color: #fff !important;
+}
+
+// Generic discovery / list-controls buttons that Discourse renders without
+// `.btn-default` (some pagination + admin toggles) — make them visible.
+.list-controls .btn,
+.list-controls button {
+  color: var(--custom-theme-text) !important;
 }
 
 .topic-post .btn-flat,

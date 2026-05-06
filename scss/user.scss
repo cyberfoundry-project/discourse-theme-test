@@ -29,11 +29,11 @@
 
   .user-profile-avatar,
   .user-image {
-    border-radius: 999px;
+    border-radius: var(--custom-theme-avatar-radius);
   }
 
   .user-image img.avatar {
-    border-radius: 999px;
+    border-radius: var(--custom-theme-avatar-radius);
   }
 
   .user-profile-names {
@@ -261,7 +261,7 @@
   .user-card-avatar,
   .avatar-flair-image,
   .user-card-avatar img.avatar {
-    border-radius: var(--custom-theme-radius-md);
+    border-radius: var(--custom-theme-avatar-radius);
     flex: 0 0 auto;
     height: 72px;
     width: 72px;

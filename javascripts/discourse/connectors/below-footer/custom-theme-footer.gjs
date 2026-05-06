@@ -1,15 +1,15 @@
-import themeSetting from "discourse/helpers/theme-setting";
+// `settings` is auto-injected in theme .gjs connectors.
 
 export default <template>
-  {{#if (themeSetting "show_custom_footer")}}
+  {{#if settings.show_custom_footer}}
     <footer class="custom-theme-footer" aria-label="Community footer">
       <div class="custom-theme-footer__inner">
         <div>
           <strong class="custom-theme-footer__brand">
-            {{themeSetting "brand_name"}}
+            {{settings.brand_name}}
           </strong>
           <p class="custom-theme-footer__tagline">
-            {{themeSetting "footer_tagline"}}
+            {{settings.footer_tagline}}
           </p>
         </div>
 

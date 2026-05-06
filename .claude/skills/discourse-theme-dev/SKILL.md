@@ -87,16 +87,19 @@ Connector files MUST use the `.gjs` extension. `.hbs` connectors are deprecated 
 A connector that just renders markup with theme settings looks like:
 
 ```js
-import themeSetting from "discourse/helpers/theme-setting";
+// `settings` is AUTO-INJECTED in theme .gjs connectors. Do NOT import a
+// theme-setting helper — Discourse will throw "The theme-setting helper is
+// not supported in this context" and the entire main-outlet stops rendering.
+// Use `{{settings.key}}` directly.
 import icon from "discourse/helpers/d-icon";
 
 export default <template>
-  {{#if (themeSetting "show_homepage_hero")}}
+  {{#if settings.show_homepage_hero}}
     <section class="custom-theme-banner">
-      <h1>{{themeSetting "hero_title"}}</h1>
-      <a href={{themeSetting "hero_cta_url"}}>
+      <h1>{{settings.hero_title}}</h1>
+      <a href={{settings.hero_cta_url}}>
         {{icon "arrow-right"}}
-        {{themeSetting "hero_cta_text"}}
+        {{settings.hero_cta_text}}
       </a>
     </section>
   {{/if}}

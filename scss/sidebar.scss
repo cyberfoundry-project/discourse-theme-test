@@ -27,23 +27,24 @@
 }
 
 .sidebar-section-link {
-  border-radius: var(--custom-theme-radius-sm);
-  color: var(--custom-theme-text);
+  border-radius: var(--custom-theme-radius-md);
+  color: var(--custom-theme-muted-foreground);
   font-family: var(--custom-theme-body-font);
   font-size: var(--font-down-1);
-  gap: 0.5rem;
-  padding: 0.4rem 0.625rem;
-  transition: background-color 160ms ease, color 160ms ease;
+  font-weight: 500;
+  gap: 0.55rem;
+  padding: 0.45rem 0.7rem;
+  transition: background-color 120ms ease, color 120ms ease;
 
   &:hover,
   &:focus-visible {
-    background: var(--custom-theme-subtle);
+    background: var(--custom-theme-surface);
     color: var(--custom-theme-text);
   }
 
   &--active,
   &.active {
-    background: color-mix(in srgb, var(--custom-theme-primary) 9%, transparent);
+    background: color-mix(in srgb, var(--custom-theme-primary) 14%, transparent);
     color: var(--custom-theme-primary);
     font-weight: 600;
   }

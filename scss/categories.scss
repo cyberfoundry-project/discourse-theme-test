@@ -27,20 +27,22 @@
 
 .category-boxes .category-box,
 .category-boxes-with-topics .category-box {
-  background: var(--custom-theme-gradient-card);
+  background: var(--custom-theme-surface);
   border: 1px solid var(--custom-theme-border);
   border-radius: var(--custom-theme-radius-lg);
   box-shadow: var(--custom-theme-shadow-sm);
   margin: 0;
   padding: 0;
   transition:
+    background-color 120ms ease,
     border-color 120ms ease,
     box-shadow 120ms ease;
   width: 100%;
 
   &:hover,
   &:focus-within {
-    border-color: color-mix(in srgb, var(--custom-theme-primary) 25%, var(--custom-theme-border));
+    background: var(--custom-theme-surface-raised);
+    border-color: color-mix(in srgb, var(--custom-theme-primary) 35%, var(--custom-theme-border));
     box-shadow: var(--custom-theme-shadow);
   }
 }
@@ -172,7 +174,7 @@
 .category-boxes .subcategory-box,
 .category-boxes-with-topics .subcategory-box {
   align-items: center;
-  background: var(--custom-theme-surface);
+  background: var(--custom-theme-surface-raised);
   border: 1px solid var(--custom-theme-border);
   border-radius: var(--custom-theme-radius-md);
   box-shadow: var(--custom-theme-shadow-sm);

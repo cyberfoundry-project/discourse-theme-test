@@ -33,22 +33,28 @@
 
 :root {
   // ---- Brand-aware aliases over Discourse's color-scheme vars --------------
+  // Surfaces are layered on top of the page background using color-mix so a
+  // card always reads slightly above the bg in BOTH light and dark palettes.
+  // In light: white bg, ~4% dark mix gives the soft #fafafa surface we want.
+  // In dark:  carbon bg, ~5% steam mix gives ~Slag (#161B22-ish), so cards
+  // visibly lift instead of blending into the page.
   --custom-theme-primary: #{$accent_color};
   --custom-theme-primary-dark: #{$accent_color_dark};
   --custom-theme-background: var(--secondary);
   --custom-theme-foreground: var(--primary);
-  --custom-theme-card: var(--secondary);
+  --custom-theme-surface: color-mix(in srgb, var(--primary) 4%, var(--secondary));
+  --custom-theme-surface-raised: color-mix(in srgb, var(--primary) 7%, var(--secondary));
+  --custom-theme-card: var(--custom-theme-surface);
   --custom-theme-card-foreground: var(--primary);
-  --custom-theme-popover: var(--secondary);
-  --custom-theme-muted-surface: var(--primary-very-low);
-  --custom-theme-muted: var(--primary-medium);
-  --custom-theme-muted-foreground: var(--primary-high);
+  --custom-theme-popover: var(--custom-theme-surface);
+  --custom-theme-muted-surface: var(--custom-theme-surface);
+  --custom-theme-subtle: color-mix(in srgb, var(--primary) 5%, var(--secondary));
+  --custom-theme-muted: color-mix(in srgb, var(--primary) 55%, transparent);
+  --custom-theme-muted-foreground: color-mix(in srgb, var(--primary) 80%, transparent);
   --custom-theme-text: var(--primary);
-  --custom-theme-text-strong: var(--primary-high);
-  --custom-theme-subtle: var(--primary-very-low);
-  --custom-theme-surface: var(--secondary);
+  --custom-theme-text-strong: var(--primary);
   --custom-theme-accent: var(--tertiary);
-  --custom-theme-info-surface: var(--tertiary-very-low);
+  --custom-theme-info-surface: color-mix(in srgb, var(--custom-theme-primary) 12%, transparent);
 
   // ---- Hard-coded brand tokens (palette-agnostic) --------------------------
   --custom-theme-ember: #ff6b1a;
@@ -81,8 +87,12 @@
   --custom-theme-warning-surface: color-mix(in srgb, var(--custom-theme-flux) 12%, transparent);
   --custom-theme-warning-border: color-mix(in srgb, var(--custom-theme-flux) 35%, transparent);
 
-  --custom-theme-border: var(--primary-low);
-  --custom-theme-input: var(--primary-low);
+  // Borders need to be visible on both light bg AND dark Carbon bg. The
+  // color-mix gives a stronger line in dark (the steam alpha shows clearly
+  // against carbon) while staying gentle in light.
+  --custom-theme-border: color-mix(in srgb, var(--primary) 14%, transparent);
+  --custom-theme-border-strong: color-mix(in srgb, var(--primary) 22%, transparent);
+  --custom-theme-input: color-mix(in srgb, var(--primary) 18%, transparent);
   --custom-theme-ring: var(--custom-theme-primary);
 
   // ---- Radius / shadow -----------------------------------------------------

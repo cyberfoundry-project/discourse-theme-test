@@ -12,11 +12,21 @@
   gap: var(--custom-theme-space-4);
 }
 
-// Floating timeline / wrench column on the right — give it room and align.
+// Timeline column on the right — keep visible but don't let the lone admin
+// wrench float in empty space and look like an orphaned UI element.
 .timeline-container,
 .topic-timeline,
 .timeline-controls {
   background: transparent;
+}
+
+// Hide the single floating admin wrench when there's no actual timeline UI
+// rendered next to it (single-post topics) — Discourse leaves an isolated
+// wrench column otherwise.
+.topic-timeline:empty,
+.topic-timeline .timeline-footer-controls:empty,
+.topic-area .timeline-container:has(.topic-admin-menu-button:only-child) {
+  display: none !important;
 }
 
 .topic-timeline .topic-admin-menu-button,
@@ -70,11 +80,26 @@
 }
 
 .topic-body {
-  background: var(--custom-theme-card);
+  background: var(--custom-theme-surface);
   border: 1px solid var(--custom-theme-border);
   border-radius: var(--custom-theme-radius-lg);
-  box-shadow: var(--custom-theme-shadow-sm);
+  box-shadow: var(--custom-theme-shadow);
   padding: var(--custom-theme-space-5);
+}
+
+.topic-post + .topic-post .topic-body {
+  margin-top: var(--custom-theme-space-3);
+}
+
+// Make sure the avatar column has consistent chrome too.
+.topic-avatar {
+  align-self: flex-start;
+  padding-top: var(--custom-theme-space-3);
+}
+
+.topic-avatar img.avatar {
+  border: 2px solid var(--custom-theme-border);
+  border-radius: 999px;
 }
 
 // Post meta row (author + time + post number) — render the time as a pill so

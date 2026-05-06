@@ -1,7 +1,12 @@
 .d-header {
-  background: var(--custom-theme-surface);
+  background: var(--custom-theme-background);
   border-bottom: 1px solid var(--custom-theme-border);
   box-shadow: none;
+}
+
+#d-sidebar {
+  background: var(--custom-theme-background);
+  border-right: 1px solid var(--custom-theme-border);
 }
 
 // ---------------------------------------------------------------------------

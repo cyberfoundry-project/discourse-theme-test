@@ -117,12 +117,14 @@
 .user-content .user-stat,
 .user-content .top-section .top-sub-section li {
   align-items: flex-start;
-  background: var(--custom-theme-gradient-card);
+  background: var(--custom-theme-surface);
   border: 1px solid var(--custom-theme-border);
   border-radius: var(--custom-theme-radius-md);
+  box-shadow: var(--custom-theme-shadow-sm);
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
+  min-height: 4.25rem;
   padding: var(--custom-theme-space-3) var(--custom-theme-space-4);
 }
 

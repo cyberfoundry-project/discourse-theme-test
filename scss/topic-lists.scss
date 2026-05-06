@@ -8,9 +8,13 @@
   border: 1px solid var(--custom-theme-border);
   border-bottom: 1px solid var(--custom-theme-border) !important; // beat default
   border-radius: var(--custom-theme-radius-lg);
-  box-shadow: var(--custom-theme-shadow-sm);
+  box-shadow: var(--custom-theme-shadow);
   margin-bottom: 0;
   overflow: hidden;
+}
+
+.topic-list tbody tr.topic-list-item:hover {
+  background: var(--custom-theme-surface-raised);
 }
 
 // Kill any external bottom-border applied by Discourse defaults to the table.

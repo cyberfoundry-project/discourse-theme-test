@@ -20,7 +20,7 @@
 // the grid and pin our connector to it.
 #main-outlet-wrapper {
   grid-template-areas:
-    "custom-home custom-home"
+    "sidebar custom-home"
     "sidebar content"
     "sidebar below-content";
   grid-template-rows: auto 1fr auto;

@@ -4,6 +4,70 @@
   box-shadow: none;
 }
 
+// ---------------------------------------------------------------------------
+// Custom in-header search field, rendered via the home-logo-after connector.
+// Sits to the right of the logo, before the icon stack.
+// ---------------------------------------------------------------------------
+.custom-theme-search {
+  align-items: center;
+  display: flex;
+  flex: 1 1 360px;
+  margin: 0 var(--custom-theme-space-4);
+  max-width: 480px;
+  min-width: 0;
+}
+
+.custom-theme-search__input {
+  background: var(--custom-theme-subtle);
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--custom-theme-radius-md);
+  color: var(--custom-theme-text);
+  font-family: var(--custom-theme-body-font);
+  font-size: var(--font-down-1);
+  padding: 0.45rem 0.85rem;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease;
+  width: 100%;
+}
+
+.custom-theme-search__input::placeholder {
+  color: var(--custom-theme-muted);
+}
+
+.custom-theme-search__input:hover {
+  background: var(--custom-theme-surface);
+  border-color: color-mix(in srgb, var(--custom-theme-primary) 25%, var(--custom-theme-border));
+}
+
+.custom-theme-search__input:focus {
+  background: var(--custom-theme-surface);
+  border-color: var(--custom-theme-primary);
+  box-shadow: var(--custom-theme-focus-ring);
+  outline: none;
+}
+
+// Username next to the avatar (injected by api-initializer).
+.cyberfoundry-username {
+  color: var(--custom-theme-text);
+  font-family: var(--custom-theme-body-font);
+  font-size: var(--font-down-1);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .custom-theme-search {
+    display: none; // mobile: search collapses to icon-only inside Discourse menu
+  }
+
+  .cyberfoundry-username {
+    display: none;
+  }
+}
+
 // Site title / logo wordmark — slightly less heavy than Discourse default.
 .d-header .title a,
 .d-header .title h1 {

@@ -1,13 +1,6 @@
 import { apiInitializer } from "discourse/lib/api";
 import { iconHTML } from "discourse-common/lib/icon-library";
 
-// Tag the page with trust level + auth state so CSS can target experiences
-// (e.g. show the new-user welcome banner only to anon + TL0). Hide our
-// custom footer when Discourse Easy Footer is also present so the site
-// doesn't end up with two stacked footers. Inject Discourse SVG d-icons
-// in front of each top-level nav-pill (Latest / New / Hot / Top / Categories
-// / Unread) — we can't do this with CSS `content:` because Discourse uses
-// SVG icons, not a FontAwesome webfont.
 const NAV_PILL_ICONS = {
   "/latest": "clock",
   "/new": "star",
@@ -41,9 +34,27 @@ function decorateNavPills() {
       span.innerHTML = iconHTML(iconName);
       a.prepend(span);
     } catch (e) {
-      // Defensive: never let icon decoration break navigation.
+      /* never let icon decoration break navigation */
     }
   });
+}
+
+function decorateUserToggle(currentUser) {
+  if (!currentUser) {
+    return;
+  }
+  const toggle = document.querySelector("#toggle-current-user");
+  if (!toggle || toggle.querySelector(".cyberfoundry-username")) {
+    return;
+  }
+  try {
+    const span = document.createElement("span");
+    span.className = "cyberfoundry-username";
+    span.textContent = currentUser.username;
+    toggle.appendChild(span);
+  } catch (e) {
+    /* defensive */
+  }
 }
 
 export default apiInitializer("1.8.0", (api) => {
@@ -63,6 +74,7 @@ export default apiInitializer("1.8.0", (api) => {
 
   api.onPageChange(() => {
     decorateNavPills();
+    decorateUserToggle(currentUser);
 
     const footer = document.querySelector(".custom-theme-footer");
     if (footer) {

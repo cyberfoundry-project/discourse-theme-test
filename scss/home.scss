@@ -29,10 +29,18 @@
 .custom-theme-home {
   display: block;
   grid-area: custom-home;
-  margin: var(--custom-theme-space-6) auto var(--custom-theme-space-8);
+  // Tight vertical rhythm — Discourse adds its own padding-top to #main-outlet
+  // (16px) so we don't need a big margin-top here.
+  margin: var(--custom-theme-space-3) auto var(--custom-theme-space-5);
   max-width: var(--custom-theme-content-width);
   padding: 0 var(--custom-theme-page-padding);
   width: 100%;
+}
+
+// Trim Discourse's default 16px padding-top on #main-outlet so the gap from
+// header → hero is consistent with the rest of the rhythm.
+#main-outlet {
+  padding-top: var(--custom-theme-space-2) !important;
 }
 
 // Hide Discourse's built-in `.welcome-banner` widget. Our hero serves the
@@ -133,11 +141,11 @@ html.cyberfoundry-new-user .custom-theme-announcement--new-user {
   box-shadow: var(--custom-theme-shadow-sm);
   color: var(--custom-theme-text);
   display: grid;
-  gap: var(--custom-theme-space-5) var(--custom-theme-space-8);
+  gap: var(--custom-theme-space-4) var(--custom-theme-space-6);
   grid-template-columns: minmax(0, 1fr) auto;
-  margin: 0 0 var(--custom-theme-space-5);
+  margin: 0 0 var(--custom-theme-space-4);
   overflow: hidden;
-  padding: var(--custom-theme-space-7) var(--custom-theme-space-8);
+  padding: var(--custom-theme-space-6) var(--custom-theme-space-7);
   position: relative;
 }
 
@@ -196,9 +204,9 @@ html.cyberfoundry-new-user .custom-theme-announcement--new-user {
 
 .custom-quick-links {
   display: grid;
-  gap: var(--custom-theme-space-4);
+  gap: var(--custom-theme-space-3);
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin: 0 0 var(--custom-theme-space-6);
+  margin: 0 0 var(--custom-theme-space-4);
 }
 
 .custom-quick-link {
@@ -209,9 +217,9 @@ html.cyberfoundry-new-user .custom-theme-announcement--new-user {
   color: var(--custom-theme-text);
   display: flex;
   flex-direction: column;
-  gap: var(--custom-theme-space-2);
-  min-height: 6rem;
-  padding: var(--custom-theme-space-5);
+  gap: var(--custom-theme-space-1);
+  min-height: auto;
+  padding: var(--custom-theme-space-4) var(--custom-theme-space-5);
   text-decoration: none;
   transition:
     border-color 120ms ease,

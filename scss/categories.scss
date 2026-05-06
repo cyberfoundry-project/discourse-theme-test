@@ -1,52 +1,38 @@
-// Full-width category rows with stat badges on the right.
-// Discourse renders categories one of three ways depending on the
-// `desktop_category_page_style` site setting:
-//   1. `categories_only` / `categories_with_featured_topics`  → table.category-list
-//   2. `categories_boxes` / `categories_boxes_with_topics`    → div.category-boxes
-//   3. `subcategories_with_featured_topics`                   → section.subcategory-list
+// ---------------------------------------------------------------------------
+// /categories layouts
 //
-// We style ALL three to a full-width row so the look is consistent regardless
-// of which one the admin picks.
+// Discourse picks one of these markup shapes based on `desktop_category_page_style`:
+//   • categories_only / categories_with_featured_topics / categories_and_*
+//                       → `<table.category-list>` with td cells
+//   • categories_boxes (Boxes with Subcategories)
+//   • categories_boxes_with_topics (Boxes with Featured Topics)
+//                       → `<section class="category-boxes / category-boxes-with-topics">`
+//                          containing `<div class="category category-box">…`
+//
+// We style ALL three so any admin choice gets a consistent full-width row card.
+// ---------------------------------------------------------------------------
 
 // ---------------------------------------------------------------------------
-// Subcategory list (the "Info ▾" view in screenshots)
+// .category-boxes / .category-boxes-with-topics
+// Each `.category-box` becomes a full-width row card:
+//   [ icon ]  [ name + description ]  [ subcategories OR featured topics ]
 // ---------------------------------------------------------------------------
-.subcategory-list,
-.parent-category-and-subcategories {
-  margin-block: 1.25rem;
-}
-
-.subcategory-list-with-featured-topics,
-.subcategories-with-featured-topics-list,
-.subcategory-list .subcategories,
-.subcategory-list .latest-topic-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.625rem;
-}
-
-// Boxes layout — flatten into rows.
 .category-boxes,
 .category-boxes-with-topics {
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
-  margin: 0;
+  gap: var(--custom-theme-space-3);
+  margin: var(--custom-theme-space-4) 0 0;
 }
 
 .category-boxes .category-box,
-.category-boxes-with-topics .category-box,
-.subcategories-with-featured-topics-list > .subcategory,
-.subcategory-list > .category {
+.category-boxes-with-topics .category-box {
   background: var(--custom-theme-gradient-card);
   border: 1px solid var(--custom-theme-border);
   border-radius: var(--custom-theme-radius-lg);
   box-shadow: var(--custom-theme-shadow-sm);
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: auto minmax(0, 1fr) auto;
   margin: 0;
-  padding: 1rem 1.25rem;
+  padding: 0;
   transition:
     border-color 120ms ease,
     box-shadow 120ms ease;
@@ -54,25 +40,8 @@
 
   &:hover,
   &:focus-within {
-    border-color: color-mix(in srgb, var(--custom-theme-primary) 30%, var(--custom-theme-border));
+    border-color: color-mix(in srgb, var(--custom-theme-primary) 25%, var(--custom-theme-border));
     box-shadow: var(--custom-theme-shadow);
-  }
-}
-
-.category-boxes .category-box-heading,
-.category-boxes-with-topics .category-box-heading {
-  margin: 0;
-
-  h3,
-  a {
-    color: var(--custom-theme-text);
-    font-family: var(--custom-theme-heading-font);
-    font-size: var(--font-up-1);
-    font-weight: 650;
-    letter-spacing: -0.01em;
-    line-height: 1.3;
-    margin: 0 0 0.25rem;
-    text-decoration: none;
   }
 }
 
@@ -80,54 +49,287 @@
 .category-boxes-with-topics .category-box-inner {
   background: transparent;
   border: 0;
-  display: contents;
+  border-radius: 0;
+  display: grid;
+  gap: var(--custom-theme-space-3) var(--custom-theme-space-5);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  padding: var(--custom-theme-space-5);
+  width: 100%;
+
+  @media (max-width: 720px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
-.category-boxes .category-box-inner > .category-logo,
-.category-boxes-with-topics .category-box-inner > .category-logo {
-  align-self: center;
-  grid-column: 1;
-  grid-row: 1 / span 2;
-  height: 2.5rem;
-  width: 2.5rem;
+.category-boxes .category-box-heading,
+.category-boxes-with-topics .category-box-heading {
+  align-self: start;
+  margin: 0;
+  min-width: 0;
 }
 
-.category-boxes .category-box-inner > .description,
-.category-boxes .category-box-inner > .category-description,
-.category-boxes-with-topics .category-box-inner > .description {
-  color: var(--custom-theme-muted-foreground);
-  font-family: var(--custom-theme-body-font);
-  font-size: var(--font-down-1);
-  grid-column: 2;
-  line-height: 1.5;
+.category-boxes .category-box-heading h3,
+.category-boxes-with-topics .category-box-heading h3 {
+  align-items: center;
+  color: var(--custom-theme-text);
+  display: flex;
+  flex-wrap: wrap;
+  font-family: var(--custom-theme-heading-font);
+  font-size: var(--font-up-1);
+  font-weight: 650;
+  gap: var(--custom-theme-space-2);
+  letter-spacing: -0.015em;
+  line-height: 1.25;
   margin: 0;
 }
 
-// Right-side stats column.
-.category-boxes .category-box-inner::after,
-.category-boxes-with-topics .category-box-inner::after {
-  content: none;
+.category-boxes .category-box-heading a.parent-box-link,
+.category-boxes-with-topics .category-box-heading a.parent-box-link {
+  color: inherit;
+  text-decoration: none;
 }
 
-.custom-theme-cat-stats,
-.category-boxes .category-box .featured-topic,
-.category-boxes-with-topics .category-box .featured-topic {
-  align-items: flex-end;
-  color: var(--custom-theme-muted);
+.category-boxes .category-box-heading a.parent-box-link:hover,
+.category-boxes-with-topics .category-box-heading a.parent-box-link:hover {
+  color: var(--custom-theme-primary);
+}
+
+// Category color badge inside the heading — shrink it; the card border carries
+// the visual weight already.
+.category-boxes .category-box-heading .badge-category,
+.category-boxes-with-topics .category-box-heading .badge-category {
+  align-items: center;
+  display: inline-flex;
+  font-size: var(--font-down-1);
+  gap: 0.3rem;
+}
+
+// Featured-topics column (right side)
+.category-boxes-with-topics .featured-topics {
+  align-self: start;
+  background: transparent;
   display: flex;
   flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.category-boxes-with-topics .featured-topics ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.category-boxes-with-topics .featured-topics li {
+  align-items: flex-start;
+  display: flex;
+  gap: 0.4rem;
+  margin: 0;
+  min-width: 0;
+}
+
+.category-boxes-with-topics .featured-topics li svg {
+  color: var(--custom-theme-muted);
+  flex: 0 0 auto;
+  height: 0.85em;
+  margin-top: 0.35em;
+  width: 0.85em;
+}
+
+.category-boxes-with-topics .featured-topics li a.title {
+  color: var(--custom-theme-text);
+  font-family: var(--custom-theme-body-font);
+  font-size: var(--font-down-1);
+  font-weight: 500;
+  line-height: 1.45;
+  text-decoration: none;
+}
+
+.category-boxes-with-topics .featured-topics li a.title:hover {
+  color: var(--custom-theme-primary);
+}
+
+// ---------------------------------------------------------------------------
+// "Boxes with Subcategories" rendering
+// Each parent .category-box contains a list of subcategories rendered as
+// inline children with class .subcategory-box / .child-categories.
+// ---------------------------------------------------------------------------
+.category-boxes .subcategories,
+.category-boxes-with-topics .subcategories {
+  align-self: start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0;
+  min-width: 0;
+}
+
+.category-boxes .subcategories .subcategory,
+.category-boxes-with-topics .subcategories .subcategory,
+.category-boxes .subcategory-box,
+.category-boxes-with-topics .subcategory-box {
+  align-items: center;
+  background: var(--custom-theme-surface);
+  border: 1px solid var(--custom-theme-border);
+  border-radius: 999px;
+  color: var(--custom-theme-text);
+  display: inline-flex;
   font-family: var(--custom-theme-body-font);
   font-size: var(--font-down-2);
+  font-weight: 500;
+  gap: 0.35rem;
+  padding: 0.25rem 0.6rem;
+  text-decoration: none;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
+}
+
+.category-boxes .subcategories .subcategory:hover,
+.category-boxes-with-topics .subcategories .subcategory:hover,
+.category-boxes .subcategory-box:hover,
+.category-boxes-with-topics .subcategory-box:hover {
+  background: var(--custom-theme-subtle);
+  border-color: color-mix(in srgb, var(--custom-theme-primary) 30%, var(--custom-theme-border));
+  color: var(--custom-theme-primary);
+}
+
+// ---------------------------------------------------------------------------
+// Generic category-list TABLE markup (categories_with_featured_topics etc.)
+// ---------------------------------------------------------------------------
+.category-list {
+  background: var(--custom-theme-surface);
+  border: 1px solid var(--custom-theme-border);
+  border-collapse: separate;
+  border-radius: var(--custom-theme-radius-lg);
+  border-spacing: 0;
+  box-shadow: var(--custom-theme-shadow-sm);
+  overflow: hidden;
+  table-layout: auto;
+  width: 100%;
+}
+
+.category-list thead th {
+  background: var(--custom-theme-subtle);
+  color: var(--custom-theme-muted);
+  font-family: var(--custom-theme-body-font);
+  font-size: var(--font-down-2);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.625rem 0.875rem;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.category-list tbody tr.category {
+  border-bottom: 1px solid var(--custom-theme-border);
+  transition: background-color 120ms ease;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &:hover {
+    background: var(--custom-theme-subtle);
+  }
+}
+
+.category-list tbody td {
+  padding: var(--custom-theme-space-4);
+  vertical-align: top;
+}
+
+// Subcategories nested inside a parent row — quiet pill chips below the
+// description so the hierarchy is visible.
+.category-list .subcategories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+
+.category-list .subcategories a,
+.category-list .subcategory {
+  align-items: center;
+  background: var(--custom-theme-subtle);
+  border: 1px solid var(--custom-theme-border);
+  border-radius: 999px;
+  color: var(--custom-theme-text);
+  display: inline-flex;
+  font-size: var(--font-down-2);
+  font-weight: 500;
+  gap: 0.3rem;
+  padding: 0.2rem 0.6rem;
+  text-decoration: none;
+}
+
+.category-list .subcategories a:hover,
+.category-list .subcategory:hover {
+  border-color: color-mix(in srgb, var(--custom-theme-primary) 30%, var(--custom-theme-border));
+  color: var(--custom-theme-primary);
+}
+
+.category-list .category-name {
+  color: var(--custom-theme-text);
+  font-family: var(--custom-theme-heading-font);
+  font-size: var(--font-up-1);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.category-list .category-name:hover {
+  color: var(--custom-theme-primary);
+}
+
+.category-list .category-description {
+  color: var(--custom-theme-muted-foreground);
+  line-height: 1.5;
+  margin-top: 0.3rem;
+}
+
+.category-list .topics,
+.category-list .latest {
+  color: var(--custom-theme-muted);
+  font-size: var(--font-down-1);
   font-variant-numeric: tabular-nums;
-  gap: 0.25rem;
-  grid-column: 3;
-  grid-row: 1 / span 2;
-  text-align: right;
   white-space: nowrap;
 }
 
-// Stat badges (rendered by JS in api-initializer when category data is on the
-// page; CSS handles the visual treatment regardless of source).
+.category-list .topics .stat,
+.category-list .topics-week,
+.category-list .topics-month,
+.category-list .topics-all-time {
+  align-items: center;
+  background: var(--custom-theme-subtle);
+  border: 1px solid var(--custom-theme-border);
+  border-radius: 999px;
+  color: var(--custom-theme-text);
+  display: inline-flex;
+  font-size: var(--font-down-2);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  gap: 0.25rem;
+  padding: 0.2rem 0.6rem;
+}
+
+.category-list .latest a {
+  color: var(--custom-theme-text);
+  font-family: var(--custom-theme-body-font);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.category-list .latest a:hover {
+  color: var(--custom-theme-primary);
+}
+
+// ---------------------------------------------------------------------------
+// Stat pill helper — also used by topic-list/category-row CSS.
+// ---------------------------------------------------------------------------
 .custom-theme-stat {
   align-items: center;
   background: var(--custom-theme-subtle);
@@ -147,51 +349,8 @@
   font-weight: 650;
 }
 
-// ---------------------------------------------------------------------------
-// Table-style category list (`categories_with_featured_topics` etc.)
-// ---------------------------------------------------------------------------
-.category-list {
-  table-layout: auto;
-}
-
-.category-list tbody tr.category {
-  border-bottom: 1px solid var(--custom-theme-border);
-}
-
-.category-list .category .topics,
-.category-list .category .latest {
-  color: var(--custom-theme-muted);
-  font-size: var(--font-down-1);
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-
-.category-list .category .stat {
-  color: var(--custom-theme-text);
-  font-weight: 650;
-}
-
-// ---------------------------------------------------------------------------
-// Responsive
-// ---------------------------------------------------------------------------
 @media (max-width: 720px) {
-  .category-boxes .category-box,
-  .category-boxes-with-topics .category-box,
-  .subcategories-with-featured-topics-list > .subcategory,
-  .subcategory-list > .category {
-    gap: var(--custom-theme-space-3);
-    grid-template-columns: auto minmax(0, 1fr);
-    padding: var(--custom-theme-space-4);
-  }
-
-  .custom-theme-cat-stats,
-  .category-boxes .category-box .featured-topic,
-  .category-boxes-with-topics .category-box .featured-topic {
-    align-items: flex-start;
-    flex-direction: row;
-    flex-wrap: wrap;
-    grid-column: 1 / -1;
-    grid-row: auto;
-    text-align: left;
+  .category-list tbody td {
+    padding: var(--custom-theme-space-3);
   }
 }

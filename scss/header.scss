@@ -68,13 +68,29 @@
   }
 }
 
-// Site title / logo wordmark — slightly less heavy than Discourse default.
+// Site title / logo wordmark — Geist Sans, slightly less heavy than Discourse
+// default. High specificity to beat Discourse's own `.text-logo` rule.
 .d-header .title a,
-.d-header .title h1 {
-  color: var(--custom-theme-text);
-  font-family: var(--custom-theme-heading-font);
-  font-weight: 600;
-  letter-spacing: -0.015em;
+.d-header .title h1,
+.d-header .text-logo,
+#site-text-logo,
+.d-header #site-text-logo,
+.d-header .title #site-text-logo {
+  color: var(--custom-theme-text) !important;
+  font-family: "Geist", "Geist Sans", Arial, sans-serif !important;
+  font-size: 1.05rem;
+  font-weight: 600 !important;
+  letter-spacing: -0.018em;
+}
+
+// Hide Discourse's built-in header search field/icon — we render our own
+// in the before-header-panel connector and don't want a duplicate.
+.d-header .search-menu-container,
+.d-header .floating-search-input-wrapper,
+.d-header > .panel > .icons > li.search-dropdown,
+.d-header .head-search,
+.d-header .search-dropdown {
+  display: none !important;
 }
 
 // ---------------------------------------------------------------------------

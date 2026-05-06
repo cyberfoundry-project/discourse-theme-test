@@ -1,67 +1,18 @@
-// Mobile-focused refinements for narrow forum layouts.
+// Mobile-focused refinements for narrow forum layouts. Most layout work now
+// lives in the per-component SCSS partials behind their own media queries —
+// this file holds Discourse-side fixups that only apply on mobile.
 
-.custom-theme-home {
-  margin-top: 1rem;
-  padding: 0 0.5rem;
+:root {
+  --custom-theme-page-padding: 0.5rem;
 }
 
-.custom-theme-banner {
-  border-radius: var(--custom-theme-radius-lg);
-  gap: 1rem;
-  grid-template-columns: 1fr;
-  padding: 1.25rem;
-
-  &__title {
-    font-size: var(--font-up-1);
-  }
-
-  &__description {
-    font-size: var(--font-down-1);
-  }
-
-  &__actions {
-    align-self: stretch;
-  }
+// Topic-list table: drop secondary columns on narrow screens.
+.topic-list .views,
+.topic-list .posts {
+  display: none;
 }
 
-.custom-theme-banner__actions .custom-theme-button {
-  flex: 1;
-  min-width: 0;
-}
-
-.custom-theme-quick-links,
-.custom-quick-links {
-  grid-template-columns: 1fr;
-  margin-inline: 0;
-}
-
-.custom-theme-footer__inner {
-  align-items: flex-start;
-  flex-direction: column;
-}
-
-.custom-sidebar-card {
-  margin-inline: 0.5rem;
-}
-
-.topic-list,
-.category-list,
-.latest-topic-list,
-.top-topic-list {
-  border-right: 0;
-  border-left: 0;
-  border-radius: 0;
-  margin-right: calc(-1 * var(--custom-theme-content-padding, 1rem));
-  margin-left: calc(-1 * var(--custom-theme-content-padding, 1rem));
-}
-
-.topic-list {
-  .views,
-  .posts {
-    display: none;
-  }
-}
-
+// Topic body and user surfaces: edge-to-edge on phones, with internal padding.
 .topic-body {
   padding-inline: var(--custom-theme-space-3);
 }
@@ -78,4 +29,10 @@
 .d-editor-container,
 .composer-popup {
   border-radius: var(--custom-theme-radius-lg);
+}
+
+// Footer stacks
+.custom-theme-footer__inner {
+  align-items: flex-start;
+  flex-direction: column;
 }

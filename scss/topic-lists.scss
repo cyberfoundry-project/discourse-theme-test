@@ -35,7 +35,7 @@
 }
 
 .topic-list tbody td {
-  padding: 0.875rem;
+  padding: var(--custom-theme-space-3);
   vertical-align: middle;
 }
 
@@ -83,7 +83,9 @@
 }
 
 // ---------------------------------------------------------------------------
-// Card-style topic items (mobile and topic-list-previews) — meta as badges
+// Card-style topic items (mobile + topic-list-previews + custom topic cards)
+// Layout: slim vote column (44px) | content column.
+// Content stack: title → meta badges → excerpt → right-aligned actions.
 // ---------------------------------------------------------------------------
 .latest-topic-list-item,
 .topic-list-item.with-card,
@@ -93,15 +95,89 @@
   border-radius: var(--custom-theme-radius-lg);
   box-shadow: var(--custom-theme-shadow-sm);
   display: grid;
-  gap: 0.875rem;
-  grid-template-columns: auto minmax(0, 1fr);
-  padding: 1.125rem 1.25rem;
+  gap: var(--custom-theme-space-4);
+  grid-template-columns: minmax(0, 1fr);
+  padding: var(--custom-theme-space-5);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
 }
 
-// Author / replies / activity meta — render every item in the meta row as
-// a soft pill badge so the slash-separated text reads as structured data.
+.custom-theme-topic-card.--has-vote,
+.latest-topic-list-item.--has-vote {
+  grid-template-columns: 44px minmax(0, 1fr);
+}
+
+.latest-topic-list-item:hover,
+.custom-theme-topic-card:hover {
+  border-color: color-mix(in srgb, var(--custom-theme-primary) 22%, var(--custom-theme-border));
+  box-shadow: var(--custom-theme-shadow);
+  transform: translateY(-1px);
+}
+
+.custom-theme-topic-card__vote {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-theme-topic-card__main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.custom-theme-topic-card__title,
+.latest-topic-list-item .topic-title,
+.latest-topic-list-item h3 {
+  color: var(--custom-theme-text);
+  font-family: var(--custom-theme-heading-font);
+  font-size: var(--font-up-1);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.custom-theme-topic-card__title a,
+.latest-topic-list-item .topic-title a,
+.latest-topic-list-item h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.custom-theme-topic-card__title a:hover,
+.latest-topic-list-item .topic-title a:hover,
+.latest-topic-list-item h3 a:hover {
+  color: var(--custom-theme-primary);
+}
+
+.custom-theme-topic-card__body,
+.latest-topic-list-item .topic-excerpt {
+  color: var(--custom-theme-muted-foreground);
+  font-family: var(--custom-theme-body-font);
+  font-size: var(--font-down-1);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.custom-theme-topic-card__actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 0.15rem;
+}
+
+// ---------------------------------------------------------------------------
+// Pill-badge meta row — used by both featured cards and table rows.
+// ---------------------------------------------------------------------------
 .latest-topic-list-item .topic-meta,
 .topic-list-item .topic-item-meta,
+.custom-theme-topic-card__meta,
 .custom-theme-topic-card .topic-meta {
   align-items: center;
   color: var(--custom-theme-muted);
@@ -110,13 +186,13 @@
   font-family: var(--custom-theme-body-font);
   font-size: var(--font-down-2);
   gap: 0.4rem;
-  margin: 0.35rem 0 0.6rem;
+  margin: 0;
 }
 
-// Each child of the meta row becomes a badge.
 .latest-topic-list-item .topic-meta > *,
-.custom-theme-topic-card .topic-meta > *,
-.topic-list-item .topic-item-meta > * {
+.topic-list-item .topic-item-meta > *,
+.custom-theme-topic-card__meta > *,
+.custom-theme-topic-card .topic-meta > * {
   align-items: center;
   background: var(--custom-theme-subtle);
   border: 1px solid var(--custom-theme-border);
@@ -132,7 +208,9 @@
 }
 
 .latest-topic-list-item .topic-meta > a,
-.topic-list-item .topic-item-meta > a {
+.topic-list-item .topic-item-meta > a,
+.custom-theme-topic-card__meta > a,
+.custom-theme-topic-card .topic-meta > a {
   color: var(--custom-theme-text);
   font-weight: 600;
 }
@@ -140,29 +218,61 @@
 .latest-topic-list-item .topic-meta > a:hover,
 .latest-topic-list-item .topic-meta > a:focus-visible,
 .topic-list-item .topic-item-meta > a:hover,
-.topic-list-item .topic-item-meta > a:focus-visible {
+.topic-list-item .topic-item-meta > a:focus-visible,
+.custom-theme-topic-card__meta > a:hover,
+.custom-theme-topic-card .topic-meta > a:hover {
   border-color: color-mix(in srgb, var(--custom-theme-primary) 30%, var(--custom-theme-border));
   color: var(--custom-theme-primary);
 }
 
-// Author badge gets a subtle accent.
+// Author pill — gentle brand tint.
 .latest-topic-list-item .topic-meta > .author,
 .topic-list-item .topic-item-meta > .author,
+.custom-theme-topic-card__meta > .author,
 .custom-theme-topic-card .topic-meta > .author {
   background: color-mix(in srgb, var(--custom-theme-primary) 6%, var(--custom-theme-surface));
   border-color: color-mix(in srgb, var(--custom-theme-primary) 18%, var(--custom-theme-border));
   color: var(--custom-theme-text);
 }
 
-// Hide the literal " / " separators since the badges now provide the
-// structure.
+// Drop the literal " / " separators since the badges provide the structure.
 .latest-topic-list-item .topic-meta::before,
 .topic-list-item .topic-item-meta::before,
 .custom-theme-topic-card .topic-meta::before {
   content: none;
 }
+
 .latest-topic-list-item .topic-meta .topic-meta-sep,
 .topic-list-item .topic-item-meta .topic-meta-sep,
 .custom-theme-topic-card .topic-meta .topic-meta-sep {
   display: none;
+}
+
+// ---------------------------------------------------------------------------
+// Responsive
+// ---------------------------------------------------------------------------
+@media (max-width: 640px) {
+  .custom-theme-topic-card,
+  .latest-topic-list-item {
+    padding: var(--custom-theme-space-4);
+  }
+
+  .custom-theme-topic-card.--has-vote,
+  .latest-topic-list-item.--has-vote {
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: var(--custom-theme-space-3);
+  }
+
+  .custom-theme-topic-card__title {
+    font-size: var(--font-0);
+  }
+
+  .custom-theme-topic-card__actions {
+    justify-content: stretch;
+  }
+
+  .custom-theme-topic-card__actions > .custom-theme-button,
+  .custom-theme-topic-card__actions > .btn {
+    flex: 1;
+  }
 }

@@ -77,8 +77,8 @@ show_custom_footer:
   default: true
   description: "Show the built-in CyberFoundry footer. Disable this when using Discourse Easy Footer."
 show_sidebar_card:
-  default: true
-  description: "Show the promotional card in the Discourse sidebar."
+  default: false
+  description: "Show the promotional card in the Discourse sidebar. Off by default — only enable when you have a real CTA worth pinning to the sidebar."
 sidebar_card_icon:
   default: "fire"
   description: "Discourse FontAwesome icon name (e.g. fire, shield-halved, hammer) shown in the sidebar card."

@@ -8,15 +8,17 @@
 }
 
 .voting-wrapper {
+  align-self: flex-start;
   background: var(--custom-theme-card);
   border: 1px solid var(--custom-theme-border);
   border-radius: var(--vote-control-radius);
   box-shadow: var(--custom-theme-shadow-sm);
   display: flex;
   flex-direction: column;
-  min-width: 3.25rem;
+  height: auto;
   overflow: hidden;
   text-align: center;
+  width: 2.75rem;
 
   .btn[disabled]:not(.is-loading) {
     background: var(--custom-theme-muted-surface);

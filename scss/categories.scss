@@ -172,3 +172,28 @@
   color: var(--custom-theme-text);
   font-weight: 650;
 }
+
+// ---------------------------------------------------------------------------
+// Responsive
+// ---------------------------------------------------------------------------
+@media (max-width: 720px) {
+  .category-boxes .category-box,
+  .category-boxes-with-topics .category-box,
+  .subcategories-with-featured-topics-list > .subcategory,
+  .subcategory-list > .category {
+    gap: var(--custom-theme-space-3);
+    grid-template-columns: auto minmax(0, 1fr);
+    padding: var(--custom-theme-space-4);
+  }
+
+  .custom-theme-cat-stats,
+  .category-boxes .category-box .featured-topic,
+  .category-boxes-with-topics .category-box .featured-topic {
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    grid-column: 1 / -1;
+    grid-row: auto;
+    text-align: left;
+  }
+}

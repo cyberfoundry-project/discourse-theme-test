@@ -12,9 +12,9 @@
 
 .custom-theme-home {
   display: block;
-  margin: 1.5rem auto 2rem;
+  margin: var(--custom-theme-space-6) auto var(--custom-theme-space-8);
   max-width: var(--custom-theme-content-width);
-  padding: 0 0.75rem;
+  padding: 0 var(--custom-theme-page-padding);
 }
 
 // Routes that own their own banner real estate hide the homepage hero.
@@ -101,11 +101,11 @@ html.cyberfoundry-new-user .custom-theme-announcement--new-user {
   box-shadow: var(--custom-theme-shadow-sm);
   color: var(--custom-theme-text);
   display: grid;
-  gap: 1.25rem 2rem;
+  gap: var(--custom-theme-space-5) var(--custom-theme-space-8);
   grid-template-columns: minmax(0, 1fr) auto;
-  margin: 0 0 1.25rem;
+  margin: 0 0 var(--custom-theme-space-5);
   overflow: hidden;
-  padding: 1.875rem 2rem;
+  padding: var(--custom-theme-space-7) var(--custom-theme-space-8);
   position: relative;
 }
 
@@ -164,9 +164,9 @@ html.cyberfoundry-new-user .custom-theme-announcement--new-user {
 
 .custom-quick-links {
   display: grid;
-  gap: 1rem;
+  gap: var(--custom-theme-space-4);
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin: 0 0 1.5rem;
+  margin: 0 0 var(--custom-theme-space-6);
 }
 
 .custom-quick-link {
@@ -177,9 +177,9 @@ html.cyberfoundry-new-user .custom-theme-announcement--new-user {
   color: var(--custom-theme-text);
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: var(--custom-theme-space-2);
   min-height: 6rem;
-  padding: 1.125rem 1.25rem;
+  padding: var(--custom-theme-space-5);
   text-decoration: none;
   transition:
     border-color 160ms ease,
@@ -224,4 +224,53 @@ html.cyberfoundry-new-user .custom-theme-announcement--new-user {
   font-family: var(--custom-theme-body-font);
   font-size: var(--font-down-1);
   line-height: 1.5;
+}
+
+// ---------------------------------------------------------------------------
+// Responsive
+// ---------------------------------------------------------------------------
+@media (max-width: 1024px) {
+  .custom-theme-banner {
+    gap: var(--custom-theme-space-4) var(--custom-theme-space-6);
+    padding: var(--custom-theme-space-6) var(--custom-theme-space-7);
+  }
+
+  .custom-quick-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .custom-theme-home {
+    margin: var(--custom-theme-space-4) auto var(--custom-theme-space-6);
+    padding: 0 var(--custom-theme-space-3);
+  }
+
+  .custom-theme-announcement {
+    font-size: var(--font-down-2);
+    padding: var(--custom-theme-space-2) var(--custom-theme-space-3);
+  }
+
+  .custom-theme-banner {
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--custom-theme-space-5);
+  }
+
+  .custom-theme-banner__actions {
+    width: 100%;
+  }
+
+  .custom-theme-banner__actions .custom-theme-button {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .custom-quick-links {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .custom-quick-link {
+    min-height: auto;
+    padding: var(--custom-theme-space-4);
+  }
 }

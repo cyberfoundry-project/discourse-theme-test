@@ -48,16 +48,14 @@
   margin: 0;
   padding: 1rem 1.25rem;
   transition:
-    border-color 160ms ease,
-    box-shadow 160ms ease,
-    transform 160ms ease;
+    border-color 120ms ease,
+    box-shadow 120ms ease;
   width: 100%;
 
   &:hover,
   &:focus-within {
     border-color: color-mix(in srgb, var(--custom-theme-primary) 30%, var(--custom-theme-border));
     box-shadow: var(--custom-theme-shadow);
-    transform: translateY(-1px);
   }
 }
 

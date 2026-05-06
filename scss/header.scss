@@ -4,19 +4,122 @@
   box-shadow: none;
 }
 
-.d-header .title a {
+// Site title / logo wordmark — slightly less heavy than Discourse default.
+.d-header .title a,
+.d-header .title h1 {
   color: var(--custom-theme-text);
   font-family: var(--custom-theme-heading-font);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+// ---------------------------------------------------------------------------
+// Header icons (notifications, messages, hamburger, user menu) — outline button
+// treatment so they read as discrete controls instead of bare icons.
+// ---------------------------------------------------------------------------
+.d-header-icons {
+  align-items: center;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.d-header-icons .icon,
+.d-header-icons > li > a,
+.header-dropdown-toggle,
+.header-dropdown-toggle .icon {
+  align-items: center;
+  border-radius: var(--custom-theme-radius-md);
+  color: var(--custom-theme-text);
+  display: inline-flex;
+  height: 2.25rem;
+  justify-content: center;
+  position: relative;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+  width: 2.25rem;
+}
+
+.d-header-icons .icon,
+.d-header-icons > li > a,
+.header-dropdown-toggle:not(.current-user) {
+  background: var(--custom-theme-surface);
+  border: 1px solid var(--custom-theme-border);
+}
+
+.d-header-icons .icon:hover,
+.d-header-icons .icon:focus-visible,
+.d-header-icons > li > a:hover,
+.d-header-icons > li > a:focus-visible,
+.header-dropdown-toggle:hover {
+  background: var(--custom-theme-subtle);
+  border-color: color-mix(in srgb, var(--custom-theme-primary) 30%, var(--custom-theme-border));
+  color: var(--custom-theme-text);
 }
 
 .d-header-icons .d-icon {
-  color: var(--custom-theme-text);
+  font-size: 0.95rem;
 }
 
-// Centered search field (`search_experience: search_field`) — match our token system
-// so it doesn't feel grafted on.
+// Notification count badge — sits over the notifications icon with a real
+// red treatment instead of Discourse's default subtle pill.
+.d-header-icons .badge-notification,
+.d-header-icons .unread-notifications,
+.d-header-icons .ring,
+.d-header-icons .badge-notification.with-icon {
+  align-items: center;
+  background: var(--custom-theme-destructive);
+  border: 2px solid var(--custom-theme-surface);
+  border-radius: 999px;
+  color: #fff;
+  display: inline-flex;
+  font-family: var(--custom-theme-body-font);
+  font-size: 0.65rem;
+  font-weight: 700;
+  height: 1.05rem;
+  justify-content: center;
+  line-height: 1;
+  min-width: 1.05rem;
+  padding: 0 0.3rem;
+  position: absolute;
+  right: -0.35rem;
+  top: -0.35rem;
+}
+
+// Dot-only "ring" notification (no count, just unread indicator) — collapse
+// to a tiny dot.
+.d-header-icons .ring:not(.with-icon):empty {
+  border: 2px solid var(--custom-theme-surface);
+  height: 0.7rem;
+  min-width: 0.7rem;
+  padding: 0;
+  width: 0.7rem;
+}
+
+// Current-user avatar toggle — distinct from icon buttons, no border so the
+// avatar reads cleanly. Add a chevron after to signal a dropdown.
+.header-dropdown-toggle.current-user {
+  background: transparent;
+  border: 0;
+  gap: 0.4rem;
+  padding: 0 0.25rem;
+  width: auto;
+}
+
+.header-dropdown-toggle.current-user::after {
+  color: var(--custom-theme-muted);
+  content: "\f078"; // chevron-down
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+.header-dropdown-toggle.current-user img.avatar {
+  border-radius: 999px;
+  height: 1.75rem;
+  width: 1.75rem;
+}
+
+// Centered search field (`search_experience: search_field`) — match our token
+// system so it doesn't feel grafted on.
 .d-header .search-menu .search-input,
 .d-header input.search-context-input,
 .d-header .floating-search-input,
@@ -37,4 +140,57 @@
   border-color: var(--custom-theme-primary);
   box-shadow: var(--custom-theme-focus-ring);
   outline: none;
+}
+
+// "Welcome back, [name]!" header on the user-personalized homepage —
+// less bold, smaller, more conversational.
+.welcome-banner h1,
+.welcome-section .welcome-banner__title,
+.discovery-list .topic-list-bottom + h1,
+.welcome-section h1 {
+  font-family: var(--custom-theme-heading-font);
+  font-size: clamp(1.35rem, 1.5vw + 0.75rem, 1.75rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+// User menu dropdown — simplify by trimming padding and reducing visual noise.
+.user-menu {
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--custom-theme-radius-lg);
+  box-shadow: var(--custom-theme-shadow-md);
+  padding: 0.5rem;
+
+  .menu-tabs-container {
+    border-color: var(--custom-theme-border);
+  }
+
+  .top-tabs .btn,
+  .bottom-tabs .btn {
+    border-radius: var(--custom-theme-radius-sm);
+  }
+
+  .top-tabs .btn.active,
+  .bottom-tabs .btn.active {
+    background: color-mix(in srgb, var(--custom-theme-primary) 10%, transparent);
+    color: var(--custom-theme-primary);
+  }
+
+  // Empty-state copy ("You don't have any notifications yet…") — smaller
+  // padding, subtler.
+  .empty-state-body,
+  .no-notifications {
+    color: var(--custom-theme-muted-foreground);
+    font-size: var(--font-down-1);
+    line-height: 1.55;
+    padding: 0.75rem;
+  }
+
+  .empty-state-title,
+  .no-notifications strong {
+    color: var(--custom-theme-text);
+    font-family: var(--custom-theme-heading-font);
+    font-size: var(--font-0);
+    font-weight: 650;
+  }
 }

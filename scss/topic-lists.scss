@@ -99,9 +99,8 @@
   grid-template-columns: minmax(0, 1fr);
   padding: var(--custom-theme-space-5);
   transition:
-    border-color 160ms ease,
-    box-shadow 160ms ease,
-    transform 160ms ease;
+    border-color 120ms ease,
+    box-shadow 120ms ease;
 }
 
 .custom-theme-topic-card.--has-vote,
@@ -113,7 +112,6 @@
 .custom-theme-topic-card:hover {
   border-color: color-mix(in srgb, var(--custom-theme-primary) 22%, var(--custom-theme-border));
   box-shadow: var(--custom-theme-shadow);
-  transform: translateY(-1px);
 }
 
 .custom-theme-topic-card__vote {

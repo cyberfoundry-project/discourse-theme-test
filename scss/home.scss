@@ -84,13 +84,12 @@ html.cyberfoundry-new-user .custom-theme-announcement--new-user {
   font-weight: 600;
   gap: 0.25rem;
   text-decoration: none;
-  transition: gap 160ms ease;
+  transition: color 120ms ease;
 }
 
 .custom-theme-announcement__cta:hover,
 .custom-theme-announcement__cta:focus-visible {
   color: var(--custom-theme-primary-dark);
-  gap: 0.4rem;
 }
 
 .custom-theme-banner {
@@ -182,9 +181,8 @@ html.cyberfoundry-new-user .custom-theme-announcement--new-user {
   padding: var(--custom-theme-space-5);
   text-decoration: none;
   transition:
-    border-color 160ms ease,
-    box-shadow 160ms ease,
-    transform 160ms ease;
+    border-color 120ms ease,
+    box-shadow 120ms ease;
 }
 
 .custom-quick-link:hover,
@@ -192,7 +190,6 @@ html.cyberfoundry-new-user .custom-theme-announcement--new-user {
   border-color: color-mix(in srgb, var(--custom-theme-primary) 35%, var(--custom-theme-border));
   box-shadow: var(--custom-theme-shadow);
   color: var(--custom-theme-text);
-  transform: translateY(-1px);
 }
 
 .custom-quick-link__label {
@@ -209,13 +206,12 @@ html.cyberfoundry-new-user .custom-theme-announcement--new-user {
   color: var(--custom-theme-muted);
   content: "→";
   margin-left: auto;
-  transition: transform 160ms ease, color 160ms ease;
+  transition: color 120ms ease;
 }
 
 .custom-quick-link:hover .custom-quick-link__label::after,
 .custom-quick-link:focus-visible .custom-quick-link__label::after {
   color: var(--custom-theme-primary);
-  transform: translateX(2px);
 }
 
 .custom-quick-link__text {

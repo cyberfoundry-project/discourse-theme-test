@@ -1,18 +1,9 @@
-{{#if (theme-setting "show_custom_footer")}}
-  <footer class="custom-theme-footer" aria-label="Community footer">
-    <div class="custom-theme-footer__inner">
-      <div>
-        <strong class="custom-theme-footer__brand">
-          {{theme-setting "brand_name"}}
-        </strong>
-        <p>{{theme-setting "footer_tagline"}}</p>
-      </div>
+<!--
+  Custom footer markup is rendered by
+  `javascripts/discourse/connectors/below-footer/custom-theme-footer.hbs`.
 
-      <nav class="custom-theme-footer__links" aria-label="Footer links">
-        <a href="/about">About</a>
-        <a href="/guidelines">Guidelines</a>
-        <a href="/tos">Terms</a>
-      </nav>
-    </div>
-  </footer>
-{{/if}}
+  This file (`common/footer.html`) is plain HTML — Discourse does NOT run
+  Handlebars helpers in it, so the {{theme-setting}} block that used to live
+  here was rendering as literal text. The connector approach makes the
+  conditional `{{#if (theme-setting "show_custom_footer")}}` actually work.
+-->

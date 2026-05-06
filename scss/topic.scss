@@ -1,62 +1,145 @@
-.topic-avatar,
-.topic-body {
-  border-top-color: var(--custom-theme-border);
+// ---------------------------------------------------------------------------
+// Topic page (post stream)
+// ---------------------------------------------------------------------------
+
+// Topic title (.fancy-title) — Discourse default is heavy bold; soften so it
+// reads with the rest of the brand typography.
+#topic-title h1,
+.fancy-title,
+.topic-title {
+  font-family: var(--custom-theme-heading-font);
+  font-size: clamp(1.5rem, 2vw + 0.625rem, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0 0 var(--custom-theme-space-2);
+}
+
+// Title row (title + category breadcrumb + tags) — give it real breathing room.
+#topic-title {
+  margin-bottom: var(--custom-theme-space-5);
+}
+
+.title-wrapper .topic-category {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+// ---------------------------------------------------------------------------
+// Posts
+// ---------------------------------------------------------------------------
+.topic-post {
+  background: transparent;
+  margin-bottom: var(--custom-theme-space-4);
 }
 
 .topic-avatar {
-  padding-top: 1rem;
-}
-
-.topic-post {
-  background: var(--custom-theme-surface);
-  border-radius: var(--custom-theme-radius);
-  margin-bottom: 0.75rem;
+  border-top: 0;
+  padding-top: var(--custom-theme-space-5);
 }
 
 .topic-body {
   background: var(--custom-theme-card);
   border: 1px solid var(--custom-theme-border);
-  border-radius: var(--custom-theme-radius-xl);
+  border-radius: var(--custom-theme-radius-lg);
   box-shadow: var(--custom-theme-shadow-sm);
-  padding: 1rem;
-  padding-right: 1rem;
+  padding: var(--custom-theme-space-5);
 }
 
+// Post meta row (author + time + post number) — render the time as a pill so
+// it reads as structured data.
 .topic-meta-data {
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--custom-theme-space-3);
+  min-height: 1.75rem;
 }
 
+.topic-meta-data .names {
+  align-items: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.topic-meta-data .names span,
 .topic-meta-data .names span a,
-.topic-meta-data .names span {
+.topic-meta-data .names .username,
+.topic-meta-data .names .full-name {
+  color: var(--custom-theme-text);
   font-family: var(--custom-theme-heading-font);
-  font-weight: 700;
+  font-size: var(--font-0);
+  font-weight: 600;
+  letter-spacing: -0.005em;
 }
 
-.topic-map,
-.post-menu-area,
-.small-action {
-  border-color: var(--custom-theme-border);
-}
-
-.post-controls {
-  .actions {
-    gap: 0.35rem;
-  }
-
-  button {
-    border-radius: var(--custom-theme-radius-sm);
-  }
-}
-
-.cooked {
+.topic-meta-data .names .second {
+  color: var(--custom-theme-muted);
   font-family: var(--custom-theme-body-font);
+  font-weight: 400;
+}
+
+// Time badge — wraps `.post-info.post-date` and the `.post-info.via-email`
+// row in a quiet pill.
+.topic-meta-data .post-info,
+.topic-meta-data .post-date,
+.topic-meta-data .post-info.edits,
+.topic-meta-data .post-info.via-email {
+  align-items: center;
+  background: var(--custom-theme-subtle);
+  border: 1px solid var(--custom-theme-border);
+  border-radius: 999px;
+  color: var(--custom-theme-muted-foreground);
+  display: inline-flex;
+  font-family: var(--custom-theme-body-font);
+  font-size: var(--font-down-2);
+  font-weight: 500;
+  gap: 0.3rem;
+  padding: 0.2rem 0.6rem;
+}
+
+.topic-meta-data .post-info a,
+.topic-meta-data .post-date a {
+  color: var(--custom-theme-muted-foreground);
+  text-decoration: none;
+}
+
+.topic-meta-data .post-info a:hover,
+.topic-meta-data .post-date a:hover {
+  color: var(--custom-theme-primary);
+}
+
+// "Trust shield" badge after username — give it space.
+.topic-meta-data .names + .post-info {
+  margin-left: 0.25rem;
+}
+
+// Cooked content (post body) — slightly more line height + paragraph rhythm.
+.cooked {
+  color: var(--custom-theme-text);
+  font-family: var(--custom-theme-body-font);
+  font-size: var(--font-0);
   line-height: 1.7;
 
+  > * + * {
+    margin-top: var(--custom-theme-space-4);
+  }
+
   p {
-    margin: 0 0 1rem;
+    margin: 0;
+  }
+
+  > p + p,
+  > p + ul,
+  > p + ol,
+  > ul + p,
+  > ol + p {
+    margin-top: var(--custom-theme-space-3);
   }
 
   a {
@@ -77,25 +160,111 @@
 .cooked h4,
 .cooked h5,
 .cooked h6 {
+  color: var(--custom-theme-text);
   font-family: var(--custom-theme-heading-font);
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  margin: var(--custom-theme-space-6) 0 var(--custom-theme-space-2);
+}
+
+.cooked h1 { font-size: 1.5rem; }
+.cooked h2 { font-size: 1.25rem; color: var(--custom-theme-primary); }
+.cooked h3 { font-size: 1.1rem; }
+.cooked h4 { font-size: 1rem; font-weight: 600; }
+
+.cooked ul,
+.cooked ol {
+  padding-left: 1.5rem;
+}
+
+.cooked li + li {
+  margin-top: 0.4rem;
 }
 
 .cooked blockquote {
   background: var(--custom-theme-subtle);
-  border-left: 4px solid var(--custom-theme-primary);
+  border-left: 3px solid var(--custom-theme-primary);
   border-radius: 0 var(--custom-theme-radius) var(--custom-theme-radius) 0;
-  color: var(--custom-theme-muted);
-  padding: 0.75rem 1rem;
+  color: var(--custom-theme-muted-foreground);
+  margin: var(--custom-theme-space-4) 0;
+  padding: var(--custom-theme-space-3) var(--custom-theme-space-4);
 }
 
 .cooked code,
 .d-editor-preview code {
   background: var(--custom-theme-muted-surface);
-  border-radius: 0.35rem;
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--custom-theme-radius-sm);
   color: var(--custom-theme-text);
-  padding: 0.1rem 0.3rem;
+  font-size: 0.85em;
+  padding: 0.1rem 0.35rem;
 }
 
+.cooked pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.cooked pre {
+  background: var(--custom-theme-muted-surface);
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--custom-theme-radius);
+  padding: var(--custom-theme-space-3) var(--custom-theme-space-4);
+}
+
+// ---------------------------------------------------------------------------
+// Topic map (the bottom-of-thread summary)
+// ---------------------------------------------------------------------------
+.topic-map,
+.post-menu-area,
+.small-action {
+  border-color: var(--custom-theme-border);
+}
+
+.topic-map {
+  background: var(--custom-theme-card);
+  border-radius: var(--custom-theme-radius-lg);
+  box-shadow: var(--custom-theme-shadow-sm);
+  padding: var(--custom-theme-space-4);
+}
+
+// ---------------------------------------------------------------------------
+// Post controls (Like, Reply, Share, Bookmark, Flag, ⋯)
+// ---------------------------------------------------------------------------
+.post-controls {
+  margin-top: var(--custom-theme-space-3);
+
+  .actions {
+    gap: 0.35rem;
+  }
+
+  button {
+    border-radius: var(--custom-theme-radius-sm);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Suggested topics / Topic timeline
+// ---------------------------------------------------------------------------
+.timeline-container {
+  .topic-timeline .timeline-scrollarea {
+    border-color: var(--custom-theme-border);
+  }
+}
+
+#suggested-topics-title,
+.suggested-topics .topic-list-heading {
+  font-family: var(--custom-theme-heading-font);
+  font-size: var(--font-up-1);
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  margin-bottom: var(--custom-theme-space-3);
+}
+
+// ---------------------------------------------------------------------------
+// Misc surfaces
+// ---------------------------------------------------------------------------
 .d-editor-container,
 .composer-popup,
 .user-main .about,
@@ -103,4 +272,18 @@
 .admin-main-nav,
 .admin-controls {
   border-radius: var(--custom-theme-radius);
+}
+
+// ---------------------------------------------------------------------------
+// Responsive
+// ---------------------------------------------------------------------------
+@media (max-width: 720px) {
+  .topic-body {
+    padding: var(--custom-theme-space-4);
+  }
+
+  #topic-title h1,
+  .fancy-title {
+    font-size: 1.35rem;
+  }
 }

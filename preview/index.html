@@ -100,10 +100,10 @@
         align-items: center;
         display: inline-flex;
         font-family: var(--heading);
-        font-size: 18px;
-        font-weight: 800;
+        font-size: 17px;
+        font-weight: 600;
         gap: 10px;
-        letter-spacing: -0.03em;
+        letter-spacing: -0.02em;
       }
 
       .site-brand-mark {
@@ -141,9 +141,71 @@
         color: var(--muted-foreground);
         display: flex;
         font-size: 14px;
-        gap: 18px;
+        gap: 8px;
       }
       .site-header-nav a:hover { color: var(--text); }
+
+      /* Outlined icon button */
+      .icon-btn {
+        align-items: center;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        color: var(--text);
+        display: inline-flex;
+        height: 36px;
+        justify-content: center;
+        position: relative;
+        transition: background 120ms ease, border-color 120ms ease;
+        width: 36px;
+      }
+      .icon-btn:hover {
+        background: var(--subtle);
+        border-color: var(--accent-tint-22);
+      }
+      .icon-btn .badge-count {
+        align-items: center;
+        background: var(--danger);
+        border: 2px solid var(--surface);
+        border-radius: 999px;
+        color: #fff;
+        display: inline-flex;
+        font-family: var(--body);
+        font-size: 10px;
+        font-weight: 700;
+        height: 17px;
+        justify-content: center;
+        line-height: 1;
+        min-width: 17px;
+        padding: 0 4px;
+        position: absolute;
+        right: -6px;
+        top: -6px;
+      }
+
+      /* User menu pill — name + chevron */
+      .user-menu-toggle {
+        align-items: center;
+        background: transparent;
+        border: 0;
+        color: var(--text);
+        display: inline-flex;
+        font-family: var(--body);
+        font-size: 13px;
+        font-weight: 600;
+        gap: 8px;
+        padding: 4px 6px 4px 4px;
+      }
+      .user-menu-toggle .avatar {
+        background: var(--accent);
+        height: 28px;
+        width: 28px;
+        font-size: 11px;
+      }
+      .user-menu-toggle .chev {
+        color: var(--muted);
+        font-size: 10px;
+      }
 
       /* ------------------------------------------------------------------- */
       /* Layout shell                                                         */
@@ -300,7 +362,7 @@
         gap: 4px;
         transition: gap 160ms ease;
       }
-      .welcome-bar__cta:hover { color: var(--accent-dark); gap: 6px; }
+      .welcome-bar__cta:hover { color: var(--accent-dark); }
 
       /* Hero card */
       .hero {
@@ -369,7 +431,7 @@
         line-height: 1;
         min-height: 36px;
         padding: 0 14px;
-        transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+        transition: background-color 120ms ease, border-color 120ms ease;
         white-space: nowrap;
       }
       .button.primary {
@@ -408,12 +470,12 @@
         flex-direction: column;
         gap: 6px;
         padding: 18px 20px;
-        transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+        transition: border-color 120ms ease, box-shadow 120ms ease;
       }
       .quick-link:hover {
         border-color: var(--accent-tint-22);
         box-shadow: var(--shadow);
-        transform: translateY(-1px);
+        /* motion removed */
       }
       .quick-link__label {
         align-items: center;
@@ -427,11 +489,10 @@
         color: var(--muted);
         content: "→";
         margin-left: auto;
-        transition: transform 160ms ease, color 160ms ease;
+        transition: color 120ms ease;
       }
       .quick-link:hover .quick-link__label::after {
         color: var(--accent);
-        transform: translateX(2px);
       }
       .quick-link__text {
         color: var(--muted-foreground);
@@ -506,12 +567,12 @@
         gap: 16px;
         grid-template-columns: 44px minmax(0, 1fr) auto;
         padding: 16px 20px;
-        transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+        transition: border-color 120ms ease, box-shadow 120ms ease;
       }
       .category-row:hover {
         border-color: var(--accent-tint-22);
         box-shadow: var(--shadow);
-        transform: translateY(-1px);
+        /* motion removed */
       }
       .category-row__icon {
         align-items: center;
@@ -574,12 +635,12 @@
         grid-template-columns: 44px minmax(0, 1fr);
         margin-bottom: 28px;
         padding: 20px;
-        transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+        transition: border-color 120ms ease, box-shadow 120ms ease;
       }
       .featured:hover {
         border-color: var(--accent-tint-22);
         box-shadow: var(--shadow);
-        transform: translateY(-1px);
+        /* motion removed */
       }
 
       .vote-box {
@@ -849,9 +910,18 @@
       </a>
       <input class="header-search" type="search" placeholder="Search topics, tags, members…" aria-label="Search">
       <nav class="site-header-nav" aria-label="Primary navigation">
-        <a href="#"><i class="fa-regular fa-bell"></i></a>
-        <a href="#"><i class="fa-regular fa-message"></i></a>
-        <span class="avatar" style="background: var(--accent); height: 30px; width: 30px; font-size: 12px;">JL</span>
+        <a href="#" class="icon-btn" aria-label="Notifications">
+          <i class="fa-regular fa-bell"></i>
+          <span class="badge-count" aria-label="3 unread">3</span>
+        </a>
+        <a href="#" class="icon-btn" aria-label="Messages">
+          <i class="fa-regular fa-envelope"></i>
+        </a>
+        <button class="user-menu-toggle" type="button" aria-haspopup="true" aria-label="User menu">
+          <span class="avatar">JL</span>
+          <span>Justin</span>
+          <i class="fa-solid fa-chevron-down chev"></i>
+        </button>
       </nav>
     </header>
 

@@ -13,19 +13,19 @@
 }
 
 // Timeline column on the right — keep visible but don't let the lone admin
-// wrench float in empty space and look like an orphaned UI element.
+// wrench float in empty space.
 .timeline-container,
 .topic-timeline,
 .timeline-controls {
   background: transparent;
 }
 
-// Hide the single floating admin wrench when there's no actual timeline UI
-// rendered next to it (single-post topics) — Discourse leaves an isolated
-// wrench column otherwise.
-.topic-timeline:empty,
-.topic-timeline .timeline-footer-controls:empty,
-.topic-area .timeline-container:has(.topic-admin-menu-button:only-child) {
+// On short topics (≤ a few posts) Discourse renders the timeline column
+// with just the admin wrench. Hide that empty docked column so the post
+// body actually centers.
+.timeline-container.timeline-docked,
+.timeline-container:not(:has(.topic-timeline-scrollarea-wrapper)),
+.topic-area .timeline-container:has(> .topic-admin-menu-button:only-child) {
   display: none !important;
 }
 
@@ -45,17 +45,24 @@
 #topic-title h1,
 .fancy-title,
 .topic-title {
+  color: var(--custom-theme-text);
   font-family: var(--custom-theme-heading-font);
-  font-size: clamp(1.5rem, 2vw + 0.625rem, 2rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.25;
-  margin: 0 0 var(--custom-theme-space-2);
+  font-size: clamp(1.5rem, 2vw + 0.625rem, 2.125rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin: 0 0 var(--custom-theme-space-3);
 }
 
-// Title row (title + category breadcrumb + tags) — give it real breathing room.
+// Title row chrome — soft card so the title + category sit on a coherent
+// surface, separated cleanly from the post body below.
 #topic-title {
-  margin-bottom: var(--custom-theme-space-5);
+  background: var(--custom-theme-surface);
+  border: 1px solid var(--custom-theme-border);
+  border-left: 3px solid var(--custom-theme-primary);
+  border-radius: var(--custom-theme-radius-lg);
+  margin-bottom: var(--custom-theme-space-4);
+  padding: var(--custom-theme-space-5) var(--custom-theme-space-6);
 }
 
 .title-wrapper .topic-category {
@@ -79,29 +86,60 @@
   padding-top: var(--custom-theme-space-5);
 }
 
-.topic-body {
-  background: var(--custom-theme-surface);
-  border: 1px solid var(--custom-theme-border);
+// Post body card — make sure this lifts visibly off the dark page.
+.topic-post,
+article.topic-post,
+.post {
+  background: transparent;
+}
+
+.topic-body,
+.post__body.topic-body,
+.topic-post .topic-body {
+  background: var(--custom-theme-surface) !important;
+  border: 1px solid var(--custom-theme-border-strong) !important;
   border-radius: var(--custom-theme-radius-lg);
-  box-shadow: var(--custom-theme-shadow);
-  padding: var(--custom-theme-space-5);
+  box-shadow: var(--custom-theme-shadow-md);
+  margin-bottom: var(--custom-theme-space-4);
+  padding: var(--custom-theme-space-6);
 }
 
 .topic-post + .topic-post .topic-body {
-  margin-top: var(--custom-theme-space-3);
+  margin-top: 0;
 }
 
-// Make sure the avatar column has consistent chrome too.
+// Avatar column inside a post — proper alignment.
 .topic-avatar {
   align-self: flex-start;
-  padding-top: var(--custom-theme-space-3);
+  padding-top: var(--custom-theme-space-2);
 }
 
-.topic-avatar img.avatar {
+.topic-avatar img.avatar,
+.topic-post img.avatar {
   border: 1px solid var(--custom-theme-border);
   border-radius: var(--custom-theme-avatar-radius);
   height: 44px;
   width: 44px;
+}
+
+// Topic header (title + category) frame
+#topic-title,
+.title-wrapper {
+  background: transparent;
+  margin-bottom: var(--custom-theme-space-5);
+  padding-bottom: var(--custom-theme-space-3);
+}
+
+// "1 view" / topic stats line below the post — render as a quiet caption
+// so it stops looking like a heading.
+.topic-meta-data ~ .topic-bottom,
+.topic-views,
+.topic-map .map h3,
+.topic-list-bottom .views-count,
+section[class*="topic"] > p.views {
+  color: var(--custom-theme-muted);
+  font-size: var(--font-down-1);
+  margin-top: var(--custom-theme-space-2);
 }
 
 // Post meta row (author + time + post number) — render the time as a pill so
@@ -318,12 +356,60 @@
 }
 
 #suggested-topics-title,
-.suggested-topics .topic-list-heading {
+.suggested-topics .topic-list-heading,
+.more-topics__list .more-topics__list-title,
+h3.more-topics__list-title {
+  color: var(--custom-theme-text);
   font-family: var(--custom-theme-heading-font);
   font-size: var(--font-up-1);
   font-weight: 650;
   letter-spacing: -0.015em;
   margin-bottom: var(--custom-theme-space-3);
+}
+
+// Suggested / "More topics" section frame — Discourse renders these flat
+// without chrome; wrap them in our card system.
+.more-topics__list,
+.suggested-topics,
+.related-topics {
+  background: var(--custom-theme-surface);
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--custom-theme-radius-lg);
+  box-shadow: var(--custom-theme-shadow-sm);
+  margin-top: var(--custom-theme-space-5);
+  padding: var(--custom-theme-space-5);
+}
+
+.more-topics__list .topic-list,
+.suggested-topics .topic-list,
+.related-topics .topic-list {
+  background: transparent;
+  border: 0 !important;
+  box-shadow: none;
+  margin: 0;
+}
+
+.more-topics__list .topic-list thead,
+.suggested-topics .topic-list thead {
+  background: transparent;
+}
+
+.more-topics__list .topic-list tbody tr td,
+.suggested-topics .topic-list tbody tr td {
+  padding: var(--custom-theme-space-3);
+}
+
+// "There are 5 new topics remaining…" message
+.more-topics__browse-topics,
+.suggested-topics-message,
+.alert.alert-info,
+.alert-success {
+  background: color-mix(in srgb, var(--custom-theme-primary) 8%, var(--custom-theme-surface));
+  border: 1px solid color-mix(in srgb, var(--custom-theme-primary) 22%, transparent);
+  border-radius: var(--custom-theme-radius-md);
+  color: var(--custom-theme-text);
+  margin-top: var(--custom-theme-space-3);
+  padding: var(--custom-theme-space-3) var(--custom-theme-space-4);
 }
 
 // ---------------------------------------------------------------------------

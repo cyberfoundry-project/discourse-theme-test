@@ -78,9 +78,33 @@
 #main-outlet > .topic-list-bottom,
 #main-outlet > .below-content,
 .show-more,
-.show-more .alert {
+.show-more .alert,
+// Topic page bits
+.topic-area .topic-status-info,
+.topic-area .more-topics-message,
+.topic-area .topic-bottom,
+.topic-area .below-replies,
+.gap,
+.posts-and-tags,
+.posts-and-tags hr,
+hr.bottom-rule,
+.topic-list-bottom-wrap,
+.posts-area + *,
+#topic-bottom > * {
   border: 0 !important;
   border-bottom: 0 !important;
+  border-top: 0 !important;
+}
+
+// Specific Discourse "topic footer" hairline that paints between the post
+// and the suggested-topics block.
+.topic-footer-buttons {
+  border-top: 0 !important;
+  margin-top: var(--custom-theme-space-3);
+  padding-top: var(--custom-theme-space-3);
+}
+
+.topic-footer-main-buttons {
   border-top: 0 !important;
 }
 

@@ -1,0 +1,96 @@
+// ---------------------------------------------------------------------------
+// Form controls — shadcn / Vercel-style.
+// One radius, one focus ring, one set of states. All inputs across Discourse
+// (text fields, search, textareas, select-kit, file inputs) inherit.
+// ---------------------------------------------------------------------------
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+textarea,
+select,
+.select-kit.combo-box .select-kit-header,
+.select-kit.dropdown-select-box .select-kit-header,
+.select-kit.multi-select .select-kit-header {
+  background: var(--custom-theme-surface) !important;
+  border: 1px solid var(--custom-theme-border) !important;
+  border-radius: var(--custom-theme-radius-md) !important;
+  box-shadow: none !important;
+  color: var(--custom-theme-text) !important;
+  font-family: var(--custom-theme-body-font);
+  font-size: var(--font-down-1);
+  line-height: 1.45;
+  padding: 0.5rem 0.75rem;
+  transition:
+    border-color 120ms ease,
+    box-shadow 120ms ease,
+    background-color 120ms ease;
+}
+
+input[type="text"]:hover,
+input[type="search"]:hover,
+input[type="email"]:hover,
+textarea:hover,
+.select-kit.combo-box .select-kit-header:hover,
+.select-kit.dropdown-select-box .select-kit-header:hover {
+  border-color: var(--custom-theme-border-strong) !important;
+}
+
+input[type="text"]:focus,
+input[type="search"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="url"]:focus,
+textarea:focus,
+.select-kit.combo-box.is-expanded .select-kit-header,
+.select-kit.dropdown-select-box.is-expanded .select-kit-header {
+  border-color: var(--custom-theme-primary) !important;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--custom-theme-primary) 25%, transparent) !important;
+  outline: none !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--custom-theme-muted);
+  opacity: 1;
+}
+
+// Disabled state
+input:disabled,
+textarea:disabled,
+select:disabled {
+  background: var(--custom-theme-subtle) !important;
+  color: var(--custom-theme-muted) !important;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+// Select-kit dropdown body — match the rest of the form vocabulary.
+.select-kit-collection,
+.select-kit .select-kit-body,
+.select-kit-row {
+  background: var(--custom-theme-surface) !important;
+  border-color: var(--custom-theme-border) !important;
+}
+
+.select-kit-row.is-highlighted,
+.select-kit-row:hover {
+  background: var(--custom-theme-surface-raised) !important;
+  color: var(--custom-theme-text) !important;
+}
+
+// Toggle / checkbox — shadcn-ish square
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--custom-theme-primary);
+}

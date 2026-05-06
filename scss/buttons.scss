@@ -1,143 +1,105 @@
-.custom-theme-button,
-.custom-theme-banner__cta,
-.topic-post .btn-primary,
-.topic-post .btn-default,
-.topic-post .btn-flat,
-.topic-post .btn-icon,
-.topic-list .btn,
-.list-controls .btn,
-.d-editor-button-bar .btn,
-.composer-fields .btn {
+// ---------------------------------------------------------------------------
+// Buttons — shadcn / Vercel community style.
+//
+// One vocabulary across Discourse:
+//   Primary    .btn-primary, .custom-theme-button--primary, .custom-theme-banner__cta
+//              ember bg, white text, white icon
+//
+//   Secondary  .btn-default, .custom-theme-button--secondary
+//              transparent surface or subtle, brand-aware border, theme text
+//
+//   Ghost      .btn-flat, .btn-icon, .post-controls button, ⋯ icon buttons
+//              no border, no bg, muted text, hover bumps to surface + text
+//
+//   Destructive .btn-danger
+//              rust bg, white text
+//
+// Sizing:
+//   default 36px   .btn  (h-9)
+//   sm      32px   .btn-small / .btn.btn-small
+//   lg      40px   .btn-large / .btn.btn-large
+// ---------------------------------------------------------------------------
+
+// ----- Base reset, applies to every Discourse button --------------------
+.btn,
+.custom-theme-button {
   align-items: center;
+  border: 1px solid transparent;
   border-radius: var(--custom-theme-radius-md);
   display: inline-flex;
   font-family: var(--custom-theme-body-font);
-  font-weight: 600;
+  font-size: var(--font-down-1);
+  font-weight: 500;
   gap: 0.4rem;
+  height: 2.25rem;
   justify-content: center;
   line-height: 1;
-  min-height: 2.25rem;
   outline: none;
   padding: 0 0.875rem;
   text-decoration: none;
   transition:
     background-color 120ms ease,
     border-color 120ms ease,
-    box-shadow 120ms ease,
-    color 120ms ease;
+    color 120ms ease,
+    box-shadow 120ms ease;
   white-space: nowrap;
 }
 
-.custom-theme-button:focus-visible,
-.custom-theme-banner__cta:focus-visible,
-.topic-post .btn-primary:focus-visible,
-.topic-post .btn-default:focus-visible,
-.topic-post .btn-flat:focus-visible,
-.topic-post .btn-icon:focus-visible,
-.topic-list .btn:focus-visible,
-.list-controls .btn:focus-visible,
-.d-editor-button-bar .btn:focus-visible,
-.composer-fields .btn:focus-visible {
-  box-shadow: var(--custom-theme-focus-ring);
+.btn:focus-visible,
+.custom-theme-button:focus-visible {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--custom-theme-primary) 35%, transparent);
 }
 
-// Primary CTAs — brand accent (blue) for the homepage hero, sidebar, and core actions.
-.custom-theme-button--primary,
-.custom-theme-button--sidebar,
-.custom-theme-banner__cta {
-  background: var(--custom-theme-primary);
-  color: #fff;
+// Sizes
+.btn-small,
+.btn.btn-small {
+  font-size: var(--font-down-2);
+  height: 2rem;
+  padding: 0 0.75rem;
 }
 
-.custom-theme-button--primary:hover,
-.custom-theme-button--primary:focus,
-.custom-theme-button--sidebar:hover,
-.custom-theme-button--sidebar:focus,
-.custom-theme-banner__cta:hover,
-.custom-theme-banner__cta:focus {
-  background: var(--custom-theme-primary-dark);
-  color: #fff;
+.btn-large,
+.btn.btn-large {
+  font-size: var(--font-0);
+  height: 2.5rem;
+  padding: 0 1rem;
 }
 
-// Discourse's own .btn-primary — keep neutral dark like shadcn so chrome buttons don't compete with brand CTAs.
-.topic-post .btn-primary,
-.composer-fields .btn-primary {
-  background: var(--custom-theme-text);
-  color: #fff;
+// Icon-only square button
+.btn.no-text,
+.btn-icon.no-text {
+  padding: 0;
+  width: 2.25rem;
 }
 
-.topic-post .btn-primary:hover,
-.topic-post .btn-primary:focus,
-.composer-fields .btn-primary:hover,
-.composer-fields .btn-primary:focus {
-  background: var(--custom-theme-text-strong);
-  color: #fff;
+// Disabled
+.btn[disabled],
+.btn:disabled,
+.btn.disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
 }
 
-// Secondary / default buttons — keep tone everywhere readable. Lock the
-// color so Discourse's plugin-default rules can't paint the text dark on
-// our dark surface.
-.custom-theme-button--secondary,
-.topic-post .btn-default,
-.list-controls .btn-default,
-.composer-fields .btn-default,
-.btn.btn-default,
-.btn-default {
-  background: var(--custom-theme-surface);
-  border: 1px solid var(--custom-theme-border);
-  color: var(--custom-theme-text) !important;
-}
-
-.btn.btn-default .d-icon,
-.btn-default .d-icon {
-  color: var(--custom-theme-text) !important;
-}
-
-.custom-theme-button--secondary:hover,
-.custom-theme-button--secondary:focus,
-.topic-post .btn-default:hover,
-.topic-post .btn-default:focus,
-.list-controls .btn-default:hover,
-.list-controls .btn-default:focus,
-.composer-fields .btn-default:hover,
-.composer-fields .btn-default:focus,
-.btn.btn-default:hover,
-.btn.btn-default:focus,
-.btn-default:hover,
-.btn-default:focus {
-  background: var(--custom-theme-surface-raised);
-  border-color: color-mix(in srgb, var(--custom-theme-primary) 35%, var(--custom-theme-border));
-  color: var(--custom-theme-text) !important;
-}
-
-// Flat / link-style buttons (e.g. "More…", jump-top, jump-bottom) — make
-// sure the label text is the same off-white we use elsewhere.
-.btn.btn-flat,
-.btn-flat {
-  color: var(--custom-theme-muted-foreground) !important;
-}
-
-.btn.btn-flat:hover,
-.btn-flat:hover {
-  color: var(--custom-theme-text) !important;
-}
-
-// Primary brand button — used by Discourse for "New Topic", "Reply", etc.
-// Force white text so the orange surface always reads.
+// ----- Primary -----------------------------------------------------------
 .btn-primary,
-.topic-post .btn-primary,
-.composer-fields .btn-primary,
-.create-topic .btn-primary,
-.timeline-controls .btn-primary,
-.btn.btn-primary {
+.btn.btn-primary,
+.custom-theme-button--primary,
+.custom-theme-banner__cta,
+.create-topic .btn,
+.timeline-controls .btn-primary {
   background: var(--custom-theme-primary) !important;
-  border: 1px solid var(--custom-theme-primary);
+  border-color: var(--custom-theme-primary);
   color: #fff !important;
 }
 
 .btn-primary:hover,
 .btn-primary:focus,
-.btn.btn-primary:hover {
+.btn.btn-primary:hover,
+.btn.btn-primary:focus,
+.custom-theme-button--primary:hover,
+.custom-theme-button--primary:focus,
+.custom-theme-banner__cta:hover,
+.custom-theme-banner__cta:focus {
   background: var(--custom-theme-primary-dark) !important;
   border-color: var(--custom-theme-primary-dark);
   color: #fff !important;
@@ -148,7 +110,80 @@
   color: #fff !important;
 }
 
-// Danger / "warn" buttons (delete, flag) — use Rust + white text.
+// ----- Secondary (the default Discourse `.btn-default`) ------------------
+.btn-default,
+.btn.btn-default,
+.custom-theme-button--secondary {
+  background: var(--custom-theme-surface) !important;
+  border: 1px solid var(--custom-theme-border) !important;
+  color: var(--custom-theme-text) !important;
+}
+
+.btn-default .d-icon,
+.btn.btn-default .d-icon,
+.custom-theme-button--secondary .d-icon {
+  color: var(--custom-theme-text) !important;
+}
+
+.btn-default:hover,
+.btn-default:focus,
+.btn.btn-default:hover,
+.btn.btn-default:focus,
+.custom-theme-button--secondary:hover,
+.custom-theme-button--secondary:focus {
+  background: var(--custom-theme-surface-raised) !important;
+  border-color: var(--custom-theme-border-strong) !important;
+  color: var(--custom-theme-text) !important;
+}
+
+// ----- Ghost / flat ------------------------------------------------------
+.btn-flat,
+.btn.btn-flat,
+.btn-icon-text,
+.btn.btn-icon-text:not(.btn-primary):not(.btn-default):not(.btn-danger) {
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  color: var(--custom-theme-muted-foreground) !important;
+}
+
+.btn-flat .d-icon,
+.btn.btn-flat .d-icon {
+  color: var(--custom-theme-muted-foreground) !important;
+}
+
+.btn-flat:hover,
+.btn-flat:focus,
+.btn.btn-flat:hover,
+.btn.btn-flat:focus {
+  background: var(--custom-theme-surface-raised) !important;
+  color: var(--custom-theme-text) !important;
+}
+
+.btn-flat:hover .d-icon,
+.btn.btn-flat:hover .d-icon {
+  color: var(--custom-theme-text) !important;
+}
+
+// ----- Icon-only buttons in post / topic controls ------------------------
+.post-controls button,
+.post-controls .btn,
+.post-action-menu__share,
+.post-action-menu__copy-link,
+.post-action-menu__bookmark,
+.post-action-menu__edit,
+.post-action-menu__show-more {
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  color: var(--custom-theme-muted-foreground) !important;
+}
+
+.post-controls button:hover,
+.post-controls .btn:hover {
+  background: var(--custom-theme-surface-raised) !important;
+  color: var(--custom-theme-text) !important;
+}
+
+// ----- Destructive -------------------------------------------------------
 .btn-danger,
 .btn.btn-danger {
   background: var(--custom-theme-rust) !important;
@@ -156,33 +191,41 @@
   color: #fff !important;
 }
 
-// Generic discovery / list-controls buttons that Discourse renders without
-// `.btn-default` (some pagination + admin toggles) — make them visible.
+.btn-danger:hover,
+.btn.btn-danger:hover {
+  background: color-mix(in srgb, var(--custom-theme-rust) 80%, black) !important;
+  color: #fff !important;
+}
+
+// ----- "Reply" big primary at the post bottom ----------------------------
+.topic-footer-buttons .btn,
+.topic-footer-main-buttons .btn {
+  height: 2.25rem;
+}
+
+// ----- Sidebar custom CTA ------------------------------------------------
+.custom-theme-button--sidebar {
+  background: var(--custom-theme-primary) !important;
+  color: #fff !important;
+  margin-top: 0.25rem;
+  width: 100%;
+}
+
+.custom-theme-button--sidebar:hover,
+.custom-theme-button--sidebar:focus {
+  background: var(--custom-theme-primary-dark) !important;
+  color: #fff !important;
+}
+
+// ----- Discovery list / pagination ("More…", jump-top) -------------------
 .list-controls .btn,
 .list-controls button {
   color: var(--custom-theme-text) !important;
 }
 
-.topic-post .btn-flat,
-.topic-post .btn-icon,
-.d-editor-button-bar .btn-flat,
-.d-editor-button-bar .btn-icon {
-  color: var(--custom-theme-muted);
-}
-
-.topic-post .btn-flat:hover,
-.topic-post .btn-flat:focus,
-.topic-post .btn-icon:hover,
-.topic-post .btn-icon:focus,
-.d-editor-button-bar .btn-flat:hover,
-.d-editor-button-bar .btn-flat:focus,
-.d-editor-button-bar .btn-icon:hover,
-.d-editor-button-bar .btn-icon:focus {
-  background: var(--custom-theme-subtle);
-  color: var(--custom-theme-text);
-}
-
-.custom-theme-button--sidebar {
-  margin-top: 0.25rem;
-  width: 100%;
+// ----- Reply / topic footer buttons stay readable ------------------------
+#topic-footer-buttons .btn,
+#topic-footer-buttons .btn-default {
+  background: var(--custom-theme-surface) !important;
+  color: var(--custom-theme-text) !important;
 }

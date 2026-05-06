@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 96" width="320" height="96">
+  <defs>
+    <linearGradient id="ember2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFB347"></stop>
+      <stop offset="100%" stop-color="#FF6B1A"></stop>
+    </linearGradient>
+  </defs>
+  
+  <g transform="translate(12,16)">
+    <path d="M32 2 L60 12 V36 Q60 56 32 64 Q4 56 4 36 V12 Z" fill="none" stroke="#E6EDF3" stroke-width="2.5"></path>
+    
+    <path d="M32 8 L54 16 V36 Q54 52 32 58 Q10 52 10 36 V16 Z" fill="url(#ember2)" opacity="0.15"></path>
+    
+    <text x="32" y="42" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="26" font-weight="700" fill="#FF6B1A">{ }</text>
+  </g>
+  
+  <g transform="translate(90,40)" font-family="Space Grotesk, sans-serif" font-weight="600" letter-spacing="-1">
+    <text x="0" y="14" font-size="28" fill="#E6EDF3">CyberFoundry</text>
+  </g>
+  <text x="90" y="70" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="2" fill="#7C8794">// open source security toolforge</text>
+</svg>

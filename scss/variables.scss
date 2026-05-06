@@ -1,4 +1,38 @@
+// CyberFoundry brand tokens
+// =========================================================================
+// Brand reference: Branding Guide v1
+//
+// Foundation (greys) — same hex values across both palettes; the role each
+// hex plays is what flips between light and dark via Discourse color scheme
+// vars (--primary, --secondary, etc.).
+//
+//   Carbon       #0B0F14   Background (dark)
+//   Slag         #161B22   Surface (dark)
+//   Slag/raised  #1C232C   Hover surface (dark)
+//   Anvil        #2A323D   Border (dark)
+//   Anvil/strong #3A4452   Strong rule (dark)
+//   Ash/deep     #4F5864   Disabled
+//   Ash          #7C8794   Tertiary text
+//   Smoke        #B6C0CC   Secondary text
+//   Steam        #E6EDF3   Primary text on dark
+//   Paper        #F6F2EC   Light bg
+//
+// Brand accent — Ember (the only brand color)
+//   Ember        #FF6B1A   Primary
+//   Ember/hot    #FF8538   Hover
+//   Ember/deep   #C44A0E   Pressed
+//   Forge Glow   #FFB347   Secondary warm
+//   Spark        #FFD89E   Tint
+//
+// Semantic
+//   Plasma       #7BD8E8   Info
+//   Toxic        #3FB950   Success
+//   Flux         #E3B341   Warning
+//   Rust         #F85149   Danger
+// =========================================================================
+
 :root {
+  // ---- Brand-aware aliases over Discourse's color-scheme vars --------------
   --custom-theme-primary: #{$accent_color};
   --custom-theme-primary-dark: #{$accent_color_dark};
   --custom-theme-background: var(--secondary);
@@ -15,25 +49,56 @@
   --custom-theme-surface: var(--secondary);
   --custom-theme-accent: var(--tertiary);
   --custom-theme-info-surface: var(--tertiary-very-low);
-  --custom-theme-success: var(--success);
-  --custom-theme-destructive: var(--danger);
-  --custom-theme-danger-surface: var(--danger-low);
-  --custom-theme-warning: #b45309;
-  --custom-theme-warning-surface: #fffbeb;
-  --custom-theme-warning-border: #fbbf24;
+
+  // ---- Hard-coded brand tokens (palette-agnostic) --------------------------
+  --custom-theme-ember: #ff6b1a;
+  --custom-theme-ember-hot: #ff8538;
+  --custom-theme-ember-deep: #c44a0e;
+  --custom-theme-forge-glow: #ffb347;
+  --custom-theme-spark: #ffd89e;
+
+  --custom-theme-carbon: #0b0f14;
+  --custom-theme-slag: #161b22;
+  --custom-theme-slag-raised: #1c232c;
+  --custom-theme-anvil: #2a323d;
+  --custom-theme-anvil-strong: #3a4452;
+  --custom-theme-ash-deep: #4f5864;
+  --custom-theme-ash: #7c8794;
+  --custom-theme-smoke: #b6c0cc;
+  --custom-theme-steam: #e6edf3;
+  --custom-theme-paper: #f6f2ec;
+
+  // ---- Semantic ------------------------------------------------------------
+  --custom-theme-plasma: #7bd8e8;
+  --custom-theme-toxic: #3fb950;
+  --custom-theme-flux: #e3b341;
+  --custom-theme-rust: #f85149;
+
+  --custom-theme-success: var(--custom-theme-toxic);
+  --custom-theme-destructive: var(--custom-theme-rust);
+  --custom-theme-danger-surface: color-mix(in srgb, var(--custom-theme-rust) 12%, transparent);
+  --custom-theme-warning: var(--custom-theme-flux);
+  --custom-theme-warning-surface: color-mix(in srgb, var(--custom-theme-flux) 12%, transparent);
+  --custom-theme-warning-border: color-mix(in srgb, var(--custom-theme-flux) 35%, transparent);
+
   --custom-theme-border: var(--primary-low);
   --custom-theme-input: var(--primary-low);
   --custom-theme-ring: var(--custom-theme-primary);
+
+  // ---- Radius / shadow -----------------------------------------------------
   --custom-theme-radius: 0.625rem;
   --custom-theme-radius-sm: calc(var(--custom-theme-radius) * 0.75);
   --custom-theme-radius-md: calc(var(--custom-theme-radius) * 0.875);
   --custom-theme-radius-lg: var(--custom-theme-radius);
   --custom-theme-radius-xl: calc(var(--custom-theme-radius) * 1.5);
-  --custom-theme-shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04);
-  --custom-theme-shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.08);
-  --custom-theme-shadow-md: 0 10px 24px rgba(16, 24, 40, 0.08);
-  --custom-theme-shadow-lg: 0 20px 45px rgba(16, 24, 40, 0.08);
+
+  --custom-theme-shadow-sm: 0 1px 2px rgba(11, 15, 20, 0.04);
+  --custom-theme-shadow: 0 1px 2px rgba(11, 15, 20, 0.06), 0 1px 3px rgba(11, 15, 20, 0.08);
+  --custom-theme-shadow-md: 0 10px 24px rgba(11, 15, 20, 0.10);
+  --custom-theme-shadow-lg: 0 20px 45px rgba(11, 15, 20, 0.12);
   --custom-theme-focus-ring: 0 0 0 2px var(--secondary), 0 0 0 4px var(--custom-theme-ring);
+
+  // ---- Layout & spacing ----------------------------------------------------
   --custom-theme-content-width: 1110px;
   --custom-theme-space-1: 0.25rem;
   --custom-theme-space-2: var(--space-2, 0.5rem);
@@ -45,11 +110,29 @@
   --custom-theme-space-8: 2rem;
   --custom-theme-space-10: 2.5rem;
   --custom-theme-space-12: 3rem;
-  // Outer gutters (one knob; mobile.scss tightens them).
   --custom-theme-page-padding: 0.75rem;
-  --custom-theme-heading-font: "Geist", Arial, sans-serif;
+
+  // ---- Typography (Branding Guide v1) --------------------------------------
+  // Display: Space Grotesk (with Geist as a familiar fallback if Grotesk
+  // hasn't loaded yet). Body: Inter. Mono: JetBrains Mono.
+  --custom-theme-heading-font: "Space Grotesk", "Geist", Arial, sans-serif;
   --custom-theme-body-font: "Inter", Arial, sans-serif;
+  --custom-theme-mono-font: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
   --d-button-border-radius: var(--custom-theme-radius-md);
   --d-input-border-radius: var(--custom-theme-radius-md);
   --d-nav-pill-border-radius: var(--custom-theme-radius-md);
+}
+
+// Dark-mode-only adjustments — Discourse switches palettes via the
+// `data-theme-id` (or the user's selected scheme); CyberFoundry Carbon flips
+// a couple of treatments that need different alpha math from the light side.
+html[data-color-scheme="dark"],
+.cyberfoundry-theme[data-color-scheme="dark"],
+html.dark-scheme,
+[color-scheme="dark"] {
+  --custom-theme-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.32);
+  --custom-theme-shadow: 0 1px 2px rgba(0, 0, 0, 0.32), 0 2px 6px rgba(0, 0, 0, 0.40);
+  --custom-theme-shadow-md: 0 10px 24px rgba(0, 0, 0, 0.40);
+  --custom-theme-shadow-lg: 0 20px 45px rgba(0, 0, 0, 0.45);
 }

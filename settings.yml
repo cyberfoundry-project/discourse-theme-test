@@ -65,11 +65,11 @@ quick_link_3_url:
   default: "/c/knowledge-base"
   description: "URL for the third quick link."
 accent_color:
-  default: "#0070f3"
-  description: "Primary accent color used by custom theme elements."
+  default: "#FF6B1A"
+  description: "Primary brand accent (Ember) used by custom theme elements."
 accent_color_dark:
-  default: "#0059c9"
-  description: "Darker accent color used for hover and focus states."
+  default: "#C44A0E"
+  description: "Pressed brand accent (Ember/deep) used for hover and focus states."
 footer_tagline:
   default: "A community hub for forging practical IT and cybersecurity resources."
   description: "Short custom footer tagline."

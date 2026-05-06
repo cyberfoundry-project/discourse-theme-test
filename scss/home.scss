@@ -57,7 +57,8 @@
 // (and the `uc-*` feature-flag classes added by some hosts) ship body classes
 // like `uc-enable-support-category-type-setup` that contain the substring
 // "category-" and cause the selector to match every page — silently hiding
-// the hero. Use exact body classes instead.
+// the hero. Use exact body classes (or the .user-main / .topic-body presence)
+// instead.
 body.archetype-regular .custom-theme-home,
 body.archetype-private_message .custom-theme-home,
 body.category .custom-theme-home,
@@ -65,8 +66,17 @@ body.tag .custom-theme-home,
 body.tags-page .custom-theme-home,
 body.users-page .custom-theme-home,
 body.user-summary-page .custom-theme-home,
+body.user-activity-page .custom-theme-home,
+body.user-notifications-page .custom-theme-home,
+body.user-messages-page .custom-theme-home,
+body.user-private-messages-page .custom-theme-home,
+body.user-invites-page .custom-theme-home,
+body.user-preferences-page .custom-theme-home,
 body.admin-interface .custom-theme-home,
-body.search-page .custom-theme-home {
+body.search-page .custom-theme-home,
+// Cover any future user-*-page or admin route via :has fallback.
+body:has(> #d-sidebar ~ #main-outlet-wrapper .user-main) .custom-theme-home,
+body:has(.user-content) .custom-theme-home {
   display: none;
 }
 

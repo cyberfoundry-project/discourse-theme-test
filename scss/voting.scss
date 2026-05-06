@@ -1,6 +1,17 @@
 // Voting wrappers — used by discourse-topic-voting and (post-voting) plugins.
-// Goal: kill the "Up" / "Down" text labels visually and let the FontAwesome
-// chevron icons do the talking. Big, tabular count between them.
+//
+// We hide the topic-voting widget on standard topic pages by default —
+// users only want it on Q&A categories. The post-voting plugin (Q&A) self-
+// scopes to enabled categories, so it stays.
+.voting-wrapper {
+  display: none !important;
+}
+
+// If a future Q&A category needs voting, opt-in by adding `.cyberfoundry-show-voting`
+// to body or any ancestor.
+body.cyberfoundry-show-voting .voting-wrapper {
+  display: flex !important;
+}
 
 .voting-wrapper,
 .post-voting-post {

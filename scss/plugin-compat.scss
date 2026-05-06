@@ -59,3 +59,26 @@
 #header-list-area {
   max-width: var(--custom-theme-content-width);
 }
+
+// ---------------------------------------------------------------------------
+// Strip random hairline borders Discourse paints under generic surfaces —
+// these were the "horizontal line near the bottom of the main content area"
+// that showed up across most pages. The card chrome we apply elsewhere
+// already supplies the visual frame.
+// ---------------------------------------------------------------------------
+.list-controls,
+.topic-list-bottom,
+.below-footer,
+.suggested-topics-message,
+.empty-state__container > .empty-state__title,
+.discovery-list-container-bottom-outlet {
+  border-bottom: 0 !important;
+  border-top: 0 !important;
+}
+
+// Discourse's "Powered by Discourse" link block — keep visible but no
+// surrounding rule.
+.powered-by-discourse {
+  border: 0 !important;
+  margin-top: var(--custom-theme-space-6);
+}

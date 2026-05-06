@@ -174,19 +174,39 @@
   align-items: center;
   background: var(--custom-theme-surface);
   border: 1px solid var(--custom-theme-border);
-  border-radius: 999px;
+  border-radius: var(--custom-theme-radius-md);
+  box-shadow: var(--custom-theme-shadow-sm);
   color: var(--custom-theme-text);
   display: inline-flex;
+  flex-direction: column;
   font-family: var(--custom-theme-body-font);
-  font-size: var(--font-down-2);
-  font-weight: 500;
-  gap: 0.35rem;
-  padding: 0.25rem 0.6rem;
+  gap: 0.2rem;
+  min-width: 9rem;
+  padding: 0.6rem 0.85rem;
   text-decoration: none;
   transition:
     background-color 120ms ease,
     border-color 120ms ease,
     color 120ms ease;
+}
+
+.category-boxes .subcategories .subcategory > .badge-category,
+.category-boxes-with-topics .subcategories .subcategory > .badge-category,
+.category-boxes .subcategory-box > .badge-category,
+.category-boxes-with-topics .subcategory-box > .badge-category {
+  align-items: center;
+  display: inline-flex;
+  font-size: var(--font-down-1);
+  font-weight: 600;
+  gap: 0.35rem;
+}
+
+.category-boxes .subcategories .subcategory .stat,
+.category-boxes-with-topics .subcategories .subcategory .stat,
+.category-boxes .subcategory-box .stat,
+.category-boxes-with-topics .subcategory-box .stat {
+  color: var(--custom-theme-muted);
+  font-size: var(--font-down-2);
 }
 
 .category-boxes .subcategories .subcategory:hover,

@@ -60,6 +60,7 @@
   display: inline-flex;
   font-size: 0.85em;
   height: 0.95em;
+  transition: color 120ms ease;
   width: 0.95em;
 }
 
@@ -68,8 +69,76 @@
   width: 100%;
 }
 
-.nav-pills > li.active > a .cyberfoundry-tab-icon,
-.nav-pills > li > a.active .cyberfoundry-tab-icon {
+// ---------------------------------------------------------------------------
+// Tab type colors — semantic hue per kind so Hot reads as red/fire,
+// New as green/star, etc. Always-on (not just hover) so the tabs index well.
+// ---------------------------------------------------------------------------
+.nav-pills > li > a[href$="/latest"] .cyberfoundry-tab-icon,
+.nav-pills > li > a[href*="/latest?"] .cyberfoundry-tab-icon {
+  color: var(--custom-theme-primary);
+}
+
+.nav-pills > li > a[href$="/new"] .cyberfoundry-tab-icon,
+.nav-pills > li > a[href*="/new?"] .cyberfoundry-tab-icon {
+  color: #16a34a; // green-600
+}
+
+.nav-pills > li > a[href$="/hot"] .cyberfoundry-tab-icon {
+  color: #dc2626; // red-600
+}
+
+.nav-pills > li > a[href$="/top"] .cyberfoundry-tab-icon,
+.nav-pills > li > a[href*="/top?"] .cyberfoundry-tab-icon {
+  color: #ea580c; // orange-600
+}
+
+.nav-pills > li > a[href$="/unread"] .cyberfoundry-tab-icon {
+  color: #7c3aed; // violet-600
+}
+
+.nav-pills > li > a[href$="/categories"] .cyberfoundry-tab-icon {
+  color: var(--custom-theme-primary);
+}
+
+// Active state: tint the pill background to match the icon hue, and tint the
+// label text too so the segmented control reads semantically.
+.nav-pills > li.active > a[href$="/latest"],
+.nav-pills > li > a[href$="/latest"].active,
+.nav-pills > li.active > a[href*="/latest?"],
+.nav-pills > li > a[href*="/latest?"].active {
+  background: color-mix(in srgb, var(--custom-theme-primary) 9%, var(--custom-theme-surface));
+  color: var(--custom-theme-primary);
+}
+
+.nav-pills > li.active > a[href$="/new"],
+.nav-pills > li > a[href$="/new"].active {
+  background: color-mix(in srgb, #16a34a 9%, var(--custom-theme-surface));
+  color: #15803d;
+}
+
+.nav-pills > li.active > a[href$="/hot"],
+.nav-pills > li > a[href$="/hot"].active {
+  background: color-mix(in srgb, #dc2626 9%, var(--custom-theme-surface));
+  color: #b91c1c;
+}
+
+.nav-pills > li.active > a[href$="/top"],
+.nav-pills > li > a[href$="/top"].active,
+.nav-pills > li.active > a[href*="/top?"],
+.nav-pills > li > a[href*="/top?"].active {
+  background: color-mix(in srgb, #ea580c 9%, var(--custom-theme-surface));
+  color: #c2410c;
+}
+
+.nav-pills > li.active > a[href$="/unread"],
+.nav-pills > li > a[href$="/unread"].active {
+  background: color-mix(in srgb, #7c3aed 9%, var(--custom-theme-surface));
+  color: #6d28d9;
+}
+
+.nav-pills > li.active > a[href$="/categories"],
+.nav-pills > li > a[href$="/categories"].active {
+  background: color-mix(in srgb, var(--custom-theme-primary) 9%, var(--custom-theme-surface));
   color: var(--custom-theme-primary);
 }
 

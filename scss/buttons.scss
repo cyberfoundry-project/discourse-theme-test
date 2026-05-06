@@ -13,11 +13,12 @@
   display: inline-flex;
   font-family: var(--custom-theme-body-font);
   font-weight: 600;
+  gap: 0.4rem;
   justify-content: center;
   line-height: 1;
-  min-height: 2rem;
+  min-height: 2.25rem;
   outline: none;
-  padding: 0 0.75rem;
+  padding: 0 0.875rem;
   text-decoration: none;
   transition:
     background-color 160ms ease,
@@ -41,18 +42,31 @@
   box-shadow: var(--custom-theme-focus-ring);
 }
 
+// Primary CTAs — brand accent (blue) for the homepage hero, sidebar, and core actions.
 .custom-theme-button--primary,
-.custom-theme-banner__cta,
+.custom-theme-button--sidebar,
+.custom-theme-banner__cta {
+  background: var(--custom-theme-primary);
+  color: #fff;
+}
+
+.custom-theme-button--primary:hover,
+.custom-theme-button--primary:focus,
+.custom-theme-button--sidebar:hover,
+.custom-theme-button--sidebar:focus,
+.custom-theme-banner__cta:hover,
+.custom-theme-banner__cta:focus {
+  background: var(--custom-theme-primary-dark);
+  color: #fff;
+}
+
+// Discourse's own .btn-primary — keep neutral dark like shadcn so chrome buttons don't compete with brand CTAs.
 .topic-post .btn-primary,
 .composer-fields .btn-primary {
   background: var(--custom-theme-text);
   color: #fff;
 }
 
-.custom-theme-button--primary:hover,
-.custom-theme-button--primary:focus,
-.custom-theme-banner__cta:hover,
-.custom-theme-banner__cta:focus,
 .topic-post .btn-primary:hover,
 .topic-post .btn-primary:focus,
 .composer-fields .btn-primary:hover,
@@ -79,6 +93,7 @@
 .composer-fields .btn-default:hover,
 .composer-fields .btn-default:focus {
   background: var(--custom-theme-subtle);
+  border-color: color-mix(in srgb, var(--custom-theme-border) 70%, var(--custom-theme-text));
   color: var(--custom-theme-text);
 }
 
@@ -102,13 +117,6 @@
 }
 
 .custom-theme-button--sidebar {
-  background: var(--custom-theme-text);
-  color: #fff;
-  margin-top: 0.4rem;
-}
-
-.custom-theme-button--sidebar:hover,
-.custom-theme-button--sidebar:focus {
-  background: var(--custom-theme-text-strong);
-  color: #fff;
+  margin-top: 0.25rem;
+  width: 100%;
 }

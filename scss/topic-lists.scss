@@ -4,19 +4,40 @@
 .top-topic-list {
   background: var(--custom-theme-surface);
   border: 1px solid var(--custom-theme-border);
-  border-radius: var(--custom-theme-radius);
-  box-shadow: none;
+  border-radius: var(--custom-theme-radius-lg);
+  box-shadow: var(--custom-theme-shadow-sm);
   overflow: hidden;
 }
 
 .topic-list thead,
 .category-list thead {
   background: var(--custom-theme-subtle);
+
+  th {
+    color: var(--custom-theme-muted);
+    font-family: var(--custom-theme-body-font);
+    font-size: var(--font-down-2);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 0.625rem 0.875rem;
+    text-transform: uppercase;
+  }
 }
 
 .topic-list tbody tr,
 .category-list tbody tr {
+  border-bottom: 1px solid var(--custom-theme-border);
   transition: background-color 160ms ease;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.topic-list tbody td,
+.category-list tbody td {
+  padding: 0.875rem;
+  vertical-align: middle;
 }
 
 .topic-list tbody tr:hover,
@@ -32,14 +53,21 @@
   .main-link a.title {
     color: var(--custom-theme-text);
     font-family: var(--custom-theme-heading-font);
+    font-size: var(--font-0);
     font-weight: 650;
     letter-spacing: -0.01em;
+    line-height: 1.4;
+  }
+
+  .main-link a.title:hover {
+    color: var(--custom-theme-primary);
   }
 
   .topic-excerpt {
     color: var(--custom-theme-muted);
     font-family: var(--custom-theme-body-font);
     line-height: 1.55;
+    margin-top: 0.25rem;
   }
 
   .badge-wrapper,
@@ -60,6 +88,7 @@
   .category-name {
     font-family: var(--custom-theme-heading-font);
     font-weight: 650;
+    letter-spacing: -0.01em;
   }
 
   .category-description {

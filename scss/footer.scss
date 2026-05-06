@@ -17,7 +17,8 @@ body:has(.custom-footer) .custom-theme-footer {
   gap: 1rem;
   justify-content: space-between;
   margin: 0 auto;
-  max-width: 1110px;
+  max-width: var(--custom-theme-content-width);
+  padding: 0 0.75rem;
 }
 
 .custom-theme-footer__brand {

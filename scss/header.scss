@@ -14,3 +14,27 @@
 .d-header-icons .d-icon {
   color: var(--custom-theme-text);
 }
+
+// Centered search field (`search_experience: search_field`) — match our token system
+// so it doesn't feel grafted on.
+.d-header .search-menu .search-input,
+.d-header input.search-context-input,
+.d-header .floating-search-input,
+.d-header .search-menu input[type="search"] {
+  background: var(--custom-theme-subtle);
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--custom-theme-radius-md);
+  box-shadow: none;
+  color: var(--custom-theme-text);
+  font-family: var(--custom-theme-body-font);
+}
+
+.d-header .search-menu .search-input:focus-within,
+.d-header input.search-context-input:focus,
+.d-header .floating-search-input:focus-within,
+.d-header .search-menu input[type="search"]:focus {
+  background: var(--custom-theme-surface);
+  border-color: var(--custom-theme-primary);
+  box-shadow: var(--custom-theme-focus-ring);
+  outline: none;
+}

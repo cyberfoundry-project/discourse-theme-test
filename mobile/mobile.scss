@@ -1,15 +1,18 @@
 // Mobile-focused refinements for narrow forum layouts.
 
+.custom-theme-home {
+  margin-top: 1rem;
+  padding: 0 0.5rem;
+}
+
 .custom-theme-banner {
-  border-right: 0;
-  border-left: 0;
-  border-radius: 0;
+  border-radius: var(--custom-theme-radius-lg);
+  gap: 1rem;
   grid-template-columns: 1fr;
-  margin-inline: calc(-1 * var(--custom-theme-content-padding, 1rem));
-  padding: var(--custom-theme-space-4);
+  padding: 1.25rem;
 
   &__title {
-    font-size: var(--font-up-2);
+    font-size: var(--font-up-1);
   }
 
   &__description {
@@ -21,8 +24,9 @@
   }
 }
 
-.custom-theme-button {
-  width: 100%;
+.custom-theme-banner__actions .custom-theme-button {
+  flex: 1;
+  min-width: 0;
 }
 
 .custom-theme-quick-links,

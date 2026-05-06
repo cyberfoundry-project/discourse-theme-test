@@ -1,13 +1,15 @@
 {{#if (theme-setting "show_sidebar_card")}}
   <section class="custom-sidebar-card" aria-labelledby="custom-sidebar-card-title">
     <div class="custom-sidebar-card__icon" aria-hidden="true">
-      {{theme-setting "sidebar_card_icon"}}
+      {{d-icon (theme-setting "sidebar_card_icon")}}
     </div>
     <div class="custom-sidebar-card__content">
-      <h2 id="custom-sidebar-card-title">
+      <h2 class="custom-sidebar-card__title" id="custom-sidebar-card-title">
         {{theme-setting "sidebar_card_title"}}
       </h2>
-      <p>{{theme-setting "sidebar_card_text"}}</p>
+      <p class="custom-sidebar-card__text">
+        {{theme-setting "sidebar_card_text"}}
+      </p>
       <a
         class="custom-theme-button custom-theme-button--sidebar"
         href={{theme-setting "sidebar_card_url"}}

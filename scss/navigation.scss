@@ -4,25 +4,41 @@
   gap: var(--custom-theme-space-2);
 }
 
+.list-controls {
+  margin-bottom: 0.875rem;
+}
+
 .nav-pills {
+  background: var(--custom-theme-subtle);
+  border-radius: var(--custom-theme-radius-md);
+  display: inline-flex;
+  gap: 0.125rem;
+  padding: 0.25rem;
+
   > li > a {
-    border-radius: var(--custom-theme-radius-md);
+    border-radius: var(--custom-theme-radius-sm);
     color: var(--custom-theme-muted);
+    font-family: var(--custom-theme-body-font);
+    font-size: var(--font-down-1);
     font-weight: 500;
-    padding: 0.45rem 0.75rem;
+    padding: 0.4rem 0.75rem;
+    transition:
+      background-color 160ms ease,
+      color 160ms ease;
   }
 
   > li > a:hover,
-  > li > a:focus {
-    background: var(--custom-theme-muted-surface);
+  > li > a:focus-visible {
+    background: var(--custom-theme-surface);
     color: var(--custom-theme-text);
   }
 
   > li.active > a,
   > li > a.active {
-    background: var(--custom-theme-text);
-    color: var(--custom-theme-surface);
-    font-weight: 650;
+    background: var(--custom-theme-surface);
+    box-shadow: var(--custom-theme-shadow-sm);
+    color: var(--custom-theme-text);
+    font-weight: 600;
   }
 }
 
@@ -35,5 +51,5 @@
 .category-breadcrumb .select-kit-header,
 .select-kit.combo-box .select-kit-header {
   border-color: var(--custom-theme-border);
-  box-shadow: var(--custom-theme-shadow-xs);
+  box-shadow: var(--custom-theme-shadow-sm);
 }

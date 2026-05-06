@@ -49,36 +49,27 @@
   }
 }
 
-// Inject a FontAwesome glyph in front of each tab. Keyed by href so this
-// keeps working regardless of which class names Discourse hangs on the <li>.
-.nav-pills > li > a::before {
-  display: inline-block;
-  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", sans-serif;
+// Tab icons are injected as Discourse SVG d-icons via the api-initializer
+// (see custom-theme.gjs). The injected element gets class
+// `cyberfoundry-tab-icon`. We can't use FontAwesome unicode codepoints in
+// `content:` because Discourse uses an SVG sprite — there's no FA font face
+// loaded, so the codepoints render as either tofu or literal text.
+.nav-pills > li > a .cyberfoundry-tab-icon {
+  align-items: center;
+  color: var(--custom-theme-muted);
+  display: inline-flex;
   font-size: 0.85em;
-  font-weight: 900;
-  line-height: 1;
-  margin-right: 0.05rem;
+  height: 0.95em;
+  width: 0.95em;
 }
 
-// /latest, /new, /unread, /top, /hot, /categories. Match either trailing
-// segment or query-string form (`?ascending=…`).
-//
-// IMPORTANT: SCSS compilers interpret `"\f017"` as `\f` (form feed) + `017`
-// and collapse the value. Use `"\\f017"` so the literal `\f017` reaches CSS,
-// where the parser then resolves it to U+F017.
-.nav-pills > li > a[href$="/latest"]::before,
-.nav-pills > li > a[href*="/latest?"]::before { content: "\\f017"; } // clock
-.nav-pills > li > a[href$="/new"]::before,
-.nav-pills > li > a[href*="/new?"]::before { content: "\\f005"; } // star
-.nav-pills > li > a[href$="/unread"]::before { content: "\\f0e0"; } // envelope
-.nav-pills > li > a[href$="/top"]::before,
-.nav-pills > li > a[href*="/top?"]::before { content: "\\f062"; } // arrow-up
-.nav-pills > li > a[href$="/hot"]::before { content: "\\f06d"; } // fire
-.nav-pills > li > a[href$="/categories"]::before { content: "\\f5fd"; } // layer-group
+.nav-pills > li > a .cyberfoundry-tab-icon .d-icon {
+  height: 100%;
+  width: 100%;
+}
 
-// Active tab — tint the icon to brand so the visual hit is unambiguous.
-.nav-pills > li.active > a::before,
-.nav-pills > li > a.active::before {
+.nav-pills > li.active > a .cyberfoundry-tab-icon,
+.nav-pills > li > a.active .cyberfoundry-tab-icon {
   color: var(--custom-theme-primary);
 }
 

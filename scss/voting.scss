@@ -79,29 +79,24 @@
 }
 
 // Fallback: if the plugin renders text-only "Up" / "Down" buttons (no
-// FontAwesome icons present), inject chevrons via ::before so the user
-// always sees an arrow rather than a word.
+// d-icon), use plain unicode triangles. We can't rely on FontAwesome as a
+// webfont — Discourse renders d-icons as SVG via a sprite — so any escape
+// like `\f077` would render as tofu or literal text.
 .voting-wrapper__button:not(:has(.d-icon))::before,
-.voting-wrapper [data-button-text="upvote" i]::before,
-.voting-wrapper [data-button-text="downvote" i]::before,
 .post-voting-button:not(:has(.d-icon))::before {
   display: inline-block;
-  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", sans-serif;
-  font-size: 1rem;
-  font-weight: 900;
+  font-size: 1.1rem;
   line-height: 1;
 }
 
 .voting-wrapper__button:first-child:not(:has(.d-icon))::before,
-.voting-wrapper [data-button-text="upvote" i]::before,
 .voting-wrapper button[title*="up" i]:not(:has(.d-icon))::before {
-  content: "\\f077"; // chevron-up
+  content: "▲"; // U+25B2
 }
 
 .voting-wrapper__button:last-child:not(:has(.d-icon))::before,
-.voting-wrapper [data-button-text="downvote" i]::before,
 .voting-wrapper button[title*="down" i]:not(:has(.d-icon))::before {
-  content: "\\f078"; // chevron-down
+  content: "▼"; // U+25BC
 }
 
 // ---------------------------------------------------------------------------

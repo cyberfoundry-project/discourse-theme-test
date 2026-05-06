@@ -106,10 +106,10 @@
 
 .header-dropdown-toggle.current-user::after {
   color: var(--custom-theme-muted);
-  content: "\\f078"; // chevron-down
-  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", sans-serif;
-  font-size: 0.7rem;
-  font-weight: 900;
+  content: "▾"; // U+25BE — works in system fonts; no FA dependency
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1;
 }
 
 .header-dropdown-toggle.current-user img.avatar {

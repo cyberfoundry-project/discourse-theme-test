@@ -1,7 +1,19 @@
 <div class="custom-theme-home" data-custom-theme-home>
   {{#if (theme-setting "announcement_text")}}
-    <div class="custom-theme-announcement" role="status">
-      {{theme-setting "announcement_text"}}
+    <div class="custom-theme-announcement custom-theme-announcement--new-user" role="status" data-audience="new-user">
+      <span class="custom-theme-announcement__dot" aria-hidden="true"></span>
+      <span class="custom-theme-announcement__text">
+        {{theme-setting "announcement_text"}}
+      </span>
+      {{#if (theme-setting "announcement_cta_text")}}
+        <a
+          class="custom-theme-announcement__cta"
+          href={{theme-setting "announcement_cta_url"}}
+        >
+          {{theme-setting "announcement_cta_text"}}
+          <span aria-hidden="true">→</span>
+        </a>
+      {{/if}}
     </div>
   {{/if}}
 

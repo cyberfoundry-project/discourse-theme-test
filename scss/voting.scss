@@ -1,3 +1,7 @@
+// Voting wrappers — used by discourse-topic-voting and (post-voting) plugins.
+// Goal: kill the "Up" / "Down" text labels visually and let the FontAwesome
+// chevron icons do the talking. Big, tabular count between them.
+
 .voting-wrapper,
 .post-voting-post {
   --vote-control-radius: var(--custom-theme-radius-md);
@@ -8,7 +12,11 @@
   border: 1px solid var(--custom-theme-border);
   border-radius: var(--vote-control-radius);
   box-shadow: var(--custom-theme-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  min-width: 3.25rem;
   overflow: hidden;
+  text-align: center;
 
   .btn[disabled]:not(.is-loading) {
     background: var(--custom-theme-muted-surface);
@@ -23,32 +31,80 @@
   color: var(--custom-theme-muted-foreground);
 }
 
-.voting-wrapper__button,
-.voting-wrapper__count {
-  background: var(--custom-theme-card);
-  border-color: var(--custom-theme-border);
-}
-
 .voting-wrapper__button {
-  border-radius: var(--vote-control-radius) var(--vote-control-radius) 0 0;
+  background: var(--custom-theme-card);
+  border: 0;
+  border-radius: 0;
+  color: var(--custom-theme-muted);
+  font-size: 0; // hides the text label
+  line-height: 1;
+  padding: 0.5rem;
+  transition: background-color 160ms ease, color 160ms ease;
+
+  .d-icon {
+    font-size: 1rem;
+    height: 1rem;
+    width: 1rem;
+  }
 
   &:focus-visible,
   .discourse-no-touch &:hover {
     background: var(--custom-theme-muted-surface);
+    color: var(--custom-theme-text);
   }
 
-  &.btn-success .d-icon {
+  // Upvote button is the first .voting-wrapper__button — tint green on vote.
+  &.btn-success,
+  &.--upvote.--voted {
     color: var(--custom-theme-success);
+  }
+
+  // Downvote.
+  &.--downvote.--voted {
+    color: var(--custom-theme-destructive);
   }
 }
 
 .voting-wrapper__count {
-  border-radius: 0 0 var(--vote-control-radius) var(--vote-control-radius);
-  color: var(--custom-theme-foreground);
+  background: var(--custom-theme-card);
+  border-block: 1px solid var(--custom-theme-border);
+  color: var(--custom-theme-text);
   font-family: var(--custom-theme-heading-font);
+  font-size: var(--font-up-1);
+  font-variant-numeric: tabular-nums;
   font-weight: 700;
+  padding: 0.25rem 0.5rem;
 }
 
+// Fallback: if the plugin renders text-only "Up" / "Down" buttons (no
+// FontAwesome icons present), inject chevrons via ::before so the user
+// always sees an arrow rather than a word.
+.voting-wrapper__button:not(:has(.d-icon))::before,
+.voting-wrapper [data-button-text="upvote" i]::before,
+.voting-wrapper [data-button-text="downvote" i]::before,
+.post-voting-button:not(:has(.d-icon))::before {
+  display: inline-block;
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.voting-wrapper__button:first-child:not(:has(.d-icon))::before,
+.voting-wrapper [data-button-text="upvote" i]::before,
+.voting-wrapper button[title*="up" i]:not(:has(.d-icon))::before {
+  content: "\f077"; // chevron-up
+}
+
+.voting-wrapper__button:last-child:not(:has(.d-icon))::before,
+.voting-wrapper [data-button-text="downvote" i]::before,
+.voting-wrapper button[title*="down" i]:not(:has(.d-icon))::before {
+  content: "\f078"; // chevron-down
+}
+
+// ---------------------------------------------------------------------------
+// post-voting plugin (Q&A style)
+// ---------------------------------------------------------------------------
 .post-voting-answers-header {
   background: var(--custom-theme-card);
   border: 1px solid var(--custom-theme-border);
@@ -72,7 +128,14 @@
 
   .post-voting-button {
     color: var(--custom-theme-muted-foreground);
+    font-size: 0;
     padding: var(--space-1) var(--space-2);
+
+    .d-icon {
+      font-size: 1.05rem;
+      height: 1.05rem;
+      width: 1.05rem;
+    }
 
     &:focus-visible,
     .discourse-no-touch &:hover {

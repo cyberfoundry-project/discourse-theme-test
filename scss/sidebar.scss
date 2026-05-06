@@ -1,5 +1,100 @@
+// ---------------------------------------------------------------------------
+// Discourse sidebar polish
+// ---------------------------------------------------------------------------
+// The "Categories", "Community Area", "Tags" sections in the screenshots are
+// admin-configured custom sidebar sections. Each link has an icon NAME the
+// admin sets. When the admin types something that isn't a valid FontAwesome
+// icon (`*`, `[]`, `{}`, `/`, `?`), Discourse renders the literal text — that's
+// why the sidebar looks like ASCII art. Two things this stylesheet does:
+//
+//   1. Gracefully styles the text-fallback so it at least reads as a glyph
+//      badge instead of stray punctuation.
+//   2. Polishes the rest of the sidebar (section headers, link rows, active
+//      state) so the chrome feels coherent.
+//
+// The real fix is admin-side: in `Admin → Customize → Sidebar Sections`,
+// replace `*` → `bullhorn`, `[]` → `code`, `{}` → `code-branch`,
+// `/` → `slash`, `o` → `circle-info`, `?` → `circle-question`,
+// `...` → `ellipsis`, `!` → `bullhorn`, `#` → `hashtag`.
+
+.sidebar-section-header {
+  color: var(--custom-theme-muted);
+  font-family: var(--custom-theme-body-font);
+  font-size: var(--font-down-2);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sidebar-section-link {
+  border-radius: var(--custom-theme-radius-sm);
+  color: var(--custom-theme-text);
+  font-family: var(--custom-theme-body-font);
+  font-size: var(--font-down-1);
+  gap: 0.5rem;
+  padding: 0.4rem 0.625rem;
+  transition: background-color 160ms ease, color 160ms ease;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--custom-theme-subtle);
+    color: var(--custom-theme-text);
+  }
+
+  &--active,
+  &.active {
+    background: color-mix(in srgb, var(--custom-theme-primary) 9%, transparent);
+    color: var(--custom-theme-primary);
+    font-weight: 600;
+  }
+}
+
+// Icon column — keep a stable square so text-fallback "icons" align with
+// real d-icons. 1.25rem is the FA icon's natural width here.
+.sidebar-section-link-prefix {
+  align-items: center;
+  color: var(--custom-theme-muted);
+  display: inline-flex;
+  font-family: var(--custom-theme-heading-font);
+  font-size: var(--font-down-1);
+  font-weight: 600;
+  height: 1.25rem;
+  justify-content: center;
+  width: 1.25rem;
+}
+
+// Text-fallback styling: when the prefix contains a string instead of an
+// SVG (.d-icon), give it a tinted square badge so the sidebar still reads.
+.sidebar-section-link-prefix:not(:has(svg, .d-icon)) {
+  background: var(--custom-theme-subtle);
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--custom-theme-radius-sm);
+  color: var(--custom-theme-muted-foreground);
+  font-family: var(--custom-theme-body-font);
+  font-size: var(--font-down-3);
+  letter-spacing: 0;
+}
+
+.sidebar-section-link--active .sidebar-section-link-prefix,
+.sidebar-section-link.active .sidebar-section-link-prefix {
+  color: var(--custom-theme-primary);
+}
+
+// Tags-section hashtags — visually quiet "#" prefix.
+.sidebar-section[data-section-name="tags"] .sidebar-section-link-prefix,
+.sidebar-section-tag .sidebar-section-link-prefix {
+  background: transparent;
+  border: 0;
+  color: var(--custom-theme-muted);
+}
+
+// ---------------------------------------------------------------------------
+// Custom promo card (after-sidebar-sections connector)
+// ---------------------------------------------------------------------------
 .custom-sidebar-card {
-  background: var(--custom-theme-surface);
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--custom-theme-primary) 6%, var(--custom-theme-surface)) 0%,
+    var(--custom-theme-surface) 70%);
   border: 1px solid var(--custom-theme-border);
   border-radius: var(--custom-theme-radius-lg);
   box-shadow: var(--custom-theme-shadow-sm);
@@ -7,12 +102,31 @@
   gap: 0.875rem;
   margin: 1rem 0.75rem;
   padding: 1.125rem 1.125rem 1.25rem;
+  position: relative;
+}
+
+.custom-sidebar-card::before {
+  background: radial-gradient(80% 100% at 100% 0%,
+    color-mix(in srgb, var(--custom-theme-primary) 14%, transparent) 0%,
+    transparent 65%);
+  border-radius: inherit;
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.custom-sidebar-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .custom-sidebar-card__icon {
   align-items: center;
-  background: var(--custom-theme-info-surface);
+  background: var(--custom-theme-surface);
+  border: 1px solid color-mix(in srgb, var(--custom-theme-primary) 22%, var(--custom-theme-border));
   border-radius: var(--custom-theme-radius-md);
+  box-shadow: var(--custom-theme-shadow-sm);
   color: var(--custom-theme-primary);
   display: inline-flex;
   font-size: 1.05rem;

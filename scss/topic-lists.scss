@@ -1,5 +1,7 @@
+// ---------------------------------------------------------------------------
+// Table-style topic list
+// ---------------------------------------------------------------------------
 .topic-list,
-.category-list,
 .latest-topic-list,
 .top-topic-list {
   background: var(--custom-theme-surface);
@@ -9,8 +11,7 @@
   overflow: hidden;
 }
 
-.topic-list thead,
-.category-list thead {
+.topic-list thead {
   background: var(--custom-theme-subtle);
 
   th {
@@ -24,8 +25,7 @@
   }
 }
 
-.topic-list tbody tr,
-.category-list tbody tr {
+.topic-list tbody tr {
   border-bottom: 1px solid var(--custom-theme-border);
   transition: background-color 160ms ease;
 
@@ -34,14 +34,12 @@
   }
 }
 
-.topic-list tbody td,
-.category-list tbody td {
+.topic-list tbody td {
   padding: 0.875rem;
   vertical-align: middle;
 }
 
-.topic-list tbody tr:hover,
-.category-list tbody tr:hover {
+.topic-list tbody tr:hover {
   background: var(--custom-theme-subtle);
 }
 
@@ -84,15 +82,87 @@
   }
 }
 
-.category-list {
-  .category-name {
-    font-family: var(--custom-theme-heading-font);
-    font-weight: 650;
-    letter-spacing: -0.01em;
-  }
+// ---------------------------------------------------------------------------
+// Card-style topic items (mobile and topic-list-previews) — meta as badges
+// ---------------------------------------------------------------------------
+.latest-topic-list-item,
+.topic-list-item.with-card,
+.custom-theme-topic-card {
+  background: var(--custom-theme-gradient-card);
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--custom-theme-radius-lg);
+  box-shadow: var(--custom-theme-shadow-sm);
+  display: grid;
+  gap: 0.875rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  padding: 1.125rem 1.25rem;
+}
 
-  .category-description {
-    color: var(--custom-theme-muted);
-    line-height: 1.55;
-  }
+// Author / replies / activity meta — render every item in the meta row as
+// a soft pill badge so the slash-separated text reads as structured data.
+.latest-topic-list-item .topic-meta,
+.topic-list-item .topic-item-meta,
+.custom-theme-topic-card .topic-meta {
+  align-items: center;
+  color: var(--custom-theme-muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-family: var(--custom-theme-body-font);
+  font-size: var(--font-down-2);
+  gap: 0.4rem;
+  margin: 0.35rem 0 0.6rem;
+}
+
+// Each child of the meta row becomes a badge.
+.latest-topic-list-item .topic-meta > *,
+.custom-theme-topic-card .topic-meta > *,
+.topic-list-item .topic-item-meta > * {
+  align-items: center;
+  background: var(--custom-theme-subtle);
+  border: 1px solid var(--custom-theme-border);
+  border-radius: 999px;
+  color: var(--custom-theme-muted-foreground);
+  display: inline-flex;
+  font-size: var(--font-down-2);
+  font-weight: 500;
+  gap: 0.3rem;
+  padding: 0.2rem 0.55rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.latest-topic-list-item .topic-meta > a,
+.topic-list-item .topic-item-meta > a {
+  color: var(--custom-theme-text);
+  font-weight: 600;
+}
+
+.latest-topic-list-item .topic-meta > a:hover,
+.latest-topic-list-item .topic-meta > a:focus-visible,
+.topic-list-item .topic-item-meta > a:hover,
+.topic-list-item .topic-item-meta > a:focus-visible {
+  border-color: color-mix(in srgb, var(--custom-theme-primary) 30%, var(--custom-theme-border));
+  color: var(--custom-theme-primary);
+}
+
+// Author badge gets a subtle accent.
+.latest-topic-list-item .topic-meta > .author,
+.topic-list-item .topic-item-meta > .author,
+.custom-theme-topic-card .topic-meta > .author {
+  background: color-mix(in srgb, var(--custom-theme-primary) 6%, var(--custom-theme-surface));
+  border-color: color-mix(in srgb, var(--custom-theme-primary) 18%, var(--custom-theme-border));
+  color: var(--custom-theme-text);
+}
+
+// Hide the literal " / " separators since the badges now provide the
+// structure.
+.latest-topic-list-item .topic-meta::before,
+.topic-list-item .topic-item-meta::before,
+.custom-theme-topic-card .topic-meta::before {
+  content: none;
+}
+.latest-topic-list-item .topic-meta .topic-meta-sep,
+.topic-list-item .topic-item-meta .topic-meta-sep,
+.custom-theme-topic-card .topic-meta .topic-meta-sep {
+  display: none;
 }

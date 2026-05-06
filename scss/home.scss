@@ -1,5 +1,13 @@
 :root {
   --custom-theme-content-width: 1110px;
+  --custom-theme-gradient-card:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--custom-theme-primary) 4%, var(--custom-theme-surface)) 0%,
+      var(--custom-theme-surface) 65%);
+  --custom-theme-gradient-hero:
+    radial-gradient(120% 140% at 0% 0%,
+      color-mix(in srgb, var(--custom-theme-primary) 9%, var(--custom-theme-surface)) 0%,
+      var(--custom-theme-surface) 55%);
 }
 
 .custom-theme-home {
@@ -9,8 +17,7 @@
   padding: 0 0.75rem;
 }
 
-// Routes that have their own banner / TOC real estate own that space; hide
-// the homepage hero so we don't stack a second hero on top.
+// Routes that own their own banner real estate hide the homepage hero.
 body.archetype-regular .custom-theme-home,
 body.archetype-private_message .custom-theme-home,
 body[class*="category-"]:not(.navigation-categories) .custom-theme-home,
@@ -27,38 +34,68 @@ body.tag-banner .custom-theme-home {
   margin-bottom: 1.25rem;
 }
 
-.custom-theme-announcement {
-  align-items: center;
-  background: var(--custom-theme-info-surface);
-  border: 1px solid color-mix(in srgb, var(--custom-theme-primary) 20%, transparent);
-  border-radius: var(--custom-theme-radius);
-  color: var(--custom-theme-primary);
-  display: flex;
-  font-family: var(--custom-theme-body-font);
-  font-size: var(--font-down-1);
-  font-weight: 600;
-  gap: 0.6rem;
-  justify-content: center;
-  line-height: 1.45;
-  margin: 0 0 1.25rem;
-  min-height: 2.5rem;
-  padding: 0.625rem 1rem;
-  text-align: center;
+// New-user welcome announcement: only render for anon + TL0 (api-initializer
+// adds `.cyberfoundry-new-user` to <html>). Anyone past TL0 gets the
+// announcement element hidden so they're not reminded to "get started" forever.
+.custom-theme-announcement--new-user {
+  display: none;
 }
 
-.custom-theme-announcement::before {
-  background: currentColor;
+html.cyberfoundry-new-user .custom-theme-announcement--new-user {
+  align-items: center;
+  background:
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--custom-theme-primary) 8%, var(--custom-theme-surface)) 0%,
+      color-mix(in srgb, var(--custom-theme-primary) 2%, var(--custom-theme-surface)) 100%);
+  border: 1px solid color-mix(in srgb, var(--custom-theme-primary) 22%, transparent);
+  border-radius: var(--custom-theme-radius);
+  color: var(--custom-theme-text);
+  display: flex;
+  flex-wrap: wrap;
+  font-family: var(--custom-theme-body-font);
+  font-size: var(--font-down-1);
+  font-weight: 500;
+  gap: 0.625rem;
+  justify-content: center;
+  line-height: 1.5;
+  margin: 0 0 1.25rem;
+  padding: 0.625rem 1rem;
+  text-align: left;
+}
+
+.custom-theme-announcement__dot {
+  background: var(--custom-theme-primary);
   border-radius: 50%;
-  content: "";
-  display: inline-block;
   flex: 0 0 auto;
-  height: 0.4rem;
-  width: 0.4rem;
+  height: 0.45rem;
+  width: 0.45rem;
+}
+
+.custom-theme-announcement__text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.custom-theme-announcement__cta {
+  align-items: center;
+  color: var(--custom-theme-primary);
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-weight: 600;
+  gap: 0.25rem;
+  text-decoration: none;
+  transition: gap 160ms ease;
+}
+
+.custom-theme-announcement__cta:hover,
+.custom-theme-announcement__cta:focus-visible {
+  color: var(--custom-theme-primary-dark);
+  gap: 0.4rem;
 }
 
 .custom-theme-banner {
   align-items: center;
-  background: var(--custom-theme-surface);
+  background: var(--custom-theme-gradient-hero);
   border: 1px solid var(--custom-theme-border);
   border-radius: var(--custom-theme-radius-lg);
   box-shadow: var(--custom-theme-shadow-sm);
@@ -67,7 +104,25 @@ body.tag-banner .custom-theme-home {
   gap: 1.25rem 2rem;
   grid-template-columns: minmax(0, 1fr) auto;
   margin: 0 0 1.25rem;
-  padding: 1.75rem 1.875rem;
+  overflow: hidden;
+  padding: 1.875rem 2rem;
+  position: relative;
+}
+
+.custom-theme-banner::after {
+  background:
+    radial-gradient(60% 80% at 100% 100%,
+      color-mix(in srgb, var(--custom-theme-primary) 12%, transparent) 0%,
+      transparent 70%);
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.custom-theme-banner > * {
+  position: relative;
+  z-index: 1;
 }
 
 .custom-theme-banner__eyebrow {
@@ -78,7 +133,6 @@ body.tag-banner .custom-theme-home {
   letter-spacing: 0.01em;
   line-height: 1.35;
   margin: 0 0 0.5rem;
-  text-transform: none;
 }
 
 .custom-theme-banner__title {
@@ -116,7 +170,7 @@ body.tag-banner .custom-theme-home {
 }
 
 .custom-quick-link {
-  background: var(--custom-theme-surface);
+  background: var(--custom-theme-gradient-card);
   border: 1px solid var(--custom-theme-border);
   border-radius: var(--custom-theme-radius-lg);
   box-shadow: var(--custom-theme-shadow-sm);

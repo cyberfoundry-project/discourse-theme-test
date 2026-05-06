@@ -22,7 +22,7 @@ mobile/                                    mobile-only SCSS overrides
 scss/                                      partials imported by common.scss
 javascripts/discourse/
   api-initializers/*.gjs                   runtime hooks; one initializer per file
-  connectors/<outlet-name>/*.hbs           plugin outlet templates; folder = outlet
+  connectors/<outlet-name>/*.gjs           plugin outlet templates; folder = outlet
   components/                              custom Glimmer components
 screenshots/                               referenced from about.json
 ```
@@ -78,9 +78,42 @@ export default apiInitializer("1.8.0", (api) => {
 - `onPageChange` runs for every Ember route transition — keep work cheap and idempotent.
 - `document.querySelector` is fine in `onPageChange` callbacks but DOM may not yet be painted; use `requestAnimationFrame` if you need layout.
 
-## Plugin outlets
+## Plugin outlets — `.gjs` only
 
 Discourse exposes hundreds of `<PluginOutlet @name="…" />` slots. Folder name under `connectors/` MUST match the outlet name. There is no wildcard.
+
+Connector files MUST use the `.gjs` extension. `.hbs` connectors are deprecated (deprecation id `discourse.hbs-extension`, see https://meta.discourse.org/t/398896) and emit a console warning per-load.
+
+A connector that just renders markup with theme settings looks like:
+
+```js
+import themeSetting from "discourse/helpers/theme-setting";
+import icon from "discourse/helpers/d-icon";
+
+export default <template>
+  {{#if (themeSetting "show_homepage_hero")}}
+    <section class="custom-theme-banner">
+      <h1>{{themeSetting "hero_title"}}</h1>
+      <a href={{themeSetting "hero_cta_url"}}>
+        {{icon "arrow-right"}}
+        {{themeSetting "hero_cta_text"}}
+      </a>
+    </section>
+  {{/if}}
+</template>;
+```
+
+If you need component state, args, or lifecycle, wrap in a class component:
+
+```js
+import Component from "@glimmer/component";
+
+export default class extends Component {
+  <template>
+    <div>…uses {{@outletArgs.someArg}}…</div>
+  </template>
+}
+```
 
 How to find the right outlet:
 1. Install the **Plugin Outlet Locations** theme component on a dev instance — it overlays outlet names on the rendered UI.

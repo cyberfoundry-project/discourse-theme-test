@@ -9,7 +9,7 @@ A custom Discourse theme (not a component). Light-mode, shadcn/Vercel-inspired s
 - `common/`, `desktop/`, `mobile/` — SCSS entry points + HTML hooks (`head_tag.html`, `footer.html`, etc.).
 - `scss/` — partials imported by `common/common.scss` (Horizon-style split).
 - `javascripts/discourse/api-initializers/*.gjs` — runtime hooks. Use `apiInitializer("1.8.0", api => …)`.
-- `javascripts/discourse/connectors/<outlet-name>/*.hbs` — plugin outlet templates. Folder name = outlet name.
+- `javascripts/discourse/connectors/<outlet-name>/*.gjs` — plugin outlet templates. Folder name = outlet name. **Do not use `.hbs`** — Discourse deprecated it (deprecation id `discourse.hbs-extension`, see https://meta.discourse.org/t/398896). Use Glimmer JS template syntax: `import themeSetting from "discourse/helpers/theme-setting"; export default <template>…</template>;`
 - `screenshots/` — referenced from `about.json`.
 - `preview/index.html` — static preview, runnable without a Discourse instance.
 

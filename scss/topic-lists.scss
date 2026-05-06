@@ -73,12 +73,29 @@
     border-radius: var(--custom-theme-radius-sm);
   }
 
-  .num,
-  .age,
-  .posts-map,
-  .views {
-    color: var(--custom-theme-muted);
+  // Replies / Views / Activity cells render as quiet pill badges inside their
+  // td so the row reads as structured data instead of bare numbers.
+  td.posts a.badge-posts,
+  td.views .number,
+  td.activity a.post-activity {
+    align-items: center;
+    background: var(--custom-theme-subtle);
+    border: 1px solid var(--custom-theme-border);
+    border-radius: 999px;
+    color: var(--custom-theme-muted-foreground);
+    display: inline-flex;
+    font-size: var(--font-down-2);
     font-variant-numeric: tabular-nums;
+    font-weight: 500;
+    min-width: 2.25rem;
+    padding: 0.2rem 0.55rem;
+    text-decoration: none;
+  }
+
+  td.posts a.badge-posts:hover,
+  td.activity a.post-activity:hover {
+    border-color: color-mix(in srgb, var(--custom-theme-primary) 30%, var(--custom-theme-border));
+    color: var(--custom-theme-primary);
   }
 }
 

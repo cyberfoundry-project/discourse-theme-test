@@ -14,42 +14,50 @@
 }
 
 // ---------------------------------------------------------------------------
-// Header icons (notifications, messages, hamburger, user menu) — outline button
-// treatment so they read as discrete controls instead of bare icons.
+// Header icons (chat, user menu, notifications) — outline button treatment so
+// they read as discrete controls instead of bare icons.
+//
+// Discourse renders each icon as `<li><a/button class="btn no-text icon
+// btn-flat">` inside `<ul class="icons d-header-icons">`. We target the inner
+// control directly because `.btn-flat` ships with `background: transparent`
+// at decent specificity.
 // ---------------------------------------------------------------------------
 .d-header-icons {
   align-items: center;
   display: flex;
   gap: 0.4rem;
+  margin: 0;
+  padding: 0;
 }
 
-.d-header-icons .icon,
+.d-header-icons > li {
+  list-style: none;
+  margin: 0;
+}
+
 .d-header-icons > li > a,
-.header-dropdown-toggle,
-.header-dropdown-toggle .icon {
+.d-header-icons > li > button {
   align-items: center;
+  background: var(--custom-theme-surface);
+  border: 1px solid var(--custom-theme-border);
   border-radius: var(--custom-theme-radius-md);
   color: var(--custom-theme-text);
   display: inline-flex;
   height: 2.25rem;
   justify-content: center;
+  padding: 0;
   position: relative;
-  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
   width: 2.25rem;
 }
 
-.d-header-icons .icon,
-.d-header-icons > li > a,
-.header-dropdown-toggle:not(.current-user) {
-  background: var(--custom-theme-surface);
-  border: 1px solid var(--custom-theme-border);
-}
-
-.d-header-icons .icon:hover,
-.d-header-icons .icon:focus-visible,
 .d-header-icons > li > a:hover,
 .d-header-icons > li > a:focus-visible,
-.header-dropdown-toggle:hover {
+.d-header-icons > li > button:hover,
+.d-header-icons > li > button:focus-visible {
   background: var(--custom-theme-subtle);
   border-color: color-mix(in srgb, var(--custom-theme-primary) 30%, var(--custom-theme-border));
   color: var(--custom-theme-text);
@@ -57,6 +65,25 @@
 
 .d-header-icons .d-icon {
   font-size: 0.95rem;
+  height: 0.95rem;
+  width: 0.95rem;
+}
+
+// Hamburger toggle on the left side of the header — give it the same outline
+// treatment as the right-side icons.
+.d-header .hamburger-dropdown,
+.d-header .hamburger-panel button {
+  background: var(--custom-theme-surface);
+  border: 1px solid var(--custom-theme-border);
+  border-radius: var(--custom-theme-radius-md);
+  height: 2.25rem;
+  width: 2.25rem;
+}
+
+.d-header .hamburger-dropdown:hover,
+.d-header .hamburger-panel button:hover {
+  background: var(--custom-theme-subtle);
+  border-color: color-mix(in srgb, var(--custom-theme-primary) 30%, var(--custom-theme-border));
 }
 
 // Notification count badge — sits over the notifications icon with a real
@@ -96,15 +123,23 @@
 
 // Current-user avatar toggle — distinct from icon buttons, no border so the
 // avatar reads cleanly. Add a chevron after to signal a dropdown.
-.header-dropdown-toggle.current-user {
+.d-header-icons > li.current-user > button,
+.d-header-icons > li.current-user > a {
   background: transparent;
   border: 0;
-  gap: 0.4rem;
-  padding: 0 0.25rem;
+  gap: 0.35rem;
+  padding: 0 0.35rem 0 0.25rem;
   width: auto;
 }
 
-.header-dropdown-toggle.current-user::after {
+.d-header-icons > li.current-user > button:hover,
+.d-header-icons > li.current-user > a:hover {
+  background: var(--custom-theme-subtle);
+  border: 0;
+}
+
+.d-header-icons > li.current-user > button::after,
+.d-header-icons > li.current-user > a::after {
   color: var(--custom-theme-muted);
   content: "▾"; // U+25BE — works in system fonts; no FA dependency
   font-size: 0.85rem;
@@ -112,10 +147,10 @@
   line-height: 1;
 }
 
-.header-dropdown-toggle.current-user img.avatar {
+.d-header-icons > li.current-user img.avatar {
   border-radius: 999px;
-  height: 1.75rem;
-  width: 1.75rem;
+  height: 1.6rem;
+  width: 1.6rem;
 }
 
 // Centered search field (`search_experience: search_field`) — match our token

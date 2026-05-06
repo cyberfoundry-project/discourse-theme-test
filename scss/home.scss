@@ -35,6 +35,14 @@
   width: 100%;
 }
 
+// Hide Discourse's built-in `.welcome-banner` widget. Our hero serves the
+// same role and we don't want both stacked on the homepage. CSS-hide is
+// reliable across Discourse versions; the alternative is digging through
+// admin to flip the per-theme enablement.
+.welcome-banner {
+  display: none !important;
+}
+
 // Routes that own their own banner real estate hide the homepage hero.
 //
 // IMPORTANT: do NOT use `[class*="category-"]` / `[class*="tag-"]`. Discourse

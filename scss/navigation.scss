@@ -62,15 +62,19 @@
 
 // /latest, /new, /unread, /top, /hot, /categories. Match either trailing
 // segment or query-string form (`?ascending=…`).
+//
+// IMPORTANT: SCSS compilers interpret `"\f017"` as `\f` (form feed) + `017`
+// and collapse the value. Use `"\\f017"` so the literal `\f017` reaches CSS,
+// where the parser then resolves it to U+F017.
 .nav-pills > li > a[href$="/latest"]::before,
-.nav-pills > li > a[href*="/latest?"]::before { content: "\f017"; } // clock
+.nav-pills > li > a[href*="/latest?"]::before { content: "\\f017"; } // clock
 .nav-pills > li > a[href$="/new"]::before,
-.nav-pills > li > a[href*="/new?"]::before { content: "\f005"; } // star
-.nav-pills > li > a[href$="/unread"]::before { content: "\f0e0"; } // envelope
+.nav-pills > li > a[href*="/new?"]::before { content: "\\f005"; } // star
+.nav-pills > li > a[href$="/unread"]::before { content: "\\f0e0"; } // envelope
 .nav-pills > li > a[href$="/top"]::before,
-.nav-pills > li > a[href*="/top?"]::before { content: "\f062"; } // arrow-up
-.nav-pills > li > a[href$="/hot"]::before { content: "\f06d"; } // fire
-.nav-pills > li > a[href$="/categories"]::before { content: "\f5fd"; } // layer-group
+.nav-pills > li > a[href*="/top?"]::before { content: "\\f062"; } // arrow-up
+.nav-pills > li > a[href$="/hot"]::before { content: "\\f06d"; } // fire
+.nav-pills > li > a[href$="/categories"]::before { content: "\\f5fd"; } // layer-group
 
 // Active tab — tint the icon to brand so the visual hit is unambiguous.
 .nav-pills > li.active > a::before,

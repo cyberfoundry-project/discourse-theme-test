@@ -95,13 +95,13 @@
 .voting-wrapper__button:first-child:not(:has(.d-icon))::before,
 .voting-wrapper [data-button-text="upvote" i]::before,
 .voting-wrapper button[title*="up" i]:not(:has(.d-icon))::before {
-  content: "\f077"; // chevron-up
+  content: "\\f077"; // chevron-up
 }
 
 .voting-wrapper__button:last-child:not(:has(.d-icon))::before,
 .voting-wrapper [data-button-text="downvote" i]::before,
 .voting-wrapper button[title*="down" i]:not(:has(.d-icon))::before {
-  content: "\f078"; // chevron-down
+  content: "\\f078"; // chevron-down
 }
 
 // ---------------------------------------------------------------------------

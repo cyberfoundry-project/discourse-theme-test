@@ -106,7 +106,7 @@
 
 .header-dropdown-toggle.current-user::after {
   color: var(--custom-theme-muted);
-  content: "\f078"; // chevron-down
+  content: "\\f078"; // chevron-down
   font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", sans-serif;
   font-size: 0.7rem;
   font-weight: 900;
